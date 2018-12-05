@@ -649,7 +649,6 @@ include("connect.php");
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="large" role="tabpanel">
                             <div class="row">
-<
                                 <!--shop tab product-->
                                 <?php
                                 $al_kategori = "SELECT * FROM urunler ";
@@ -811,7 +810,6 @@ include("connect.php");
         </div>
     </div>
 </div>
-
                                     ";
                                 }
 
