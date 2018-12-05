@@ -643,12 +643,13 @@ include("connect.php");
                         </form>
                     </div>
                 </div>
-                <!--shop toolbar end-->
+                <!--shop toolbar enddddd-->
                 <!--shop tab product-->
                 <div class="shop_tab_product">
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="large" role="tabpanel">
                             <div class="row">
+
                                 <!--shop tab product-->
                                 <?php
                                 $al_kategori = "SELECT * FROM urunler ";
