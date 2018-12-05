@@ -1,15 +1,20 @@
 <?php
-//include ("connect.php");
-$servername = "localhost";
-$username = "root";
-$password = "";
-$db = "eticaret";
-$email=isset($_POST['email']);
-$parola=isset($_POST['parola']);
-$con = mysqli_connect($servername, $username, $password,$db) or die("Veritabanı bağlantısı sağlanamadı!");
-$sql="INSERT INTO users(email,parola) VALUE('$email','$parola')";
-mysqli_query($con,$sql);
-header('Location: index.php');
+include ("connect.php");
+if (isset($_POST['register'])){
+    $email=$_POST['email'];
+    $parola=$_POST['parola'];
+    if (empty($email)|| empty($parola))
+    {
+     echo "Boş geçmeyiniz";
+    }
+    else
+    {
+        $sql="INSERT INTO users(email,parola) VALUE('$email','$parola')";
+        $succes=mysqli_query($con,$sql);
+        header('Location: index.php');
+    }
+}
+
 ?>
 
 
