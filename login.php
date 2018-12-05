@@ -1,7 +1,8 @@
+<?php
+?>
 <!doctype html>
 <html class="no-js" lang="zxx">
-    
-<!-- Mirrored from demo.devitems.com/cigar-v3/cigar/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 18:00:17 GMT -->
+<!-- Mirrored from demo.devitems.com/cigar-v3/cigar/login.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 18:00:17 GMT -->
 <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -10,7 +11,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Favicon -->
         <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
-		
 		<!-- all css here -->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/bundle.css">
@@ -72,7 +72,7 @@
                         <div class="row align-items-center">
                             <div class="col-lg-3 col-md-4">
                                 <div class="logo">
-                                    <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                                    <a href="index.php"><img src="assets/img/logo/logo.png" alt=""></a>
                                 </div>
                             </div>
                             <div class="col-lg-7 col-md-5">
@@ -308,19 +308,19 @@
                                 <div class="main_menu_inner">
                                     <div class="main_menu d-none d-lg-block"> 
                                         <ul>
-                                            <li class="active"><a href="index.html">Home <i class="fa fa-angle-down"></i></a>
+                                            <li class="active"><a href="index.php">Home <i class="fa fa-angle-down"></i></a>
                                                 <ul class="sub_menu">
-                                                    <li><a href="index.html">Home 1</a></li>
+                                                    <li><a href="index.php">Home 1</a></li>
                                                     <li><a href="index-2.html">Home 2</a></li>
                                                     <li><a href="index-3.html">Home 3</a></li>
                                                     <li><a href="index-4.html">Home 4</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="shop.html">shop <i class="fa fa-angle-down"></i></a>
+                                            <li><a href="shop.php">shop <i class="fa fa-angle-down"></i></a>
                                                 <ul class="mega_menu">
                                                     <li><a href="#">Shop Layouts</a>
                                                         <ul>
-                                                            <li><a href="shop-fullwidth.html">Full Width</a></li>
+                                                            <li><a href="shop.php">Full Width</a></li>
                                                             <li><a href="shop-fullwidth-list.html">Full Width list</a></li>
                                                             <li><a href="shop-right-sidebar.html">Right Sidebar </a></li>
                                                             <li><a href="shop-right-sidebar-list.html"> Right Sidebar list</a></li>
@@ -380,7 +380,7 @@
                                                     <li><a href="about.html">About Us</a></li>
                                                     <li><a href="services.html">services</a></li>
                                                     <li><a href="faq.html">Frequently Questions</a></li>
-                                                    <li><a href="login.html">login</a></li>
+                                                    <li><a href="login.php">login</a></li>
                                                     <li><a href="my-account.html">my account</a></li>
                                                     <li><a href="wishlist.html">Wishlist</a></li>
                                                     <li><a href="404.html">Error 404</a></li>
@@ -393,19 +393,19 @@
                                     <div class="mobile-menu d-lg-none">
                                         <nav>  
                                             <ul>
-                                            <li><a href="index.html">Home</a>
+                                            <li><a href="index.php">Home</a>
                                                 <ul>
-                                                    <li><a href="index.html">Home 1</a></li>
+                                                    <li><a href="index.php">Home 1</a></li>
                                                     <li><a href="index-2.html">Home 2</a></li>
                                                     <li><a href="index-3.html">Home 3</a></li>
                                                     <li><a href="index-4.html">Home 4</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="shop.html">shop</a>
+                                            <li><a href="shop.php">shop</a>
                                                 <ul>
                                                     <li><a href="#">Shop Layouts</a>
                                                         <ul>
-                                                            <li><a href="shop-fullwidth.html">Full Width</a></li>
+                                                            <li><a href="shop.php">Full Width</a></li>
                                                             <li><a href="shop-fullwidth-list.html">Full Width list</a></li>
                                                             <li><a href="shop-right-sidebar.html">Right Sidebar </a></li>
                                                             <li><a href="shop-right-sidebar-list.html"> Right Sidebar list</a></li>
@@ -465,7 +465,7 @@
                                                     <li><a href="about.html">About Us</a></li>
                                                     <li><a href="services.html">services</a></li>
                                                     <li><a href="faq.html">Frequently Questions</a></li>
-                                                    <li><a href="login.html">login</a></li>
+                                                    <li><a href="login.php">login</a></li>
                                                     <li><a href="my-account.html">my account</a></li>
                                                     <li><a href="wishlist.html">Wishlist</a></li>
                                                     <li><a href="404.html">Error 404</a></li>
@@ -503,7 +503,7 @@
                             <div class="breadcrumb_content">
                                 <h3>login</h3>
                                 <ul>
-                                    <li><a href="index.html">home</a></li>
+                                    <li><a href="index.php">home</a></li>
                                     <li><i class="fa fa-angle-right"></i></li>
                                     <li>login</li>
                                 </ul>
@@ -549,17 +549,17 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="account_form register">
                                 <h2>Register</h2>
-                                <form action="#">
+                                <form action="register.php" method="post">
                                     <p>   
                                         <label>Email address  <span>*</span></label>
-                                        <input type="text">
+                                        <input type="email" name="email">
                                      </p>
                                      <p>   
                                         <label>Passwords <span>*</span></label>
-                                        <input type="password">
+                                        <input type="password" name="parola">
                                      </p>
                                     <div class="login_submit">
-                                        <button type="submit">Register</button>
+                                        <button type="submit" name="register">Register</button>
                                     </div>
                                 </form>
                             </div>    
@@ -872,5 +872,5 @@
         <script src="assets/js/main.js"></script>
     </body>
 
-<!-- Mirrored from demo.devitems.com/cigar-v3/cigar/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 18:00:17 GMT -->
+<!-- Mirrored from demo.devitems.com/cigar-v3/cigar/login.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 18:00:17 GMT -->
 </html>
