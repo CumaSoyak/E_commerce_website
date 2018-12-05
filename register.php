@@ -1,17 +1,39 @@
 <?php
-include ("connect.php");
-if (isset($_POST['register'])){
-    $email=$_POST['email'];
-    $parola=$_POST['parola'];
-    if (empty($email)|| empty($parola))
-    {
-     echo "Boş geçmeyiniz";
-    }
-    else
-    {
-        $sql="INSERT INTO users(email,parola) VALUE('$email','$parola')";
-        $succes=mysqli_query($con,$sql);
+include("connect.php");
+if (isset($_POST['register'])) {
+    $email = $_POST['email'];
+    $parola = $_POST['parola'];
+    if (empty($email) || empty($parola)) {
+        echo "<script>alert('Alanları Boş geçmeyiniz')</script>";
+
+    } else {
+        $sql = "INSERT INTO users(email,parola) VALUE('$email','$parola')";
+        $succes = mysqli_query($con, $sql);
         header('Location: index.php');
+    }
+}
+if (isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $parola = $_POST['parola'];
+    if (empty($email) || empty($parola)) {
+        echo "<script>alert('Alanları Boş geçmeyiniz')</script>";
+
+    } else {
+          $email=$con->escape_string($_POST['email']);
+          $sonuc=$con->query("SELECT *FROM users WHERE email='$email'");
+          if ($sonuc->num_rows==0){
+              $_SESSION['message']="user asdasdas sda";
+             // header("Location: blog.html");
+          }
+          else {
+              $user = $result->fetch_assoc();
+              if (password_verify($_POST['parola'], $user['parola'])) {
+                  header('Location: index.php');
+
+              }
+
+
+          }
     }
 }
 
@@ -62,7 +84,7 @@ if (isset($_POST['register'])){
                                     <li><a href="wishlist.html">My Wish List </a></li>
                                     <li><a href="my-account.html">My Account </a></li>
                                     <li><a href="#">Sign In</a></li>
-                                    <li><a href="#">Compare Products  </a></li>
+                                    <li><a href="#">Compare Products </a></li>
                                 </ul>
                             </li>
                             <li class="currency"><a href="#">USD <i class="ion-chevron-down"></i></a>
@@ -71,7 +93,8 @@ if (isset($_POST['register'])){
                                     <li><a href="#">BRL</a></li>
                                 </ul>
                             </li>
-                            <li class="language"><a href="#"><img src="assets/img/logo/language.png" alt=""> English <i class="ion-chevron-down"></i></a>
+                            <li class="language"><a href="#"><img src="assets/img/logo/language.png" alt=""> English <i
+                                            class="ion-chevron-down"></i></a>
                                 <ul class="dropdown_language">
                                     <li><a href="#"><img src="assets/img/logo/cigar.jpg" alt=""> French</a></li>
                                     <li><a href="#"><img src="assets/img/logo/language2.png" alt="">German</a></li>
@@ -166,7 +189,8 @@ if (isset($_POST['register'])){
                         </div>
                         <div class="categories_menu_inner">
                             <ul>
-                                <li class="categorie_list"><a href="#">Laptop & Computer <i class="fa fa-angle-right"></i></a>
+                                <li class="categorie_list"><a href="#">Laptop & Computer <i
+                                                class="fa fa-angle-right"></i></a>
                                     <ul class="categories_mega_menu">
                                         <li><a href="#">Headphoness</a>
                                             <div class="categorie_sub_menu">
@@ -201,10 +225,9 @@ if (isset($_POST['register'])){
                                         <li><img src="assets/img/categorie/categorie.png" alt=""></li>
 
 
-
                                     </ul>
                                 </li>
-                                <li><a href="#"> Fashion  <i class="fa fa-angle-right"></i></a>
+                                <li><a href="#"> Fashion <i class="fa fa-angle-right"></i></a>
                                     <ul class="categories_mega_menu">
                                         <li><a href="#">Dresses</a>
                                             <div class="categorie_sub_menu">
@@ -239,7 +262,7 @@ if (isset($_POST['register'])){
                                         <li><a href="#">Clothing</a>
                                             <div class="categorie_sub_menu">
                                                 <ul>
-                                                    <li><a href="#">Coats  Jackets </a></li>
+                                                    <li><a href="#">Coats Jackets </a></li>
                                                     <li><a href="#">Raincoats</a></li>
                                                     <li><a href="#">Jackets</a></li>
                                                     <li><a href="#">T-shirts</a></li>
@@ -374,7 +397,7 @@ if (isset($_POST['register'])){
                                             <ul>
 
                                                 <li><a href="blog-details.html">blog details</a></li>
-                                                <li><a href="blog-sidebar.html">blog  Sidebar</a></li>
+                                                <li><a href="blog-sidebar.html">blog Sidebar</a></li>
                                                 <li><a href="blog-fullwidth.html">blog fullwidth</a></li>
                                             </ul>
                                         </li>
@@ -427,7 +450,8 @@ if (isset($_POST['register'])){
                                                     <li><a href="shop.php">Full Width</a></li>
                                                     <li><a href="shop-fullwidth-list.html">Full Width list</a></li>
                                                     <li><a href="shop-right-sidebar.html">Right Sidebar </a></li>
-                                                    <li><a href="shop-right-sidebar-list.html"> Right Sidebar list</a></li>
+                                                    <li><a href="shop-right-sidebar-list.html"> Right Sidebar list</a>
+                                                    </li>
                                                     <li><a href="shop-list.html">List View</a></li>
                                                 </ul>
                                             </li>
@@ -459,7 +483,7 @@ if (isset($_POST['register'])){
                                                 <ul>
 
                                                     <li><a href="blog-details.html">blog details</a></li>
-                                                    <li><a href="blog-sidebar.html">blog  Sidebar</a></li>
+                                                    <li><a href="blog-sidebar.html">blog Sidebar</a></li>
                                                     <li><a href="blog-fullwidth.html">blog fullwidth</a></li>
                                                 </ul>
                                             </li>
@@ -541,17 +565,17 @@ if (isset($_POST['register'])){
             <div class="col-lg-6 col-md-6">
                 <div class="account_form login">
                     <h2>login</h2>
-                    <form action="#">
+                    <form action="register.php" method="post">
                         <p>
                             <label>Username or email <span>*</span></label>
-                            <input type="text">
+                            <input type="text" name="email">
                         </p>
                         <p>
                             <label>Passwords <span>*</span></label>
-                            <input type="password">
+                            <input type="password" name="parola">
                         </p>
                         <div class="login_submit">
-                            <button type="submit">login</button>
+                            <button type="submit" name="login">login</button>
                             <label for="remember">
                                 <input id="remember" type="checkbox">
                                 Remember me
@@ -570,7 +594,7 @@ if (isset($_POST['register'])){
                     <h2>Register</h2>
                     <form action="register.php" method="post">
                         <p>
-                            <label>Email address  <span>*</span></label>
+                            <label>Email address <span>*</span></label>
                             <input type="email" name="email">
                         </p>
                         <p>
@@ -666,7 +690,8 @@ if (isset($_POST['register'])){
                             <a href="#"><img src="assets/img/logo/logo.png" alt=""></a>
                         </div>
                         <div class="footer_desc">
-                            <p>We are a team of designers and developers that create high quality Magento, Prestashop, Opencart.</p>
+                            <p>We are a team of designers and developers that create high quality Magento, Prestashop,
+                                Opencart.</p>
                         </div>
                         <div class="footer_contact">
                             <ul>
@@ -712,25 +737,29 @@ if (isset($_POST['register'])){
                                     <div class="single_instagram">
                                         <a href="#"><img src="assets/img/instagram/instagram1.jpg" alt=""></a>
                                         <div class="instagram_icone">
-                                            <a class="instagram_popup" href="assets/img/instagram/instagram1.jpg"><i class="ion-social-instagram"></i></a>
+                                            <a class="instagram_popup" href="assets/img/instagram/instagram1.jpg"><i
+                                                        class="ion-social-instagram"></i></a>
                                         </div>
                                     </div>
                                     <div class="single_instagram">
                                         <a href="#"><img src="assets/img/instagram/instagram2.jpg" alt=""></a>
                                         <div class="instagram_icone">
-                                            <a class="instagram_popup" href="assets/img/instagram/instagram2.jpg"><i class="ion-social-instagram"></i></a>
+                                            <a class="instagram_popup" href="assets/img/instagram/instagram2.jpg"><i
+                                                        class="ion-social-instagram"></i></a>
                                         </div>
                                     </div>
                                     <div class="single_instagram">
                                         <a href="#"><img src="assets/img/instagram/instagram3.jpg" alt=""></a>
                                         <div class="instagram_icone">
-                                            <a class="instagram_popup" href="assets/img/instagram/instagram3.jpg"><i class="ion-social-instagram"></i></a>
+                                            <a class="instagram_popup" href="assets/img/instagram/instagram3.jpg"><i
+                                                        class="ion-social-instagram"></i></a>
                                         </div>
                                     </div>
                                     <div class="single_instagram">
                                         <a href="#"><img src="assets/img/instagram/instagram4.jpg" alt=""></a>
                                         <div class="instagram_icone">
-                                            <a class="instagram_popup" href="assets/img/instagram/instagram4.jpg"><i class="ion-social-instagram"></i></a>
+                                            <a class="instagram_popup" href="assets/img/instagram/instagram4.jpg"><i
+                                                        class="ion-social-instagram"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -738,25 +767,29 @@ if (isset($_POST['register'])){
                                     <div class="single_instagram">
                                         <a href="#"><img src="assets/img/instagram/instagram5.jpg" alt=""></a>
                                         <div class="instagram_icone">
-                                            <a class="instagram_popup" href="assets/img/instagram/instagram5.jpg"><i class="ion-social-instagram"></i></a>
+                                            <a class="instagram_popup" href="assets/img/instagram/instagram5.jpg"><i
+                                                        class="ion-social-instagram"></i></a>
                                         </div>
                                     </div>
                                     <div class="single_instagram">
                                         <a href="#"><img src="assets/img/instagram/instagram6.jpg" alt=""></a>
                                         <div class="instagram_icone">
-                                            <a class="instagram_popup" href="assets/img/instagram/instagram6.jpg"><i class="ion-social-instagram"></i></a>
+                                            <a class="instagram_popup" href="assets/img/instagram/instagram6.jpg"><i
+                                                        class="ion-social-instagram"></i></a>
                                         </div>
                                     </div>
                                     <div class="single_instagram">
                                         <a href="#"><img src="assets/img/instagram/instagram7.jpg" alt=""></a>
                                         <div class="instagram_icone">
-                                            <a class="instagram_popup" href="assets/img/instagram/instagram7.jpg"><i class="ion-social-instagram"></i></a>
+                                            <a class="instagram_popup" href="assets/img/instagram/instagram7.jpg"><i
+                                                        class="ion-social-instagram"></i></a>
                                         </div>
                                     </div>
                                     <div class="single_instagram">
                                         <a href="#"><img src="assets/img/instagram/instagram8.jpg" alt=""></a>
                                         <div class="instagram_icone">
-                                            <a class="instagram_popup" href="assets/img/instagram/instagram8.jpg"><i class="ion-social-instagram"></i></a>
+                                            <a class="instagram_popup" href="assets/img/instagram/instagram8.jpg"><i
+                                                        class="ion-social-instagram"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -766,26 +799,30 @@ if (isset($_POST['register'])){
                                     <div class="single_instagram">
                                         <a href="#"><img src="assets/img/instagram/instagram1.jpg" alt=""></a>
                                         <div class="instagram_icone">
-                                            <a class="instagram_popup" href="assets/img/instagram/instagram1.jpg"><i class="ion-social-instagram"></i></a>
+                                            <a class="instagram_popup" href="assets/img/instagram/instagram1.jpg"><i
+                                                        class="ion-social-instagram"></i></a>
                                         </div>
 
                                     </div>
                                     <div class="single_instagram">
                                         <a href="#"><img src="assets/img/instagram/instagram2.jpg" alt=""></a>
                                         <div class="instagram_icone">
-                                            <a class="instagram_popup" href="assets/img/instagram/instagram2.jpg"><i class="ion-social-instagram"></i></a>
+                                            <a class="instagram_popup" href="assets/img/instagram/instagram2.jpg"><i
+                                                        class="ion-social-instagram"></i></a>
                                         </div>
                                     </div>
                                     <div class="single_instagram">
                                         <a href="#"><img src="assets/img/instagram/instagram3.jpg" alt=""></a>
                                         <div class="instagram_icone">
-                                            <a class="instagram_popup" href="assets/img/instagram/instagram3.jpg"><i class="ion-social-instagram"></i></a>
+                                            <a class="instagram_popup" href="assets/img/instagram/instagram3.jpg"><i
+                                                        class="ion-social-instagram"></i></a>
                                         </div>
                                     </div>
                                     <div class="single_instagram">
                                         <a href="#"><img src="assets/img/instagram/instagram4.jpg" alt=""></a>
                                         <div class="instagram_icone">
-                                            <a class="instagram_popup" href="assets/img/instagram/instagram4.jpg"><i class="ion-social-instagram"></i></a>
+                                            <a class="instagram_popup" href="assets/img/instagram/instagram4.jpg"><i
+                                                        class="ion-social-instagram"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -793,25 +830,29 @@ if (isset($_POST['register'])){
                                     <div class="single_instagram">
                                         <a href="#"><img src="assets/img/instagram/instagram5.jpg" alt=""></a>
                                         <div class="instagram_icone">
-                                            <a class="instagram_popup" href="assets/img/instagram/instagram5.jpg"><i class="ion-social-instagram"></i></a>
+                                            <a class="instagram_popup" href="assets/img/instagram/instagram5.jpg"><i
+                                                        class="ion-social-instagram"></i></a>
                                         </div>
                                     </div>
                                     <div class="single_instagram">
                                         <a href="#"><img src="assets/img/instagram/instagram6.jpg" alt=""></a>
                                         <div class="instagram_icone">
-                                            <a class="instagram_popup" href="assets/img/instagram/instagram6.jpg"><i class="ion-social-instagram"></i></a>
+                                            <a class="instagram_popup" href="assets/img/instagram/instagram6.jpg"><i
+                                                        class="ion-social-instagram"></i></a>
                                         </div>
                                     </div>
                                     <div class="single_instagram">
                                         <a href="#"><img src="assets/img/instagram/instagram7.jpg" alt=""></a>
                                         <div class="instagram_icone">
-                                            <a class="instagram_popup" href="assets/img/instagram/instagram7.jpg"><i class="ion-social-instagram"></i></a>
+                                            <a class="instagram_popup" href="assets/img/instagram/instagram7.jpg"><i
+                                                        class="ion-social-instagram"></i></a>
                                         </div>
                                     </div>
                                     <div class="single_instagram">
                                         <a href="#"><img src="assets/img/instagram/instagram8.jpg" alt=""></a>
                                         <div class="instagram_icone">
-                                            <a class="instagram_popup" href="assets/img/instagram/instagram8.jpg"><i class="ion-social-instagram"></i></a>
+                                            <a class="instagram_popup" href="assets/img/instagram/instagram8.jpg"><i
+                                                        class="ion-social-instagram"></i></a>
                                         </div>
                                     </div>
                                 </div>
