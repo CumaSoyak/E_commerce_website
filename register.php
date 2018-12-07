@@ -421,7 +421,7 @@ if (isset($_POST['login'])) {
                                     <ul class="sub_menu pages">
                                         <li><a href="about.html">About Us</a></li>
                                         <li><a href="services.html">services</a></li>
-                                        <li><a href="faq.html">Frequently Questions</a></li>
+                                        <li><a href="hakkinda.html">Frequently Questions</a></li>
                                         <li><a href="login.php">login</a></li>
                                         <li><a href="my-account.html">my account</a></li>
                                         <li><a href="wishlist.html">Wishlist</a></li>
@@ -507,7 +507,7 @@ if (isset($_POST['login'])) {
                                         <ul>
                                             <li><a href="about.html">About Us</a></li>
                                             <li><a href="services.html">services</a></li>
-                                            <li><a href="faq.html">Frequently Questions</a></li>
+                                            <li><a href="hakkinda.html">Frequently Questions</a></li>
                                             <li><a href="login.php">login</a></li>
                                             <li><a href="my-account.html">my account</a></li>
                                             <li><a href="wishlist.html">Wishlist</a></li>
