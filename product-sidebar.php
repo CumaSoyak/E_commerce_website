@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
     
-<!-- Mirrored from demo.devitems.com/cigar-v3/cigar/product-sidebar.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 17:58:52 GMT -->
+<!-- Mirrored from demo.devitems.com/cigar-v3/cigar/product-sidebar.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 17:58:52 GMT -->
 <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -463,7 +463,7 @@
                                         <div class="col-lg-3">
                                             <div class="single_product"> 
                                                 <div class="product_thumb">
-                                                    <a href="product-details.html"><img src="assets/img/product/product10.jpg" alt=""></a>
+                                                    <a href="product-details.php"><img src="assets/img/product/product10.jpg" alt=""></a>
                                                     <div class="btn_quickview">
                                                          <a href="#" data-toggle="modal" data-target="#modal_box"  title="Quick View"><i class="ion-ios-eye"></i></a>
                                                     </div>
@@ -512,7 +512,7 @@
                                         <div class="col-lg-3">
                                             <div class="single_product"> 
                                                 <div class="product_thumb">
-                                                     <a href="product-details.html"><img src="assets/img/product/product15.jpg" alt=""></a>
+                                                     <a href="product-details.php"><img src="assets/img/product/product15.jpg" alt=""></a>
                                                      <div class="btn_quickview">
                                                          <a href="#" data-toggle="modal" data-target="#modal_box"  title="Quick View"><i class="ion-ios-eye"></i></a>
                                                     </div>
@@ -576,7 +576,7 @@
                                         <div class="col-lg-3">
                                             <div class="single_product"> 
                                                 <div class="product_thumb">
-                                                     <a href="product-details.html"><img src="assets/img/product/product17.jpg" alt=""></a>
+                                                     <a href="product-details.php"><img src="assets/img/product/product17.jpg" alt=""></a>
                                                      <div class="btn_quickview">
                                                          <a href="#" data-toggle="modal" data-target="#modal_box"  title="Quick View"><i class="ion-ios-eye"></i></a>
                                                     </div>
@@ -1137,5 +1137,5 @@
         <script src="assets/js/main.js"></script>
     </body>
 
-<!-- Mirrored from demo.devitems.com/cigar-v3/cigar/product-sidebar.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 17:58:52 GMT -->
+<!-- Mirrored from demo.devitems.com/cigar-v3/cigar/product-sidebar.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 17:58:52 GMT -->
 </html>

@@ -331,7 +331,7 @@
                             <div class="col-lg-3">
                                 <div class="single_product"> 
                                     <div class="product_thumb">
-                                         <a href="product-details.html"><img src="assets/img/product/product8.jpg" alt=""></a>
+                                         <a href="product-details.php"><img src="assets/img/product/product8.jpg" alt=""></a>
                                          <div class="btn_quickview">
                                              <a href="#" data-toggle="modal" data-target="#modal_box"  title="Quick View"><i class="ion-ios-eye"></i></a>
                                         </div>
@@ -378,7 +378,7 @@
                                                 <li><a href="#"><i class="ion-ios-star-outline"></i></a></li>
                                             </ul>
                                         </div>
-                                        <h3><a href="product-details.html">Cuisinart DCC-3200</a></h3>
+                                        <h3><a href="product-details.php">Cuisinart DCC-3200</a></h3>
                                         <div class="product_price">
                                             <span class="current_price">$27.00</span>
                                         </div>
@@ -447,7 +447,7 @@
                             <div class="col-lg-3">
                                 <div class="single_product"> 
                                     <div class="product_thumb">
-                                         <a href="product-details.html"><img src="assets/img/product/product15.jpg" alt=""></a>
+                                         <a href="product-details.php"><img src="assets/img/product/product15.jpg" alt=""></a>
                                          <div class="btn_quickview">
                                              <a href="#" data-toggle="modal" data-target="#modal_box"  title="Quick View"><i class="ion-ios-eye"></i></a>
                                         </div>
@@ -575,7 +575,7 @@
                             <div class="col-lg-3">
                                 <div class="single_product"> 
                                     <div class="product_thumb">
-                                        <a href="product-details.html"><img src="assets/img/product/product19.jpg" alt=""></a>
+                                        <a href="product-details.php"><img src="assets/img/product/product19.jpg" alt=""></a>
                                         <div class="btn_quickview">
                                              <a href="#" data-toggle="modal" data-target="#modal_box"  title="Quick View"><i class="ion-ios-eye"></i></a>
                                         </div>

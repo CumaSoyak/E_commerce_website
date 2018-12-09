@@ -1,11 +1,11 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
     
-<!-- Mirrored from demo.devitems.com/cigar-v3/cigar/wishlist.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 17:57:08 GMT -->
+<!-- Mirrored from demo.devitems.com/cigar-v3/cigar/contact.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 18:00:17 GMT -->
 <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Cigar - wishlist</title>
+        <title>Cigar - contact us</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Favicon -->
@@ -27,17 +27,17 @@
             <?php include 'header.php';?>
             <!--header area end-->
             
-            <!--breadcrumbs area start-->
+             <!--breadcrumbs area start-->
             <div class="breadcrumbs_area commun_bread">
                 <div class="container">   
                     <div class="row">
                         <div class="col-12">
                             <div class="breadcrumb_content">
-                                <h3>wishlist</h3>
+                                <h3>contact us</h3>
                                 <ul>
                                     <li><a href="index.php">home</a></li>
                                     <li><i class="fa fa-angle-right"></i></li>
-                                    <li>wishlist</li>
+                                    <li>contact us</li>
                                 </ul>
                             </div>
                         </div>
@@ -45,88 +45,69 @@
                 </div>         
             </div>
             <!--breadcrumbs area end-->
-            
-           <!--wishlist area start -->
-            <div class="wishlist_area">
+      
+            <!--contact area start-->
+            <div class="contact_area">
                 <div class="container">   
-                    <form action="#"> 
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="table_desc wishlist">
-                                    <div class="cart_page table-responsive">
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th class="product_remove">Delete</th>
-                                                    <th class="product_thumb">Image</th>
-                                                    <th class="product_name">Product</th>
-                                                    <th class="product-price">Price</th>
-                                                    <th class="product_quantity">Stock Status</th>
-                                                    <th class="product_total">Add To Cart</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                   <td class="product_remove"><a href="#">X</a></td>
-                                                    <td class="product_thumb"><a href="#"><img src="assets/img/cart/cart6.jpg" alt=""></a></td>
-                                                    <td class="product_name"><a href="#">Handbag fringilla</a></td>
-                                                    <td class="product-price">£65.00</td>
-                                                    <td class="product_quantity">In Stock</td>
-                                                    <td class="product_total"><a href="#">Add To Cart</a></td>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12">
+                           <div class="contact_message content">
+                                <h3>contact us</h3>    
+                                 <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram anteposuerit litterarum formas human. qui sequitur mutationem consuetudium lectorum. Mirum est notare quam</p>
+                                <ul>
+                                    <li><i class="fa fa-fax"></i>  Address : No 40 Baria Sreet 133/2 NewYork City</li>
+                                    <li><i class="fa fa-phone"></i> <a href="#">Infor@roadthemes.com</a></li>
+                                    <li><i class="fa fa-envelope-o"></i> 0(1234) 567 890</li>
+                                </ul>             
+                            </div> 
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                           <div class="contact_message form">
+                                <h3>Tell us your project</h3>   
+                                <form id="contact-form" method="POST"  action="http://demo.devitems.com/cigar-v3/cigar/assets/mail.php">
+                                    <p>  
+                                       <label> Your Name (required)</label>
+                                        <input name="name" placeholder="Name *" type="text"> 
+                                    </p>
+                                    <p>       
+                                       <label>  Your Email (required)</label>
+                                        <input name="email" placeholder="Email *" type="email">
+                                    </p>
+                                    <p>          
+                                       <label>  Subject</label>
+                                        <input name="subject" placeholder="Subject *" type="text">
+                                    </p>    
+                                    <div class="contact_textarea">
+                                        <label>  Your Message</label>
+                                        <textarea placeholder="Message *" name="message"  class="form-control2" ></textarea>     
+                                    </div>   
+                                    <button type="submit"> Send</button>  
+                                    <p class="form-messege"></p>
+                                </form> 
+                                   
+                            </div> 
+                        </div>
+                    </div>
+                </div>    
+            </div>
 
-
-                                                </tr>
-
-                                                <tr>
-                                                   <td class="product_remove"><a href="#">X</a></td>
-                                                    <td class="product_thumb"><a href="#"><img src="assets/img/cart/cart7.jpg" alt=""></a></td>
-                                                    <td class="product_name"><a href="#">Handbags justo</a></td>
-                                                    <td class="product-price">£90.00</td>
-                                                    <td class="product_quantity">In Stock</td>
-                                                    <td class="product_total"><a href="#">Add To Cart</a></td>
-
-
-                                                </tr>
-                                                <tr>
-                                                   <td class="product_remove"><a href="#">X</a></td>
-                                                    <td class="product_thumb"><a href="#"><img src="assets/img/cart/cart8.jpg" alt=""></a></td>
-                                                    <td class="product_name"><a href="#">Handbag elit</a></td>
-                                                    <td class="product-price">£80.00</td>
-                                                    <td class="product_quantity">In Stock</td>
-                                                    <td class="product_total"><a href="#">Add To Cart</a></td>
-
-
-                                                </tr>
-
-                                            </tbody>
-                                        </table>   
-                                    </div>  
-
-                                </div>
-                             </div>
-                         </div>
-
-                    </form> 
+            <!--contact area end-->
+            
+            <!--contact map start-->
+            <div class="contact_map">
+               <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
-                             <div class="wishlist_share">
-                                <h4>Share on:</h4>
-                                <ul>
-                                    <li><a href="#"><i class="fa fa-rss"></i></a></li>           
-                                    <li><a href="#"><i class="fa fa-vimeo"></i></a></li>           
-                                    <li><a href="#"><i class="fa fa-tumblr"></i></a></li>           
-                                    <li><a href="#"><i class="fa fa-pinterest"></i></a></li>        
-                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>        
-                                </ul>      
-                            </div>
-                        </div> 
+                           <div class="map-area">
+                              <div id="googleMap" style="width:100%;height:460px;"></div>
+                           </div>
+                        </div>
                     </div>
-                    
                 </div>
             </div>
-             <!--wishlist area end -->
-             
-            <!--shipping area start-->
+            <!--contact map end-->
+            
+              <!--shipping area start-->
             <div class="shipping_area shipping_contact ">
                 <div class="container">
                     <div class="shipping_contact">   
@@ -420,16 +401,22 @@
             </div>
             <!--footer area end-->
           
-
     
+		<!--map js code here-->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdWLY_Y6FL7QGW5vcO3zajUEsrKfQPNzI"></script>
+        <script  src="https://www.google.com/jsapi"></script>
+        <script src="assets/js/map.js"></script>
+            
+		
 		
 		<!-- all js here -->
         <script src="assets/js/vendor/jquery-1.12.0.min.js"></script>
         <script src="assets/js/popper.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/plugins.js"></script>
+        <script src="assets/js/ajax-mail.js"></script>
         <script src="assets/js/main.js"></script>
     </body>
 
-<!-- Mirrored from demo.devitems.com/cigar-v3/cigar/wishlist.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 17:57:08 GMT -->
+<!-- Mirrored from demo.devitems.com/cigar-v3/cigar/contact.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 18:00:18 GMT -->
 </html>

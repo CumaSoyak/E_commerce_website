@@ -1,11 +1,11 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
     
-<!-- Mirrored from demo.devitems.com/cigar-v3/cigar/cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 17:58:47 GMT -->
+<!-- Mirrored from demo.devitems.com/cigar-v3/cigar/hakkinda.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 18:00:17 GMT -->
 <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Cigar - cart page</title>
+        <title>Cigar - paq page</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Favicon -->
@@ -26,18 +26,17 @@
             <!--header area start-->
             <?php include 'header.php';?>
             <!--header area end-->
-            
-            <!--breadcrumbs area start-->
+             <!--breadcrumbs area start-->
             <div class="breadcrumbs_area commun_bread">
                 <div class="container">   
                     <div class="row">
                         <div class="col-12">
                             <div class="breadcrumb_content">
-                                <h3>cart</h3>
+                                <h3>Frequently Questions</h3>
                                 <ul>
                                     <li><a href="index.php">home</a></li>
                                     <li><i class="fa fa-angle-right"></i></li>
-                                    <li>cart</li>
+                                    <li>Frequently Questions</li>
                                 </ul>
                             </div>
                         </div>
@@ -45,112 +44,152 @@
                 </div>         
             </div>
             <!--breadcrumbs area end-->
+     
       
-             <!--shopping cart area start -->
-            <div class="shopping_cart_area">
-                <div class="container">  
-                    <form action="#"> 
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="table_desc">
-                                    <div class="cart_page table-responsive">
-                                        <table>
-                                    <thead>
-                                        <tr>
-                                            <th class="product_remove">Delete</th>
-                                            <th class="product_thumb">Image</th>
-                                            <th class="product_name">Product</th>
-                                            <th class="product-price">Price</th>
-                                            <th class="product_quantity">Quantity</th>
-                                            <th class="product_total">Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                           <td class="product_remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                            <td class="product_thumb"><a href="#"><img src="assets/img/cart/cart6.jpg" alt=""></a></td>
-                                            <td class="product_name"><a href="#">Handbag fringilla</a></td>
-                                            <td class="product-price">£65.00</td>
-                                            <td class="product_quantity"><input min="0" max="100" value="1" type="number"></td>
-                                            <td class="product_total">£130.00</td>
+            <!--faq area start-->
+            <div class="faq_content_area">
+                <div class="container">   
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="faq_content_wrapper">
+                                <h4>Below are frequently asked questions, you may find the answer for yourself</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id erat sagittis, faucibus metus malesuada, eleifend turpis. Mauris semper augue id nisl aliquet, a porta lectus mattis. Nulla at tortor augue. In eget enim diam. Donec gravida tortor sem, ac fermentum nibh rutrum sit amet. Nulla convallis mauris vitae congue consequat. Donec interdum nunc purus, vitae vulputate arcu fringilla quis. Vivamus iaculis euismod dui.</p>
 
-
-                                        </tr>
-
-                                        <tr>
-                                           <td class="product_remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                            <td class="product_thumb"><a href="#"><img src="assets/img/cart/cart7.jpg" alt=""></a></td>
-                                            <td class="product_name"><a href="#">Handbags justo</a></td>
-                                            <td class="product-price">£90.00</td>
-                                            <td class="product_quantity"><input min="0" max="100" value="1" type="number"></td>
-                                            <td class="product_total">£180.00</td>
-
-
-                                        </tr>
-                                        <tr>
-                                           <td class="product_remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                            <td class="product_thumb"><a href="#"><img src="assets/img/cart/cart8.jpg" alt=""></a></td>
-                                            <td class="product_name"><a href="#">Handbag elit</a></td>
-                                            <td class="product-price">£80.00</td>
-                                            <td class="product_quantity"><input min="0" max="100" value="1" type="number"></td>
-                                            <td class="product_total">£160.00</td>
-
-
-                                        </tr>
-
-                                    </tbody>
-                                </table>   
-                                    </div>  
-                                    <div class="cart_submit">
-                                        <button type="submit">update cart</button>
-                                    </div>      
-                                </div>
-                             </div>
-                         </div>
-                         <!--coupon code area start-->
-                        <div class="coupon_area">
-                            <div class="row">
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="coupon_code left">
-                                        <h3>Coupon</h3>
-                                        <div class="coupon_inner">   
-                                            <p>Enter your coupon code if you have one.</p>                                
-                                            <input placeholder="Coupon code" type="text">
-                                            <button type="submit">Apply coupon</button>
-                                        </div>    
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="coupon_code right">
-                                        <h3>Cart Totals</h3>
-                                        <div class="coupon_inner">
-                                           <div class="cart_subtotal">
-                                               <p>Subtotal</p>
-                                               <p class="cart_amount">£215.00</p>
-                                           </div>
-                                           <div class="cart_subtotal ">
-                                               <p>Shipping</p>
-                                               <p class="cart_amount"><span>Flat Rate:</span> £255.00</p>
-                                           </div>
-                                           <a href="#">Calculate shipping</a>
-
-                                           <div class="cart_subtotal">
-                                               <p>Total</p>
-                                               <p class="cart_amount">£215.00</p>
-                                           </div>
-                                           <div class="checkout_btn">
-                                               <a href="#">Proceed to Checkout</a>
-                                           </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
-                        <!--coupon code area end-->
-                    </form> 
-                </div>     
+                    </div> 
+                </div>    
             </div>
-             <!--shopping cart area end -->
+             <!--Accordion area-->
+            <div class="accordion_area">
+                <div class="container">
+                    <div class="row">
+                    <div class="col-12"> 
+                        <div id="accordion" class="card__accordion">
+                          <div class="card card_dipult">
+                            <div class="card-header card_accor" id="headingOne">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                  Mauris congue euismod purus at semper. Morbi et vulputate massa?
+
+                                  <i class="fa fa-plus"></i>
+                                  <i class="fa fa-minus"></i>
+
+                                </button>
+
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                              <div class="card-body">
+                                   <p>Donec mattis finibus elit ut tristique. Nullam tempus nunc eget arcu vulputate, eu porttitor tellus commodo. Aliquam erat volutpat. Aliquam consectetur lorem eu viverra lobortis. Morbi gravida, nisi id fringilla ultricies, elit lorem eleifend lorem</p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card  card_dipult">
+                            <div class="card-header card_accor" id="headingTwo">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                  Donec mattis finibus elit ut tristique?
+                                   <i class="fa fa-plus"></i>
+                                   <i class="fa fa-minus"></i>
+
+                                </button>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                              <div class="card-body">
+                                <p>Donec mattis finibus elit ut tristique. Nullam tempus nunc eget arcu vulputate, eu porttitor tellus commodo. Aliquam erat volutpat. Aliquam consectetur lorem eu viverra lobortis. Morbi gravida, nisi id fringilla ultricies, elit lorem eleifend lorem</p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card  card_dipult">
+                            <div class="card-header card_accor" id="headingThree">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                 Aenean elit orci, efficitur quis nisl at, accumsan?
+                                   <i class="fa fa-plus"></i>
+                                   <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                              <div class="card-body">
+                                <p>Donec mattis finibus elit ut tristique. Nullam tempus nunc eget arcu vulputate, eu porttitor tellus commodo. Aliquam erat volutpat. Aliquam consectetur lorem eu viverra lobortis. Morbi gravida, nisi id fringilla ultricies, elit lorem eleifend lorem</p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card  card_dipult">
+                            <div class="card-header card_accor" id="headingfour">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseeight" aria-expanded="false" aria-controls="collapseeight">
+                                 Pellentesque habitant morbi tristique senectus et netus?
+                                   <i class="fa fa-plus"></i>
+                                   <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                            <div id="collapseeight" class="collapse" aria-labelledby="headingfour" data-parent="#accordion">
+                              <div class="card-body">
+                                <p>Donec mattis finibus elit ut tristique. Nullam tempus nunc eget arcu vulputate, eu porttitor tellus commodo. Aliquam erat volutpat. Aliquam consectetur lorem eu viverra lobortis. Morbi gravida, nisi id fringilla ultricies, elit lorem eleifend lorem</p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card  card_dipult">
+                            <div class="card-header card_accor" id="headingfive">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseseven" aria-expanded="false" aria-controls="collapseseven">
+                                 Nam pellentesque aliquam metus?
+                                   <i class="fa fa-plus"></i>
+                                   <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                            <div id="collapseseven" class="collapse" aria-labelledby="headingfive" data-parent="#accordion">
+                              <div class="card-body">
+                                <p>Donec mattis finibus elit ut tristique. Nullam tempus nunc eget arcu vulputate, eu porttitor tellus commodo. Aliquam erat volutpat. Aliquam consectetur lorem eu viverra lobortis. Morbi gravida, nisi id fringilla ultricies, elit lorem eleifend lorem</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="card  card_dipult">
+                            <div class="card-header card_accor" id="headingsix">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsefour" aria-expanded="false" aria-controls="collapsefour">
+                                Aenean elit orci, efficitur quis nisl at?
+                                   <i class="fa fa-plus"></i>
+                                   <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                            <div id="collapsefour" class="collapse" aria-labelledby="headingsix" data-parent="#accordion">
+                              <div class="card-body">
+                                <p>Donec mattis finibus elit ut tristique. Nullam tempus nunc eget arcu vulputate, eu porttitor tellus commodo. Aliquam erat volutpat. Aliquam consectetur lorem eu viverra lobortis. Morbi gravida, nisi id fringilla ultricies, elit lorem eleifend lorem</p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card  card_dipult">
+                            <div class="card-header card_accor" id="headingseven">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsefive" aria-expanded="false" aria-controls="collapsefive">
+                                 Morbi gravida, nisi id fringilla ultricies, elit lorem?
+                                   <i class="fa fa-plus"></i>
+                                   <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                            <div id="collapsefive" class="collapse" aria-labelledby="headingseven" data-parent="#accordion">
+                              <div class="card-body">
+                                <p>Donec mattis finibus elit ut tristique. Nullam tempus nunc eget arcu vulputate, eu porttitor tellus commodo. Aliquam erat volutpat. Aliquam consectetur lorem eu viverra lobortis. Morbi gravida, nisi id fringilla ultricies, elit lorem eleifend lorem</p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card  card_dipult">
+                            <div class="card-header card_accor" id="headingeight">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsesix" aria-expanded="false" aria-controls="collapsesix">
+                                 Aenean elit orci, efficitur quis nisl at, accumsan?
+                                   <i class="fa fa-plus"></i>
+                                   <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                            <div id="collapsesix" class="collapse" aria-labelledby="headingeight" data-parent="#accordion">
+                              <div class="card-body">
+                                <p>Donec mattis finibus elit ut tristique. Nullam tempus nunc eget arcu vulputate, eu porttitor tellus commodo. Aliquam erat volutpat. Aliquam consectetur lorem eu viverra lobortis. Morbi gravida, nisi id fringilla ultricies, elit lorem eleifend lorem</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!--Accordion area end-->
             
               <!--shipping area start-->
             <div class="shipping_area shipping_contact ">
@@ -445,11 +484,7 @@
                 </div>
             </div>
             <!--footer area end-->
-            
-       
 
-    
-		
 		<!-- all js here -->
         <script src="assets/js/vendor/jquery-1.12.0.min.js"></script>
         <script src="assets/js/popper.js"></script>
@@ -458,5 +493,5 @@
         <script src="assets/js/main.js"></script>
     </body>
 
-<!-- Mirrored from demo.devitems.com/cigar-v3/cigar/cart.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 17:58:47 GMT -->
+<!-- Mirrored from demo.devitems.com/cigar-v3/cigar/hakkinda.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 18:00:17 GMT -->
 </html>
