@@ -27,7 +27,7 @@ include("connect.php");
 
 
 <!--header area start-->
-<?php include 'header.php';?>
+<?php include 'header.php'; ?>
 <!--header area end-->
 
 <!--breadcrumbs area start-->
@@ -180,57 +180,15 @@ include("connect.php");
                         <div class="tab-pane fade show active" id="large" role="tabpanel">
                             <div class="row">
                                 <!--shop tab product-->
-                                <?php urun_goster();?>
-
+                                <?php urun_goster(); ?>
 
                             </div>
                         </div>
                         <div class="tab-pane fade" id="list" role="tabpanel">
                             <div class="single_product list_item">
                                 <div class="row align-items-center">
-                                    <div class="col-lg-4 col-md-5">
-                                        <div class="product_thumb">
-                                            <a href="product-details.html"><img src="assets/img/product/product14.jpg"
-                                                                                alt=""></a>
-                                            <div class="btn_quickview">
-                                                <a href="#" data-toggle="modal" data-target="#modal_box"
-                                                   title="Quick View"><i class="ion-ios-eye"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8 col-md-7">
-                                        <div class="product_content">
-                                            <div class="product_ratting">
-                                                <ul>
-                                                    <li><a href="#"><i class="ion-star"></i></a></li>
-                                                    <li><a href="#"><i class="ion-ios-star-outline"></i></a></li>
-                                                    <li><a href="#"><i class="ion-ios-star-outline"></i></a></li>
-                                                    <li><a href="#"><i class="ion-ios-star-outline"></i></a></li>
-                                                    <li><a href="#"><i class="ion-ios-star-outline"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <h3><a href="product-details.html">Aicok Stand Mixet</a></h3>
-                                            <div class="product_price">
-                                                <span class="current_price">$23.00</span>
-                                            </div>
-                                            <div class="product_description">
-                                                <p>Maybe Smaller than regular Size, PLS CHOOSE THE SIZE 1-2 Size UP than
-                                                    YOU USUALLY WEAR, Now We Will Give the 2XL, 3XL, 4XL for Choices
-                                                    (Note:The Generic Amazon Size Chart is not our size) Update ON May
-                                                    14,2016 </p>
-                                            </div>
-                                            <div class="product_action">
-                                                <ul>
-                                                    <li class="product_cart"><a href="#" title="Add to Cart">Add to
-                                                            Cart</a></li>
-                                                    <li class="add_links"><a href="#" title="Add to Wishlist"><i
-                                                                    class="ion-ios-heart-outline"></i></a></li>
-                                                    <li class="add_links"><a href="#" title="Add to Compare"><i
-                                                                    class="ion-loop"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
+
+                                    <?php ayrintili_urun_goster(); ?>
                                 </div>
                             </div>
                         </div>
@@ -258,7 +216,7 @@ include("connect.php");
 
 
 <!--shipping area start-->
- <?php include ("bottom_menu.php");?>
+<?php include("bottom_menu.php"); ?>
 </body>
 
 <!-- Mirrored from demo.devitems.com/cigar-v3/cigar/shop.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 17:58:12 GMT -->

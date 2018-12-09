@@ -7,12 +7,11 @@ function anakategori()
     while ($cekilen_veri = mysqli_fetch_assoc($select)) {
         $ana_kategori_id = $cekilen_veri['ana_kategori_id'];
         $ana_kategori_title = $cekilen_veri['ana_kategori_title'];
-        $gelen = alt_kategori($ana_kategori_id);
 
         echo "
                                  <li><a href=\"index.php\">$ana_kategori_title <i class=\"fa fa-angle-down\"></i></a>
                                     <ul class=\"sub_menu\">
-                                       <!--<li><a href='shop.php'>$gelen</a></li>-->                                         
+                                       <li><a href='shop.php'>";alt_kategori($ana_kategori_id);echo "</a></li>                                         
                                     </ul>
                                 </li>
               ";
@@ -62,11 +61,11 @@ function urun_goster()
 
 
         echo "
-                                     <div class=\"col-lg-4 col-md-6\">
+           <div class=\"col-lg-4 col-md-6\">
                                     <div class=\"single_product\">
                                         <div class=\"product_thumb\">
                                             <a href=\"product-details.html\">
-                                            <img src='assets/img/cart/$urunler_resim'></a>
+                                            <img src='assets/img/cart/$urunler_resim'  ></a>
                                             <div class=\"btn_quickview\">
                                                 <a href=\"#\" data-toggle=\"modal\" data-target=\"#modal_box\"
                                                    title=\"Quick View\"><i class=\"ion-ios-eye\"></i></a>
@@ -75,11 +74,9 @@ function urun_goster()
                                         <div class=\"product_content\">
                                             <div class=\"product_ratting\">
                                                 <ul>
-                                                    <li><a href=\"#\"><i class=\"ion-star\"></i></a></li>
-                                                    <li><a href=\"#\"><i class=\"ion-ios-star-outline\"></i></a></li>
-                                                    <li><a href=\"#\"><i class=\"ion-ios-star-outline\"></i></a></li>
-                                                    <li><a href=\"#\"><i class=\"ion-ios-star-outline\"></i></a></li>
-                                                    <li><a href=\"#\"><i class=\"ion-ios-star-outline\"></i></a></li>
+                                                ";
+                                                        urun_oy_goster($urunler_oy);
+                                                echo "                                               
                                                 </ul>
                                             </div>
                                             <h3><a href=\"product-details.html\">$urunler_title</a></h3>
@@ -99,9 +96,7 @@ function urun_goster()
                                         </div>
                                     </div>
                                 </div>                                              
-                                    ";
-
-        echo "";
+                  ";
         echo "
   <div class=\"modal fade\" id=\"modal_box\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">
     <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">
@@ -223,17 +218,104 @@ function urun_goster()
 
 }
 
-function beden($size)
+function ayrintili_urun_goster()
 {
-    foreach ($size as $string) {
-        echo " htmlspecialchars(\"<?php the_author_meta($size); ?>\")
+    $con = mysqli_connect("localhost", "root", "", "eticaret");
+    $al_kategori = "SELECT * FROM urunler ";
+    $sonuc = mysqli_query($con, $al_kategori);
 
-         <ul>
-                                        <li><a href=\"#\">s</a></li>
-                                        <li><a href=\"#\">m</a></li>
-                                        <li><a href=\"#\">l</a></li>
-                                        <li><a href=\"#\">xl</a></li>
-                                        <li><a href=\"#\">xxl</a></li>
-                                    </ul>";
+    while ($cekilen_veri = mysqli_fetch_array($sonuc)) {
+
+        $urunler_title = $cekilen_veri['urunler_title'];
+        $urunler_desc = $cekilen_veri['urunler_desc'];
+        $urunler_resim = $cekilen_veri['urunler_resim'];
+        $urunler_resim_1 = $cekilen_veri['urunler_resim_1'];
+        $urunler_resim_2 = $cekilen_veri['urunler_resim_2'];
+        $urunler_fiyat = $cekilen_veri['urunler_fiyat'];
+        $urunler_size = $cekilen_veri['urunler_size'];
+        $urunler_oy = $cekilen_veri['urunler_oy'];
+        $size_array = explode(',', $urunler_size);
+        echo "
+<div class=\"col-lg-4 col-md-5\">
+                                        <div class=\"product_thumb\">
+                                            <a href=\"product-details.html\"><img src='assets/img/cart/$urunler_resim'
+                                                                                alt=\"\"></a>
+                                             
+                                        </div>
+                                    </div>
+           <div class=\"col-lg-8 col-md-7\">
+                                        <div class=\"product_content\">
+                                            <div class=\"product_ratting\">
+                                                <ul> ";
+                                                    urun_oy_goster($urunler_oy);
+                                                echo " 
+                                                </ul>
+                                            </div>
+                                            <h3><a href=\"product-details.html\">$urunler_title</a></h3>
+                                            <div class=\"product_price\">
+                                                <span class=\"current_price\">$urunler_fiyat TL</span>
+                                            </div>
+                                            <div class=\"product_description\">
+                                                <p>$urunler_desc </p>
+                                            </div>
+                                            <div class=\"product_action\">
+                                                <ul>
+                                                    <li class=\"product_cart\"><a href=\"#\" title=\"Add to Cart\">Add to
+                                                            Cart</a></li>
+                                                    <li class=\"add_links\"><a href=\"#\" title=\"Add to Wishlist\"><i
+                                                                    class=\"ion-ios-heart-outline\"></i></a></li>
+                                                    <li class=\"add_links\"><a href=\"#\" title=\"Add to Compare\"><i
+                                                                    class=\"ion-loop\"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+         ";
     }
+}
+function urun_oy_goster($urunler_oy){
+    switch($urunler_oy){
+        case 1:
+            echo "
+                                                    <li><a href=\"#\"><i class=\"ion-star\"></i></a></li>
+                                                    <li><a href=\"#\"><i class=\"ion-ios-star-outline\"></i></a></li>
+                                                    <li><a href=\"#\"><i class=\"ion-ios-star-outline\"></i></a></li>
+                                                    <li><a href=\"#\"><i class=\"ion-ios-star-outline\"></i></a></li>
+                                                    <li><a href=\"#\"><i class=\"ion-ios-star-outline\"></i></a></li>";
+            break;
+        case 2:
+            echo "
+                                                    <li><a href=\"#\"><i class=\"ion-star\"></i></a></li>
+                                                    <li><a href=\"#\"><i class=\"ion-star\"></i></a></li>
+                                                    <li><a href=\"#\"><i class=\"ion-ios-star-outline\"></i></a></li>
+                                                    <li><a href=\"#\"><i class=\"ion-ios-star-outline\"></i></a></li>
+                                                    <li><a href=\"#\"><i class=\"ion-ios-star-outline\"></i></a></li>";
+            break;
+        case 3:
+            echo "
+                                                    <li><a href=\"#\"><i class=\"ion-star\"></i></a></li>
+                                                    <li><a href=\"#\"><i class=\"ion-star\"></i></a></li>
+                                                    <li><a href=\"#\"><i class=\"ion-star\"></i></a></li>
+                                                    <li><a href=\"#\"><i class=\"ion-ios-star-outline\"></i></a></li>
+                                                    <li><a href=\"#\"><i class=\"ion-ios-star-outline\"></i></a></li>";
+            break;
+        case 4:
+            echo "
+                                                    <li><a href=\"#\"><i class=\"ion-star\"></i></a></li>
+                                                    <li><a href=\"#\"><i class=\"ion-star\"></i></a></li>
+                                                    <li><a href=\"#\"><i class=\"ion-star\"></i></a></li>
+                                                    <li><a href=\"#\"><i class=\"ion-star\"></i></a></li>
+                                                    <li><a href=\"#\"><i class=\"ion-ios-star-outline\"></i></a></li>";
+            break;
+        case 5:
+            echo "
+                                                    <li><a href=\"#\"><i class=\"ion-star\"></i></a></li>
+                                                    <li><a href=\"#\"><i class=\"ion-star\"></i></a></li>
+                                                    <li><a href=\"#\"><i class=\"ion-star\"></i></a></li>
+                                                    <li><a href=\"#\"><i class=\"ion-star\"></i></a></li>
+                                                    <li><a href=\"#\"><i class=\"ion-star\"></i></a></li>
+                                                    ";
+            break;
+    }
+
 }
