@@ -1,3 +1,7 @@
+<?php
+include("function.php");
+$con = mysqli_connect("localhost", "root", "","eticaret");
+?>
 <!--header area start-->
 <header class="header_area">
     <!--header top start-->
@@ -124,33 +128,8 @@
                         </div>
                         <div class="categories_menu_inner">
                             <?php
-                            include("connect.php");
-                            $al_kategori = "SELECT * FROM ana_kategoriler ";
-                            $sonuc = mysqli_query($con, $al_kategori);
-                            while ($cekilen_veri=mysqli_fetch_array($sonuc)){
-                                $kategori_title = $cekilen_veri['kategori_title'];
-                                echo " 
-                                 <ul>
-                                <li class=\"categorie_list\"><a href=\"#\">$kategori_title<i class=\"fa fa-angle-right\"></i></a>
-                                    <ul class=\"categories_mega_menu\">
-                                        <li><a href=\"#\">Headphoness</a>
-                                            <div class=\"categorie_sub_menu\">
-                                                <ul>
-                                                    <li><a href=\"#\">Dell Laptops</a></li>
-                                                    <li><a href=\"#\">HP Laptops</a></li>
-                                                    <li><a href=\"#\">Lenovo Laptops</a></li>
-                                                    <li><a href=\"#\">Apple Laptops</a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li><img src=\"assets/img/categorie/categorie.png\" alt=\"\"></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                                ";
-                            }
+                            anakategori();
                             ?>
-
                         </div>
                     </div>
                 </div>
