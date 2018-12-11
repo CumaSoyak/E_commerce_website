@@ -7,8 +7,7 @@ function anakategori()
     while ($cekilen_veri = mysqli_fetch_assoc($select)) {
         $ana_kategori_id = $cekilen_veri['ana_kategori_id'];
         $ana_kategori_title = $cekilen_veri['ana_kategori_title'];
-
-
+        $ana_kategori_resim = $cekilen_veri['ana_kategori_resim'];
         echo "
                                 <li class=\"categorie_list\"><a href=\"#\">$ana_kategori_title<i class=\"fa fa-angle-right\"></i></a>
                                     <ul class=\"categories_mega_menu\">
@@ -21,7 +20,8 @@ function anakategori()
                                                 </ul>
                                             </div>
                                         </li>
-                                        <li><img src=\"assets/img/categorie/categorie.png\" alt=\"\"></li>
+                                        <li><img src='assets/img/categorie/$ana_kategori_resim' alt=\"\"></li>
+                                       
                                     </ul>
                                 </li> 
               ";
@@ -383,4 +383,5 @@ function filtrele_renk_getir()
 
     }
 }
+
 
