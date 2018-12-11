@@ -363,4 +363,24 @@ function filtrele_beden_getir()
 
     }
 }
+function filtrele_renk_getir()
+{
+    $alt_kategori_id = 1;
+    $con = mysqli_connect("localhost", "root", "", "eticaret");
+    $select = mysqli_query($con, "SELECT *FROM kategori_renk_tablosu WHERE $alt_kategori_id=parent_kategori_id");
+    while ($cekilen_veri = mysqli_fetch_assoc($select)) {
+        $renk_1 = $cekilen_veri['renk_1'];
+        $renk_2 = $cekilen_veri['renk_2'];
+        $renk_3 = $cekilen_veri['renk_3'];
+
+        echo "
+            <li><a href=\"#\">$renk_1</a></li>
+            <li><a href=\"#\">$renk_2</a></li>
+            <li><a href=\"#\">$renk_3</a></li>
+
+        ";
+
+
+    }
+}
 

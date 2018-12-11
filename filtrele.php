@@ -4,17 +4,7 @@
 <div class="widget_list widget_color">
     <h3>Renk</h3>
     <ul>
-        <li><a href="#">Black </a></li>
-
-        <li><a href="#">Orange </a></li>
-
-        <li><a href="#">Blue</a></li>
-
-        <li><a href="#">Yellow</a></li>
-
-        <li><a href="#">pink</a></li>
-
-        <li><a href="#">green</a></li>
+        <?php filtrele_renk_getir() ?>
     </ul>
 </div>
 <!--widget color start-->
