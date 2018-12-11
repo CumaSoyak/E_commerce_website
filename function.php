@@ -7,7 +7,6 @@ function anakategori()
     while ($cekilen_veri = mysqli_fetch_assoc($select)) {
         $ana_kategori_id = $cekilen_veri['ana_kategori_id'];
         $ana_kategori_title = $cekilen_veri['ana_kategori_title'];
-       // alt_kategori($ana_kategori_id);
 
 
         echo "
@@ -17,8 +16,8 @@ function anakategori()
                                             <div class=\"categorie_sub_menu\">
                                                 <ul>
                                                 ";
-                                             alt_kategori($ana_kategori_id);
-                                                    echo"
+        alt_kategori($ana_kategori_id);
+        echo "
                                                 </ul>
                                             </div>
                                         </li>
@@ -32,18 +31,17 @@ function anakategori()
 
 
 }
-
 function uygulama()
 {
     $con = mysqli_connect("localhost", "root", "", "eticaret");
-    $post_arr=array();
-    $post_arr['data']=array();
+    $post_arr = array();
+    $post_arr['data'] = array();
     $select = mysqli_query($con, "SELECT *FROM ana_kategoriler");
-        while ($cekilen_veri = mysqli_fetch_assoc($select)) {
-            extract($cekilen_veri);
-            //array_push($post_arr[]);
-            echo json_encode($cekilen_veri);
-        }
+    while ($cekilen_veri = mysqli_fetch_assoc($select)) {
+        extract($cekilen_veri);
+        //array_push($post_arr[]);
+        echo json_encode($cekilen_veri);
+    }
 
 }
 
@@ -345,3 +343,24 @@ function urun_oy_goster($urunler_oy)
     }
 
 }
+
+function filtrele_beden_getir()
+{
+    $alt_kategori_id = 1;
+    $con = mysqli_connect("localhost", "root", "", "eticaret");
+    $select = mysqli_query($con, "SELECT *FROM kategori_beden_tablosu WHERE $alt_kategori_id=parent_kategori_id");
+    while ($cekilen_veri = mysqli_fetch_assoc($select)) {
+        $beden_1 = $cekilen_veri['beden_1'];
+        $beden_2 = $cekilen_veri['beden_2'];
+        $beden_3 = $cekilen_veri['beden_3'];
+         echo "
+            <li><a href=\"#\">$beden_1</a></li>
+            <li><a href=\"#\">$beden_2</a></li>
+            <li><a href=\"#\">$beden_3</a></li>
+
+        ";
+
+
+    }
+}
+
