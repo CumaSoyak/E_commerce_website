@@ -7,18 +7,43 @@ function anakategori()
     while ($cekilen_veri = mysqli_fetch_assoc($select)) {
         $ana_kategori_id = $cekilen_veri['ana_kategori_id'];
         $ana_kategori_title = $cekilen_veri['ana_kategori_title'];
+       // alt_kategori($ana_kategori_id);
+
 
         echo "
-                                 <li><a href=\"index.php\">$ana_kategori_title <i class=\"fa fa-angle-down\"></i></a>
-                                    <ul class=\"sub_menu\">
-                                       <li><a href='shop.php'>";alt_kategori($ana_kategori_id);echo "</a></li>                                         
+                                <li class=\"categorie_list\"><a href=\"#\">$ana_kategori_title<i class=\"fa fa-angle-right\"></i></a>
+                                    <ul class=\"categories_mega_menu\">
+                                        <li> 
+                                            <div class=\"categorie_sub_menu\">
+                                                <ul>
+                                                ";
+                                             alt_kategori($ana_kategori_id);
+                                                    echo"
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li><img src=\"assets/img/categorie/categorie.png\" alt=\"\"></li>
                                     </ul>
-                                </li>
+                                </li> 
               ";
 
 
     }
 
+
+}
+
+function uygulama()
+{
+    $con = mysqli_connect("localhost", "root", "", "eticaret");
+    $post_arr=array();
+    $post_arr['data']=array();
+    $select = mysqli_query($con, "SELECT *FROM ana_kategoriler");
+        while ($cekilen_veri = mysqli_fetch_assoc($select)) {
+            extract($cekilen_veri);
+            //array_push($post_arr[]);
+            echo json_encode($cekilen_veri);
+        }
 
 }
 
@@ -32,7 +57,7 @@ function alt_kategori($parent_id)
             $alt_kategori_id = $cekilen_veri['alt_kategori_id'];
             $kategori_title = $cekilen_veri['kategori_title'];
             echo "                                 
-                               <li><a href=\"index.php\">$kategori_title</a></li>    
+                               <li><a href=\"shop.php?$alt_kategori_id\">$kategori_title</a></li>    
                                 ";
 
         }
@@ -59,7 +84,6 @@ function urun_goster()
         $size_array = explode(',', $urunler_size);
 
 
-
         echo "
            <div class=\"col-lg-4 col-md-6\">
                                     <div class=\"single_product\">
@@ -75,8 +99,8 @@ function urun_goster()
                                             <div class=\"product_ratting\">
                                                 <ul>
                                                 ";
-                                                        urun_oy_goster($urunler_oy);
-                                                echo "                                               
+        urun_oy_goster($urunler_oy);
+        echo "                                               
                                                 </ul>
                                             </div>
                                             <h3><a href=\"product-details.html\">$urunler_title</a></h3>
@@ -85,8 +109,8 @@ function urun_goster()
                                             </div>
                                             <div class=\"product_action\">
                                                 <ul>
-                                                    <li class=\"product_cart\"><a href=\"#\" title=\"Add to Cart\">Add to
-                                                            Cart</a></li>
+                                                    <li class=\"product_cart\"><a href=\"#\" title=\"Ekle Sepete\">Ekle
+                                                             </a></li>
                                                     <li class=\"add_links\"><a href=\"#\" title=\"Add to Wishlist\"><i
                                                                     class=\"ion-ios-heart-outline\"></i></a></li>
                                                     <li class=\"add_links\"><a href=\"#\" title=\"Add to Compare\"><i
@@ -174,14 +198,14 @@ function urun_goster()
                                     <h2>size</h2>
                                     <ul>
                                     ";
-                                    foreach ($size_array as $string){
-                                        $string_array=explode(':',$string);
-                                        echo "
+        foreach ($size_array as $string) {
+            $string_array = explode(':', $string);
+            echo "
                                         <li><a href=\"#\">$string_array[0]</a></li>
                                          ";
-                                    }
+        }
 
-                                    echo "
+        echo "
                                     </ul>
                                 </div>
                                 <div class=\"modal_add_to_cart mb-15\">
@@ -243,12 +267,12 @@ function ayrintili_urun_goster()
                                              
                                         </div>
                                     </div>
-           <div class=\"col-lg-8 col-md-7\">
+                                    <div class=\"col-lg-8 col-md-7\">
                                         <div class=\"product_content\">
                                             <div class=\"product_ratting\">
                                                 <ul> ";
-                                                    urun_oy_goster($urunler_oy);
-                                                echo " 
+        urun_oy_goster($urunler_oy);
+        echo " 
                                                 </ul>
                                             </div>
                                             <h3><a href=\"product-details.html\">$urunler_title</a></h3>
@@ -260,8 +284,8 @@ function ayrintili_urun_goster()
                                             </div>
                                             <div class=\"product_action\">
                                                 <ul>
-                                                    <li class=\"product_cart\"><a href=\"#\" title=\"Add to Cart\">Add to
-                                                            Cart</a></li>
+                                                    <li class=\"product_cart\"><a href=\"#\" title=\"Add to Cart\">Ekle
+                                                       </a></li>
                                                     <li class=\"add_links\"><a href=\"#\" title=\"Add to Wishlist\"><i
                                                                     class=\"ion-ios-heart-outline\"></i></a></li>
                                                     <li class=\"add_links\"><a href=\"#\" title=\"Add to Compare\"><i
@@ -273,8 +297,10 @@ function ayrintili_urun_goster()
          ";
     }
 }
-function urun_oy_goster($urunler_oy){
-    switch($urunler_oy){
+
+function urun_oy_goster($urunler_oy)
+{
+    switch ($urunler_oy) {
         case 1:
             echo "
                                                     <li><a href=\"#\"><i class=\"ion-star\"></i></a></li>

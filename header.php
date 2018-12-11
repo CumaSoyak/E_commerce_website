@@ -45,9 +45,7 @@ $con = mysqli_connect("localhost", "root", "","eticaret");
             </div>
         </div>
     </div>
-    <!--header top start-->
 
-    <!--header middel start-->
     <div class="header_middel">
         <div class="container">
             <div class="row align-items-center">
@@ -115,21 +113,21 @@ $con = mysqli_connect("localhost", "root", "","eticaret");
             </div>
         </div>
     </div>
-    <!--header middel end-->
 
-    <!--header bottom satrt-->
-    <div class="header_bottom sticky-header">
+
+
+    <div class="header_bottom">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-5">
                     <div class="categories_menu">
                         <div class="categories_title">
-                            <h2 class="categori_toggle">Kategoriler</h2>
+                            <h2 class="categori_toggle"> All categories</h2>
                         </div>
                         <div class="categories_menu_inner">
-                            <?php
-                           anakategori();
-                            ?>
+                            <ul>
+                                <?php anakategori();?>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -137,19 +135,19 @@ $con = mysqli_connect("localhost", "root", "","eticaret");
                     <div class="main_menu_inner">
                         <div class="main_menu d-none d-lg-block">
                             <ul>
-                                <li class="active"><a href="index.php">Home <i class="fa fa-angle-down"></i></a>
+                                <li class="active"><a href="index.html">Home <i class="fa fa-angle-down"></i></a>
                                     <ul class="sub_menu">
-                                        <li><a href="index.php">Home 1</a></li>
+                                        <li><a href="index.html">Home 1</a></li>
                                         <li><a href="index-2.html">Home 2</a></li>
                                         <li><a href="index-3.html">Home 3</a></li>
                                         <li><a href="index-4.html">Home 4</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="shop.php">shop <i class="fa fa-angle-down"></i></a>
+                                <li><a href="shop.html">shop <i class="fa fa-angle-down"></i></a>
                                     <ul class="mega_menu">
                                         <li><a href="#">Shop Layouts</a>
                                             <ul>
-                                                <li><a href="shop.php">Full Width</a></li>
+                                                <li><a href="shop-fullwidth.html">Full Width</a></li>
                                                 <li><a href="shop-fullwidth-list.html">Full Width list</a></li>
                                                 <li><a href="shop-right-sidebar.html">Right Sidebar </a></li>
                                                 <li><a href="shop-right-sidebar-list.html"> Right Sidebar list</a></li>
@@ -160,8 +158,8 @@ $con = mysqli_connect("localhost", "root", "","eticaret");
                                             <ul>
                                                 <li><a href="portfolio.html">portfolio</a></li>
                                                 <li><a href="portfolio-details.html">portfolio details</a></li>
-                                                <li><a href="cart.php">cart</a></li>
-                                                <li><a href="checkout.php">Checkout</a></li>
+                                                <li><a href="cart.html">cart</a></li>
+                                                <li><a href="checkout.html">Checkout</a></li>
                                                 <li><a href="my-account.html">my account</a></li>
 
 
@@ -170,7 +168,7 @@ $con = mysqli_connect("localhost", "root", "","eticaret");
                                         <li><a href="#">Product Types</a>
                                             <ul>
                                                 <li><a href="product-details.html">product details</a></li>
-                                                <li><a href="product-sidebar.php">product sidebar</a></li>
+                                                <li><a href="product-sidebar.html">product sidebar</a></li>
                                                 <li><a href="product-gallery.html">product gallery</a></li>
                                                 <li><a href="product-slider.html">product slider</a></li>
 
@@ -178,13 +176,13 @@ $con = mysqli_connect("localhost", "root", "","eticaret");
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a href="blog.php">blog <i class="fa fa-angle-down"></i></a>
+                                <li><a href="blog.html">blog <i class="fa fa-angle-down"></i></a>
                                     <ul class="mega_menu">
                                         <li><a href="#">Blog Layouts</a>
                                             <ul>
 
                                                 <li><a href="blog-details.html">blog details</a></li>
-                                                <li><a href="blog-sidebar.html">blog Sidebar</a></li>
+                                                <li><a href="blog-sidebar.html">blog  Sidebar</a></li>
                                                 <li><a href="blog-fullwidth.html">blog fullwidth</a></li>
                                             </ul>
                                         </li>
@@ -208,37 +206,36 @@ $con = mysqli_connect("localhost", "root", "","eticaret");
                                     <ul class="sub_menu pages">
                                         <li><a href="about.html">About Us</a></li>
                                         <li><a href="services.html">services</a></li>
-                                        <li><a href="hakkinda.php">Frequently Questions</a></li>
-                                        <li><a href="login.php">login</a></li>
+                                        <li><a href="faq.html">Frequently Questions</a></li>
+                                        <li><a href="login.html">login</a></li>
                                         <li><a href="my-account.html">my account</a></li>
-                                        <li><a href="wishlist.php">Wishlist</a></li>
+                                        <li><a href="wishlist.html">Wishlist</a></li>
                                         <li><a href="404.html">Error 404</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="contact.php">Contact Us</a></li>
+                                <li><a href="contact.html">Contact Us</a></li>
                             </ul>
 
                         </div>
                         <div class="mobile-menu d-lg-none">
                             <nav>
                                 <ul>
-                                    <li><a href="index.php">Home</a>
+                                    <li><a href="index.html">Home</a>
                                         <ul>
-                                            <li><a href="index.php">Home 1</a></li>
+                                            <li><a href="index.html">Home 1</a></li>
                                             <li><a href="index-2.html">Home 2</a></li>
                                             <li><a href="index-3.html">Home 3</a></li>
                                             <li><a href="index-4.html">Home 4</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="shop.php">shop</a>
+                                    <li><a href="shop.html">shop</a>
                                         <ul>
                                             <li><a href="#">Shop Layouts</a>
                                                 <ul>
-                                                    <li><a href="shop.php">Full Width</a></li>
+                                                    <li><a href="shop-fullwidth.html">Full Width</a></li>
                                                     <li><a href="shop-fullwidth-list.html">Full Width list</a></li>
                                                     <li><a href="shop-right-sidebar.html">Right Sidebar </a></li>
-                                                    <li><a href="shop-right-sidebar-list.html"> Right Sidebar list</a>
-                                                    </li>
+                                                    <li><a href="shop-right-sidebar-list.html"> Right Sidebar list</a></li>
                                                     <li><a href="shop-list.html">List View</a></li>
                                                 </ul>
                                             </li>
@@ -246,8 +243,8 @@ $con = mysqli_connect("localhost", "root", "","eticaret");
                                                 <ul>
                                                     <li><a href="portfolio.html">portfolio</a></li>
                                                     <li><a href="portfolio-details.html">portfolio details</a></li>
-                                                    <li><a href="cart.php">cart</a></li>
-                                                    <li><a href="checkout.php">Checkout</a></li>
+                                                    <li><a href="cart.html">cart</a></li>
+                                                    <li><a href="checkout.html">Checkout</a></li>
                                                     <li><a href="my-account.html">my account</a></li>
 
 
@@ -256,7 +253,7 @@ $con = mysqli_connect("localhost", "root", "","eticaret");
                                             <li><a href="#">Product Types</a>
                                                 <ul>
                                                     <li><a href="product-details.html">product details</a></li>
-                                                    <li><a href="product-sidebar.php">product sidebar</a></li>
+                                                    <li><a href="product-sidebar.html">product sidebar</a></li>
                                                     <li><a href="product-gallery.html">product gallery</a></li>
                                                     <li><a href="product-slider.html">product slider</a></li>
 
@@ -264,13 +261,13 @@ $con = mysqli_connect("localhost", "root", "","eticaret");
                                             </li>
                                         </ul>
                                     </li>
-                                    <li><a href="blog.php">blog</a>
+                                    <li><a href="blog.html">blog</a>
                                         <ul>
                                             <li><a href="#">Blog Layouts</a>
                                                 <ul>
 
                                                     <li><a href="blog-details.html">blog details</a></li>
-                                                    <li><a href="blog-sidebar.html">blog Sidebar</a></li>
+                                                    <li><a href="blog-sidebar.html">blog  Sidebar</a></li>
                                                     <li><a href="blog-fullwidth.html">blog fullwidth</a></li>
                                                 </ul>
                                             </li>
@@ -294,14 +291,14 @@ $con = mysqli_connect("localhost", "root", "","eticaret");
                                         <ul>
                                             <li><a href="about.html">About Us</a></li>
                                             <li><a href="services.html">services</a></li>
-                                            <li><a href="hakkinda.php">Frequently Questions</a></li>
-                                            <li><a href="login.php">login</a></li>
+                                            <li><a href="faq.html">Frequently Questions</a></li>
+                                            <li><a href="login.html">login</a></li>
                                             <li><a href="my-account.html">my account</a></li>
-                                            <li><a href="wishlist.php">Wishlist</a></li>
+                                            <li><a href="wishlist.html">Wishlist</a></li>
                                             <li><a href="404.html">Error 404</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="contact.php">Contact Us</a></li>
+                                    <li><a href="contact.html">Contact Us</a></li>
                                 </ul>
                             </nav>
                         </div>
