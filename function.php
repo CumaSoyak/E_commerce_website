@@ -157,23 +157,19 @@ function urun_goster()
                                         <li>
                                             <a class=\"nav-link active\" data-toggle=\"tab\" href=\"#tab1\" role=\"tab\"
                                                aria-controls=\"tab1\" aria-selected=\"false\"><img
-                                                        src=\"assets/img/cart/cart5.jpg\" alt=\"\"></a>
+                                                        src='assets/img/product/$urunler_resim' width='118px' height='118px' alt=\"\"></a>
                                         </li>
                                         <li>
                                             <a class=\"nav-link\" data-toggle=\"tab\" href=\"#tab2\" role=\"tab\"
                                                aria-controls=\"tab2\" aria-selected=\"false\"><img
-                                                        src=\"assets/img/cart/cart6.jpg\" alt=\"\"></a>
+                                                        src='assets/img/product/$urunler_resim_1' width='118px' height='118px' alt=\"\"></a>
                                         </li>
                                         <li>
                                             <a class=\"nav-link button_three\" data-toggle=\"tab\" href=\"#tab3\" role=\"tab\"
                                                aria-controls=\"tab3\" aria-selected=\"false\"><img
-                                                        src=\"assets/img/cart/cart7.jpg\" alt=\"\"></a>
+                                                        src='assets/img/product/$urunler_resim_2' width='118px' height='118px' alt=\"\"></a>
                                         </li>
-                                        <li>
-                                            <a class=\"nav-link\" data-toggle=\"tab\" href=\"#tab4\" role=\"tab\"
-                                               aria-controls=\"tab4\" aria-selected=\"false\"><img
-                                                        src=\"assets/img/cart/cart8.jpg\" alt=\"\"></a>
-                                        </li>
+                                        
 
                                     </ul>
                                 </div>
@@ -241,8 +237,10 @@ function urun_goster()
 
 function ayrintili_urun_goster()
 {
+    $al=$_GET['alt_kategori_id'];
+
     $con = mysqli_connect("localhost", "root", "", "eticaret");
-    $al_kategori = "SELECT * FROM urunler ";
+    $al_kategori = "SELECT * FROM urunler  WHERE $al=parent_altkategori_id ";
     $sonuc = mysqli_query($con, $al_kategori);
 
     while ($cekilen_veri = mysqli_fetch_array($sonuc)) {
@@ -259,7 +257,7 @@ function ayrintili_urun_goster()
         echo "    
 <div class=\"col-lg-4 col-md-5\">
                                         <div class=\"product_thumb\">
-                                            <a href=\"product-details.html\"><img src='assets/img/cart/$urunler_resim'
+                                            <a href=\"product-details.html\"><img src='assets/img/product/$urunler_resim'
                                                                                 alt=\"\"></a>
                                              
                                         </div>
