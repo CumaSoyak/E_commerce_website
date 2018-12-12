@@ -31,6 +31,7 @@ function anakategori()
 
 
 }
+
 function uygulama()
 {
     $con = mysqli_connect("localhost", "root", "", "eticaret");
@@ -60,14 +61,15 @@ function alt_kategori($parent_id)
 
         }
     }
-   return $alt_kategori_id;
+    return $alt_kategori_id;
 }
 
 function urun_goster()
 {
-    $al=$_GET['alt_kategori_id'];
+    $al = $_GET['alt_kategori_id'];
     $con = mysqli_connect("localhost", "root", "", "eticaret");
-    $al_kategori = "SELECT * FROM urunler  WHERE $al=parent_altkategori_id";
+    $al_kategori = " SELECT * FROM urunler as ur INNER JOIN beden as be WHERE $al=parent_altkategori_id AND ur.urunler_id=be.parent_urun_id";
+
     $sonuc = mysqli_query($con, $al_kategori);
 
     while ($cekilen_veri = mysqli_fetch_array($sonuc)) {
@@ -80,7 +82,9 @@ function urun_goster()
         $urunler_fiyat = $cekilen_veri['urunler_fiyat'];
         $urunler_size = $cekilen_veri['urunler_size'];
         $urunler_oy = $cekilen_veri['urunler_oy'];
-        $size_array = explode(',', $urunler_size);
+
+        $XS=$cekilen_veri['XS'];
+        $M=$cekilen_veri['M'];
         echo "
            <div class=\"col-lg-4 col-md-6\">
                                     <div class=\"single_product\">
@@ -177,24 +181,17 @@ function urun_goster()
                                     <h2>$urunler_title</h2>
                                 </div>
                                 <div class=\"modal_price mb-10\">
-                                    <span class=\"new_price\">$64.99</span>
+                                    <span class=\"new_price\">$urunler_fiyat</span>
                                     <span class=\"old_price\">$78.99</span>
                                 </div>
                                 <div class=\"modal_content mb-10\">
-                                    <p>Short-sleeved blouse with feminine draped sleeve detail.</p>
+                                    <p>$urunler_desc</p>
                                 </div>
                                 <div class=\"modal_size mb-15\">
-                                    <h2>size</h2>
+                                    <h2>Beden</h2>
                                     <ul>
-                                    ";
-        foreach ($size_array as $string) {
-            $string_array = explode(':', $string);
-            echo "
-                                        <li><a href=\"#\">$string_array[0]</a></li>
-                                         ";
-        }
-
-        echo "
+                                        <li><a href=\"#\">$XS</a></li>                                                 
+                                        <li><a href=\"#\">$M</a></li>                                                 
                                     </ul>
                                 </div>
                                 <div class=\"modal_add_to_cart mb-15\">
@@ -233,7 +230,7 @@ function urun_goster()
 
 function ayrintili_urun_goster()
 {
-    $al=$_GET['alt_kategori_id'];
+    $al = $_GET['alt_kategori_id'];
 
     $con = mysqli_connect("localhost", "root", "", "eticaret");
     $al_kategori = "SELECT * FROM urunler  WHERE $al=parent_altkategori_id ";
@@ -339,14 +336,14 @@ function urun_oy_goster($urunler_oy)
 
 function filtrele_beden_getir()
 {
-    $alt_kategori_id = 1;
+    $alt_kategori_id = $_GET['alt_kategori_id'];
     $con = mysqli_connect("localhost", "root", "", "eticaret");
     $select = mysqli_query($con, "SELECT *FROM kategori_beden_tablosu WHERE $alt_kategori_id=parent_kategori_id");
     while ($cekilen_veri = mysqli_fetch_assoc($select)) {
         $beden_1 = $cekilen_veri['beden_1'];
         $beden_2 = $cekilen_veri['beden_2'];
         $beden_3 = $cekilen_veri['beden_3'];
-         echo "
+        echo "
             <li><a href=\"#\">$beden_1</a></li>
             <li><a href=\"#\">$beden_2</a></li>
             <li><a href=\"#\">$beden_3</a></li>
@@ -356,9 +353,10 @@ function filtrele_beden_getir()
 
     }
 }
+
 function filtrele_renk_getir()
 {
-    $alt_kategori_id = 1;
+    $alt_kategori_id = $_GET['alt_kategori_id'];
     $con = mysqli_connect("localhost", "root", "", "eticaret");
     $select = mysqli_query($con, "SELECT *FROM kategori_renk_tablosu WHERE $alt_kategori_id=parent_kategori_id");
     while ($cekilen_veri = mysqli_fetch_assoc($select)) {
