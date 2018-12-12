@@ -133,24 +133,20 @@ function urun_goster()
                                 <div class=\"tab-content product-details-large\">
                                     <div class=\"tab-pane fade show active\" id=\"tab1\" role=\"tabpanel\">
                                         <div class=\"modal_tab_img\">
-                                            <a href=\"#\"><img src=\"assets/img/product/product44.jpg\" alt=\"\"></a>
+                                            <a href=\"#\"><img src='assets/img/product/$urunler_resim' alt=\"\"></a>
                                         </div>
                                     </div>
                                     <div class=\"tab-pane fade\" id=\"tab2\" role=\"tabpanel\">
                                         <div class=\"modal_tab_img\">
-                                            <a href=\"#\"><img src=\"assets/img/product/product45.jpg\" alt=\"\"></a>
+                                            <a href=\"#\"><img src='assets/img/product/$urunler_resim_1' alt=\"\"></a>
                                         </div>
                                     </div>
                                     <div class=\"tab-pane fade\" id=\"tab3\" role=\"tabpanel\">
                                         <div class=\"modal_tab_img\">
-                                            <a href=\"#\"><img src=\"assets/img/product/product46.jpg\" alt=\"\"></a>
+                                            <a href=\"#\"><img src='assets/img/product/$urunler_resim_2' alt=\"\"></a>
                                         </div>
                                     </div>
-                                    <div class=\"tab-pane fade\" id=\"tab4\" role=\"tabpanel\">
-                                        <div class=\"modal_tab_img\">
-                                            <a href=\"#\"><img src=\"assets/img/product/product47.jpg\" alt=\"\"></a>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                                 <div class=\"modal_tab_button\">
                                     <ul class=\"nav product_navactive owl-carousel\" role=\"tablist\">
