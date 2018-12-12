@@ -55,18 +55,19 @@ function alt_kategori($parent_id)
             $alt_kategori_id = $cekilen_veri['alt_kategori_id'];
             $kategori_title = $cekilen_veri['kategori_title'];
             echo "                                 
-                               <li><a href=\"shop.php?$alt_kategori_id\">$kategori_title</a></li>    
+                               <li><a href='shop.php?alt_kategori_id=$alt_kategori_id'>$kategori_title</a></li>    
                                 ";
 
         }
     }
-
+   return $alt_kategori_id;
 }
 
 function urun_goster()
 {
+    $al=$_GET['alt_kategori_id'];
     $con = mysqli_connect("localhost", "root", "", "eticaret");
-    $al_kategori = "SELECT * FROM urunler ";
+    $al_kategori = "SELECT * FROM urunler  WHERE $al=parent_altkategori_id";
     $sonuc = mysqli_query($con, $al_kategori);
 
     while ($cekilen_veri = mysqli_fetch_array($sonuc)) {
@@ -80,14 +81,12 @@ function urun_goster()
         $urunler_size = $cekilen_veri['urunler_size'];
         $urunler_oy = $cekilen_veri['urunler_oy'];
         $size_array = explode(',', $urunler_size);
-
-
         echo "
            <div class=\"col-lg-4 col-md-6\">
                                     <div class=\"single_product\">
                                         <div class=\"product_thumb\">
                                             <a href=\"product-details.html\">
-                                            <img src='assets/img/cart/$urunler_resim'  ></a>
+                                            <img src='assets/img/product/$urunler_resim'  ></a>
                                             <div class=\"btn_quickview\">
                                                 <a href=\"#\" data-toggle=\"modal\" data-target=\"#modal_box\"
                                                    title=\"Quick View\"><i class=\"ion-ios-eye\"></i></a>
@@ -257,7 +256,7 @@ function ayrintili_urun_goster()
         $urunler_size = $cekilen_veri['urunler_size'];
         $urunler_oy = $cekilen_veri['urunler_oy'];
         $size_array = explode(',', $urunler_size);
-        echo "
+        echo "    
 <div class=\"col-lg-4 col-md-5\">
                                         <div class=\"product_thumb\">
                                             <a href=\"product-details.html\"><img src='assets/img/cart/$urunler_resim'
