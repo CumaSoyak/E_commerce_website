@@ -1,6 +1,6 @@
 <?php
 $con = mysqli_connect("localhost", "root", "", "eticaret");
-ob_start();
+
 function anakategori()
 {
     $con = mysqli_connect("localhost", "root", "", "eticaret");
@@ -36,7 +36,7 @@ function anakategori()
 function hata()
 {
     $al = $_GET['alt_kategori_id'];
-    if ($al==null){
+    if ($al == null) {
         header('Location: 404.php');
     }
 
@@ -79,8 +79,8 @@ function urun_goster()
         $urunler_size = $cekilen_veri['urunler_size'];
         $urunler_oy = $cekilen_veri['urunler_oy'];
 
-        $XS=$cekilen_veri['XS'];
-        $M=$cekilen_veri['M'];
+        $XS = $cekilen_veri['XS'];
+        $M = $cekilen_veri['M'];
         echo "
            <div class=\"col-lg-4 col-md-6\">
                                     <div class=\"single_product\">
@@ -369,6 +369,29 @@ function filtrele_renk_getir()
 
 
     }
+}
+
+
+
+function oturum_secenek()
+{
+
+    if (isset($_SESSION["username"])) {
+        $username = $_SESSION["username"];
+        echo "
+                                <li class=\"top_links\"><a href=\"#\">My Account <i class=\"ion-chevron-down\"></i></a>
+                                <ul class=\"dropdown_links\">
+                                    <li><a href=\"begeni.php\">Beğendiklerim</a></li>
+                                    <li><a href=\"hakkinda.php\">Hakkımda </a></li>
+                                    <li><a href=\"hesap.php\">Hesap</a></li>
+                                    <li><a href=\"logout.php\">Çıkış Yap</a></li>
+                                </ul>
+                            </li>";
+    } else {
+        echo "   <a class=\"top_links\" href=\"hesap.php\">Login/Register </a> ";
+
+    }
+
 }
 
 

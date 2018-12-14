@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("connect.php");
 global $bilgi_email;
 if (isset($_POST['register'])) {

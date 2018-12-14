@@ -1,14 +1,9 @@
 <?php
 include("function.php");
 $con = mysqli_connect("localhost", "root", "","eticaret");
-?>
-<?php
 global $username;
-
-if (isset($_SESSION["username"])){
-    $username=$_SESSION["username"];
-}
 ?>
+
 <!--header area start-->
 <header class="header_area">
     <!--header top start-->
@@ -25,17 +20,10 @@ if (isset($_SESSION["username"])){
                     <div class="top_right text-right">
                         <ul>
                             <?php
+                           oturum_secenek();
                             ?>
                             <!--Burası değişecek ama önce giriş yap veya kaydol diye gelmesi lazım-->
-                            <li class="top_links"><a href="hesap.php">Login/Register </a></li>
-                            <li class="top_links"><a href="#">My Account <i class="ion-chevron-down"></i></a>
-                                <ul class="dropdown_links">
-                                    <li><a href="begeni.php">Beğendiklerim</a></li>
-                                    <li><a href="hakkinda.php">Hakkımda </a></li>
-                                    <li><a href="hesap.php">Hesap</a></li>
-                                    <li><a href="#">Compare Products </a></li>
-                                </ul>
-                            </li>
+
                             <li class="currency"><a href="#">USD <i class="ion-chevron-down"></i></a>
                                 <ul class="dropdown_currency">
                                     <li><a href="#">EUR</a></li>
