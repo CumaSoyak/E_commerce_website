@@ -1,26 +1,16 @@
 <?php
 include("connect.php");
+session_start();
+if (!isset($_SESSION["username"])){
+    echo $_SESSION["username"];
+}
 ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
 
 <!-- Mirrored from demo.devitems.com/cigar-v3/cigar/shop.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 17:58:12 GMT -->
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Cigar - shop page</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
-
-    <!-- all css here -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/bundle.css">
-    <link rel="stylesheet" href="assets/css/plugins.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
-    <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <?php include("head.php"); ?>
 </head>
 <body>
 <!-- Add your site or application content here -->
@@ -58,7 +48,7 @@ include("connect.php");
             <div class="col-lg-3 col-md-12">
                 <div class="sidebar_widget">
                     <!--widget color start-->
-                    <?php include("filtrele.php");?>
+                    <?php include("filtrele.php"); ?>
                     <!--widget banner end-->
                 </div>
             </div>

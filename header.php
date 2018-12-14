@@ -2,6 +2,13 @@
 include("function.php");
 $con = mysqli_connect("localhost", "root", "","eticaret");
 ?>
+<?php
+global $username;
+
+if (isset($_SESSION["username"])){
+    $username=$_SESSION["username"];
+}
+?>
 <!--header area start-->
 <header class="header_area">
     <!--header top start-->
@@ -17,12 +24,15 @@ $con = mysqli_connect("localhost", "root", "","eticaret");
                 <div class="col-lg-6 col-md-6">
                     <div class="top_right text-right">
                         <ul>
+                            <?php
+                            ?>
                             <!--Burası değişecek ama önce giriş yap veya kaydol diye gelmesi lazım-->
+                            <li class="top_links"><a href="hesap.php">Login/Register </a></li>
                             <li class="top_links"><a href="#">My Account <i class="ion-chevron-down"></i></a>
                                 <ul class="dropdown_links">
-                                    <li><a href="wishlist.php">My Wish List </a></li>
-                                    <li><a href="my-account.html">My Account </a></li>
-                                    <li><a href="#">Sign In</a></li>
+                                    <li><a href="begeni.php">Beğendiklerim</a></li>
+                                    <li><a href="hakkinda.php">Hakkımda </a></li>
+                                    <li><a href="hesap.php">Hesap</a></li>
                                     <li><a href="#">Compare Products </a></li>
                                 </ul>
                             </li>
@@ -210,7 +220,7 @@ $con = mysqli_connect("localhost", "root", "","eticaret");
                                         <li><a href="login.html">login</a></li>
                                         <li><a href="my-account.html">my account</a></li>
                                         <li><a href="wishlist.html">Wishlist</a></li>
-                                        <li><a href="404.html">Error 404</a></li>
+                                        <li><a href="404.php">Error 404</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="contact.html">Contact Us</a></li>
@@ -295,7 +305,7 @@ $con = mysqli_connect("localhost", "root", "","eticaret");
                                             <li><a href="login.html">login</a></li>
                                             <li><a href="my-account.html">my account</a></li>
                                             <li><a href="wishlist.html">Wishlist</a></li>
-                                            <li><a href="404.html">Error 404</a></li>
+                                            <li><a href="404.php">Error 404</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="contact.html">Contact Us</a></li>

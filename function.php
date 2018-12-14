@@ -1,5 +1,6 @@
 <?php
 $con = mysqli_connect("localhost", "root", "", "eticaret");
+ob_start();
 function anakategori()
 {
     $con = mysqli_connect("localhost", "root", "", "eticaret");
@@ -32,16 +33,11 @@ function anakategori()
 
 }
 
-function uygulama()
+function hata()
 {
-    $con = mysqli_connect("localhost", "root", "", "eticaret");
-    $post_arr = array();
-    $post_arr['data'] = array();
-    $select = mysqli_query($con, "SELECT *FROM ana_kategoriler");
-    while ($cekilen_veri = mysqli_fetch_assoc($select)) {
-        extract($cekilen_veri);
-        //array_push($post_arr[]);
-        echo json_encode($cekilen_veri);
+    $al = $_GET['alt_kategori_id'];
+    if ($al==null){
+        header('Location: 404.php');
     }
 
 }
@@ -106,11 +102,11 @@ function urun_goster()
                                             </div>
                                             <h3><a href=\"product-details.html\">$urunler_title</a></h3>
                                             <div class=\"product_price\">
-                                                <span class=\"current_price\">$urunler_fiyat TL</span>
+                                                <span class=\"current_price\" >$urunler_fiyat TL</span>
                                             </div>
                                             <div class=\"product_action\">
                                                 <ul>
-                                                    <li class=\"product_cart\"><a href=\"#\" title=\"Ekle Sepete\">Ekle
+                                                    <li class=\"product_cart\"><a href=\"#\" title=\"Ekle Sepete\" name='eklesepete'>Ekle
                                                              </a></li>
                                                     <li class=\"add_links\"><a href=\"#\" title=\"Add to Wishlist\"><i
                                                                     class=\"ion-ios-heart-outline\"></i></a></li>

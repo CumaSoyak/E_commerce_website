@@ -1,4 +1,9 @@
-
+<?php
+session_start();
+if (isset($_SESSION["username"])){
+echo 'ad'.$_SESSION["username"];
+}
+?>
 <!doctype html>
 <html class="no-js" lang="zxx">
 
