@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 include("connect.php");
 global $bilgi_email;
 if (isset($_POST['register'])) {
@@ -10,7 +10,7 @@ if (isset($_POST['register'])) {
         echo "<script>alert('Alanları Boş geçmeyiniz')</script>";
 
     } else {
-        $sql = "INSERT INTO users(email,parola) VALUE('$email','$parola')";
+        $sql = "INSERT INTO users(username,email,parola) VALUE('$username','$email','$parola')";
         $succes = mysqli_query($con, $sql);
         session_start();
         $_SESSION["username"]=$username;
@@ -28,10 +28,15 @@ if (isset($_POST['login'])) {
         //$email = $con->escape_string($_POST['email']);
         $sonuc = $con->query("SELECT *FROM users WHERE email='$email' AND parola='$parola' ");
         $user = mysqli_fetch_assoc($sonuc);
-        $usercount = mysqli_num_rows($sonuc);echo $usercount;
-
+        $usercount = mysqli_num_rows($sonuc);
+        echo $usercount;
             if ($user['email']==$email&&$user['parola']==$parola){
+
+                session_start();
+                $userad=$user['username'];
+                $_SESSION["username"]=$userad;
                 header('Location: index.php');
+
 
             }
             else{

@@ -1,7 +1,7 @@
 <?php
 include("function.php");
 $con = mysqli_connect("localhost", "root", "","eticaret");
-global $username;
+
 ?>
 
 <!--header area start-->

@@ -60,8 +60,29 @@ function alt_kategori($parent_id)
     return $alt_kategori_id;
 }
 
+function sepete_ekle(){
+  //  urun_goster();
+
+}
+
 function urun_goster()
 {
+
+    if(isset($_POST["sepete_ekle"])){
+        if(isset($_SESSION["username"])){
+
+        }
+        else{
+            $item_array=array(
+                    'item_id'=>$_GET["id"],
+                    'item_id'=>$_GET["id"],
+                    'item_id'=>$_GET["id"],
+                    'item_id'=>$_GET["id"],
+                    'item_id'=>$_GET["id"],
+            );
+        }
+    }
+
     $al = $_GET['alt_kategori_id'];
     $con = mysqli_connect("localhost", "root", "", "eticaret");
     $al_kategori = " SELECT * FROM urunler as ur INNER JOIN beden as be WHERE $al=parent_altkategori_id AND ur.urunler_id=be.parent_urun_id";
@@ -81,12 +102,12 @@ function urun_goster()
 
         $XS = $cekilen_veri['XS'];
         $M = $cekilen_veri['M'];
-        echo "
-           <div class=\"col-lg-4 col-md-6\">
+        echo "<form class=\"col-lg-4 col-md-6\" action='shop.php?alt_kategori_id=$al' method='post'>
+           <div  >
                                     <div class=\"single_product\">
                                         <div class=\"product_thumb\">
                                             <a href=\"product-details.html\">
-                                            <img src='assets/img/product/$urunler_resim'  ></a>
+                                            <img  src='assets/img/product/$urunler_resim'></a>
                                             <div class=\"btn_quickview\">
                                                 <a href=\"#\" data-toggle=\"modal\" data-target=\"#modal_box\"
                                                    title=\"Quick View\"><i class=\"ion-ios-eye\"></i></a>
@@ -95,9 +116,9 @@ function urun_goster()
                                         <div class=\"product_content\">
                                             <div class=\"product_ratting\">
                                                 <ul>
-                                                ";
-        urun_oy_goster($urunler_oy);
-        echo "                                               
+                                                       ";
+                                                         urun_oy_goster($urunler_oy);
+                                                      echo "                                               
                                                 </ul>
                                             </div>
                                             <h3><a href=\"product-details.html\">$urunler_title</a></h3>
@@ -105,18 +126,24 @@ function urun_goster()
                                                 <span class=\"current_price\" >$urunler_fiyat TL</span>
                                             </div>
                                             <div class=\"product_action\">
-                                                <ul>
+                                               <!-- <ul>
+                                               
                                                     <li class=\"product_cart\"><a href=\"#\" title=\"Ekle Sepete\" name='eklesepete'>Ekle
                                                              </a></li>
                                                     <li class=\"add_links\"><a href=\"#\" title=\"Add to Wishlist\"><i
                                                                     class=\"ion-ios-heart-outline\"></i></a></li>
                                                     <li class=\"add_links\"><a href=\"#\" title=\"Add to Compare\"><i
                                                                     class=\"ion-loop\"></i></a></li>
-                                                </ul>
+                                            <input type='hidden' name='urun_oy' value='$urunler_oy' >   
+                                            <input type='hidden' name='urun_oy' value='$urunler_oy' >   
+                                            <input type='hidden' name='urun_oy' value='$urunler_oy' >   
+                                            <input type='hidden' name='urun_oy' value='$urunler_oy' >   
+                                                </ul> -->
                                             </div>
                                         </div>
                                     </div>
-                                </div>                                              
+                                </div>    
+                                </form>                                          
                   ";
         echo "
   <div class=\"modal fade\" id=\"modal_box\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">
@@ -191,8 +218,8 @@ function urun_goster()
                                     </ul>
                                 </div>
                                 <div class=\"modal_add_to_cart mb-15\">
-                                    <form action=\"#\">
-                                        <input min=\"0\" max=\"100\" step=\"2\" value=\"1\" type=\"number\">
+                                    <form action='shop.php?alt_kategori_id=$al' method='post'>
+                                        <input min=\"1\" max=\"100\" step=\"1\" value=\"1\" type=\"number\">
                                         <button type=\"submit\">add to cart</button>
                                     </form>
                                 </div>
@@ -268,12 +295,14 @@ function ayrintili_urun_goster()
                                             </div>
                                             <div class=\"product_action\">
                                                 <ul>
+                                                Kullanıcı yorumları çekilebilir
+                                                <!--
                                                     <li class=\"product_cart\"><a href=\"#\" title=\"Add to Cart\">Ekle
                                                        </a></li>
                                                     <li class=\"add_links\"><a href=\"#\" title=\"Add to Wishlist\"><i
                                                                     class=\"ion-ios-heart-outline\"></i></a></li>
                                                     <li class=\"add_links\"><a href=\"#\" title=\"Add to Compare\"><i
-                                                                    class=\"ion-loop\"></i></a></li>
+                                                                    class=\"ion-loop\"></i></a></li> -->
                                                 </ul>
                                             </div>
                                         </div>
@@ -371,19 +400,19 @@ function filtrele_renk_getir()
     }
 }
 
-
-
 function oturum_secenek()
 {
 
     if (isset($_SESSION["username"])) {
         $username = $_SESSION["username"];
+
+        echo "<a style='margin-right:20px;'>Hoşgeldin</a>", "<a style='color: #cd0a0a;'>$username</a>";
         echo "
-                                <li class=\"top_links\"><a href=\"#\">My Account <i class=\"ion-chevron-down\"></i></a>
+                                <li class=\"top_links\"><a href=\"#\">Hesap <i class=\"ion-chevron-down\"></i></a>
                                 <ul class=\"dropdown_links\">
                                     <li><a href=\"begeni.php\">Beğendiklerim</a></li>
                                     <li><a href=\"hakkinda.php\">Hakkımda </a></li>
-                                    <li><a href=\"hesap.php\">Hesap</a></li>
+                                    <li><a href=\"hesap.php\">Profil</a></li>
                                     <li><a href=\"logout.php\">Çıkış Yap</a></li>
                                 </ul>
                             </li>";
