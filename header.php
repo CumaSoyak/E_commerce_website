@@ -69,41 +69,9 @@ $con = mysqli_connect("localhost", "root", "","eticaret");
                             <a href="#"><i class="ion-ios-cart-outline"></i>My Cart</a>
                             <span class="cart_count">2</span>
                             <!--mini cart-->
-                            <div class="mini_cart">
-                                <div class="items_nunber">
-                                    <span>2 Items in Cart</span>
-                                </div>
-                                <div class="cart_button checkout">
-                                    <a href="checkout.php">Proceed to Checkout</a>
-                                </div>
-                                <div class="cart_item">
-                                    <div class="cart_img">
-                                        <a href="#"><img src="assets/img/cart/cart1.jpg" alt=""></a>
-                                    </div>
-                                    <div class="cart_info">
-                                        <a href="#">Mr.Coffee 12-Cup</a>
-                                        <form action="#">
-                                            <input min="0" max="100" type="number">
-                                            <span>$60.00</span>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="cart_item">
-                                    <div class="cart_img">
-                                        <a href="#"><img src="assets/img/cart/cart2.jpg" alt=""></a>
-                                    </div>
-                                    <div class="cart_info">
-                                        <a href="#">Lid Cover Cookware</a>
-                                        <form action="#">
-                                            <input min="0" max="100" type="number">
-                                            <span>$160.00</span>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="cart_button view_cart">
-                                    <a href='cart.php'>View and Edit Cart</a>
-                                </div>
-                            </div>
+
+                               <?php mini_cart(); ?>
+
                             <!--mini cart end-->
                         </div>
                     </div>

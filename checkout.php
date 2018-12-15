@@ -554,13 +554,7 @@
             <!--footer area end-->
             
   
-		
-		<!-- all js here -->
-        <script src="assets/js/vendor/jquery-1.12.0.min.js"></script>
-        <script src="assets/js/popper.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/plugins.js"></script>
-        <script src="assets/js/main.js"></script>
+
     </body>
 
 <!-- Mirrored from demo.devitems.com/cigar-v3/cigar/checkout.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 17:57:10 GMT -->

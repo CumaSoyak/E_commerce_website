@@ -129,8 +129,8 @@ function urun_goster()
                                             <div class=\"product_ratting\">
                                                 <ul>
                                                        ";
-                                                                    urun_oy_goster($urunler_oy);
-                                                                    echo "                                               
+        urun_oy_goster($urunler_oy);
+        echo "                                               
                                                         </ul>
                                             </div>
                                             <h3><a href=\"product-details.html\">$urunler_title</a></h3>
@@ -444,15 +444,15 @@ function oturum_secenek()
 function cart()
 {
     echo "<pre>";
-  print_r($_SESSION["basket"]);
-     echo "</pre>";
-  foreach ($_SESSION["basket"] as $urun){
-           // $urun_id=$urun['urunler_id'];
-            $urun_title=$urun['urunler_title'];
-            $urun_fiyat=$urun['urunler_fiyat'];
-            $urun_resim=$urun['urunler_resim'];
+    print_r($_SESSION["basket"]);
+    echo "</pre>";
+    foreach ($_SESSION["basket"] as $urun) {
+        // $urun_id=$urun['urunler_id'];
+        $urun_title = $urun['urunler_title'];
+        $urun_fiyat = $urun['urunler_fiyat'];
+        $urun_resim = $urun['urunler_resim'];
 
-      echo "
+        echo "
 
              <tr>
              <td class=\"product_remove\"><a href=\"#\"><i class=\"fa fa-trash-o\"></i></a></td>
@@ -462,7 +462,55 @@ function cart()
              <td class=\"product_quantity\"><input min=\"0\" max=\"100\" value=\"1\" type=\"number\"></td>
               </tr>
 ";
-  }
+    }
+
+}
+
+function mini_cart()
+{
+    echo "<pre>";
+    //print_r($_SESSION["basket"]);
+    echo "</pre>";
+    echo "
+    <div class=\"mini_cart\">
+                                <div class=\"items_nunber\">
+                                    <span>2 Items in Cart</span>
+                                </div>
+                                <div class=\"cart_button checkout\">
+                                    <a href=\"checkout.php\">Proceed to Checkout</a>
+                                </div>
+    ";
+    foreach ($_SESSION["basket"] as $urun) {
+        // $urun_id=$urun['urunler_id'];
+        $urun_title = $urun['urunler_title'];
+        $urun_fiyat = $urun['urunler_fiyat'];
+        $urun_resim = $urun['urunler_resim'];
+
+
+        echo "
+            
+                                <div class=\"cart_item\">
+                                    <div class=\"cart_img\">
+                                        <a href=\"#\"><img src=\"assets/img/cart/cart1.jpg\" alt=\"\"></a>
+                                    </div>
+                                    <div class=\"cart_info\">
+                                        <a href=\"#\">Mr.Coffee 12-Cup</a>
+                                        <form action=\"#\">
+                                            <input min=\"0\" max=\"100\" type=\"number\">
+                                            <span>$60.00</span>
+                                        </form>
+                                    </div>
+                                </div>
+                                    
+                                
+             ";
+    }
+    echo "
+    <div class=\"cart_button view_cart\">
+                                    <a href='cart.php'>View and Edit Cart</a>
+                                </div>
+                            </div>
+    ";
 
 }
 
