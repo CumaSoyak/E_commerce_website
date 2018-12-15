@@ -14,6 +14,8 @@ if (isset($_POST['register'])) {
         $succes = mysqli_query($con, $sql);
         session_start();
         $_SESSION["username"]=$username;
+        $_SESSION["basket"];
+
         header('Location: index.php');
     }
 }
@@ -35,6 +37,7 @@ if (isset($_POST['login'])) {
                 session_start();
                 $userad=$user['username'];
                 $_SESSION["username"]=$userad;
+                $_SESSION["basket"];
                 header('Location: index.php');
 
 

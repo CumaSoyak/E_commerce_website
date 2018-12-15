@@ -60,26 +60,39 @@ function alt_kategori($parent_id)
     return $alt_kategori_id;
 }
 
-function sepete_ekle(){
-  //  urun_goster();
 
-}
 
 function urun_goster()
 {
 
-    if(isset($_POST["sepete_ekle"])){
-        if(isset($_SESSION["username"])){
+    if (isset($_POST["eklesepet"])) {
+        if (!isset($_SESSION["basket"])) {
+            $item_array_id = array_column($_SESSION["basket"], "urunler_id");
+            if (!in_array($_GET["urunler_id"], $item_array_id)) {
+                $count = count($_SESSION["basket"]);
+                $item_array = array(
+                    '$urunler_id' => $_GET["urunler_id"],
+                    'urunler_title' => $_GET["urunler_title"],
+                    'urunler_fiyat' => $_GET["urunler_fiyat"],
+                    'urunler_resim' => $_GET["urunler_resim"]
 
-        }
-        else{
-            $item_array=array(
-                    'item_id'=>$_GET["id"],
-                    'item_id'=>$_GET["id"],
-                    'item_id'=>$_GET["id"],
-                    'item_id'=>$_GET["id"],
-                    'item_id'=>$_GET["id"],
+                );
+                print_r($item_array);
+                $_SESSION["basket"][$count] = $item_array;
+            } else {
+
+            }
+
+        } else {
+            $item_array = array(
+                '$urunler_id' => $_GET["urunler_id"],
+                'urunler_title' => $_GET["urunler_title"],
+                'urunler_fiyat' => $_GET["urunler_fiyat"],
+                'urunler_resim' => $_GET["urunler_resim"]
+
             );
+            print_r($item_array);
+            // $_SESSION["username"][0]=$item_array;
         }
     }
 
@@ -90,7 +103,8 @@ function urun_goster()
     $sonuc = mysqli_query($con, $al_kategori);
 
     while ($cekilen_veri = mysqli_fetch_array($sonuc)) {
-
+//TODO id çekilecek
+        $urunler_id = $cekilen_veri['urunler_id'];
         $urunler_title = $cekilen_veri['urunler_title'];
         $urunler_desc = $cekilen_veri['urunler_desc'];
         $urunler_resim = $cekilen_veri['urunler_resim'];
@@ -117,8 +131,8 @@ function urun_goster()
                                             <div class=\"product_ratting\">
                                                 <ul>
                                                        ";
-                                                         urun_oy_goster($urunler_oy);
-                                                      echo "                                               
+        urun_oy_goster($urunler_oy);
+        echo "                                               
                                                 </ul>
                                             </div>
                                             <h3><a href=\"product-details.html\">$urunler_title</a></h3>
@@ -213,14 +227,20 @@ function urun_goster()
                                 <div class=\"modal_size mb-15\">
                                     <h2>Beden</h2>
                                     <ul>
-                                        <li><a href=\"#\">$XS</a></li>                                                 
-                                        <li><a href=\"#\">$M</a></li>                                                 
+                                    
+                                    <!--
+                                        <li><a href='shop.php?alt_kategori_id=$al=?$urunler_oy'>$XS</a></li>  seçebilsin bunu açılır yerle                                                 
+                                        <li><a href=\"#\">$M</a></li> -->                                                
                                     </ul>
                                 </div>
                                 <div class=\"modal_add_to_cart mb-15\">
-                                    <form action='shop.php?alt_kategori_id=$al' method='post'>
-                                        <input min=\"1\" max=\"100\" step=\"1\" value=\"1\" type=\"number\">
-                                        <button type=\"submit\">add to cart</button>
+                                    <form action='shop.php?alt_kategori_id=$al&urunler_id=$urunler_id&urunler_title=$urunler_title&urunler_fiyat=$urunler_fiyat&urunler_resim=$urunler_resim' method='post'>
+                                        <input type='hidden' name='title' value='$urunler_title'>
+                                        <input type='hidden' name='fiyat' value='$urunler_fiyat'>
+                                        <input type='hidden' name='resim' value='$urunler_resim'>
+                                        <input type='hidden' name='beden' value='$XS'>
+                                        <input min=\"1\" max=\"100\" step=\"1\" value=\"1\" type=\"number\" name='adet'>
+                                        <button type='submit' name='eklesepet'>add to cart</button>
                                     </form>
                                 </div>
                                 <div class=\"modal_description mb-15\">
@@ -421,6 +441,22 @@ function oturum_secenek()
 
     }
 
+}
+
+function cart()
+{
+  print_r($_SESSION["basket"]);
+    echo "
+
+<tr>
+                                           <td class=\"product_remove\"><a href=\"#\"><i class=\"fa fa-trash-o\"></i></a></td>
+                                            <td class=\"product_thumb\"><a href=\"#\"><img src=\"assets/img/cart/cart6.jpg\" alt=\"\"></a></td>
+                                            <td class=\"product_name\"><a href=\"#\">Handbag fringilla</a></td>
+                                            <td class=\"product-price\">£65.00</td>
+                                            <td class=\"product_quantity\"><input min=\"0\" max=\"100\" value=\"1\" type=\"number\"></td>
+                                            <td class=\"product_total\">£130.00</td>
+                                        </tr>
+";
 }
 
 

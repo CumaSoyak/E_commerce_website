@@ -101,7 +101,7 @@ $con = mysqli_connect("localhost", "root", "","eticaret");
                                     </div>
                                 </div>
                                 <div class="cart_button view_cart">
-                                    <a href="#">View and Edit Cart</a>
+                                    <a href='cart.php'>View and Edit Cart</a>
                                 </div>
                             </div>
                             <!--mini cart end-->

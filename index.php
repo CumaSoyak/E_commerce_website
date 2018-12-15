@@ -7,9 +7,7 @@ session_start();
 
 <!-- Mirrored from demo.devitems.com/cigar-v3/cigar/index.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 17:54:41 GMT -->
 <head>
-    <?php
-    include("head.php");
-    ?>
+    <?php include("head.php");?>
 </head>
 <body>
 <!-- Add your site or application content here -->
