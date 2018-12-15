@@ -121,7 +121,7 @@ function urun_goster()
                                             <a href=\"product-details.html\">
                                             <img  src='assets/img/product/$urunler_resim'></a>
                                             <div class=\"btn_quickview\">
-                                                <a href=\"#\" data-toggle=\"modal\" data-target=\"#modal_box\"
+                                                <a href=\"#\" data-toggle=\"modal\" data-target=\"#modal_box$urunler_id\"
                                                    title=\"Quick View\"><i class=\"ion-ios-eye\"></i></a>
                                             </div>
                                         </div>
@@ -129,9 +129,9 @@ function urun_goster()
                                             <div class=\"product_ratting\">
                                                 <ul>
                                                        ";
-        urun_oy_goster($urunler_oy);
-        echo "                                               
-                                                </ul>
+                                                                    urun_oy_goster($urunler_oy);
+                                                                    echo "                                               
+                                                        </ul>
                                             </div>
                                             <h3><a href=\"product-details.html\">$urunler_title</a></h3>
                                             <div class=\"product_price\">
@@ -158,7 +158,7 @@ function urun_goster()
                                 </form>                                          
                   ";
         echo "
-  <div class=\"modal fade\" id=\"modal_box\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">
+  <div class=\"modal fade\" id=\"modal_box$urunler_id\" tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">
     <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">
         <div class=\"modal-content\">
             <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">
