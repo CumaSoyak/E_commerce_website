@@ -60,13 +60,11 @@ function alt_kategori($parent_id)
     return $alt_kategori_id;
 }
 
-
-
 function urun_goster()
 {
 
     if (isset($_POST["eklesepet"])) {
-        if (!isset($_SESSION["basket"])) {
+        if (isset($_SESSION["basket"])) {
             $item_array_id = array_column($_SESSION["basket"], "urunler_id");
             if (!in_array($_GET["urunler_id"], $item_array_id)) {
                 $count = count($_SESSION["basket"]);
@@ -445,18 +443,27 @@ function oturum_secenek()
 
 function cart()
 {
+    echo "<pre>";
   print_r($_SESSION["basket"]);
-    echo "
+     echo "</pre>";
+  foreach ($_SESSION["basket"] as $urun){
+           // $urun_id=$urun['urunler_id'];
+            $urun_title=$urun['urunler_title'];
+            $urun_fiyat=$urun['urunler_fiyat'];
+            $urun_resim=$urun['urunler_resim'];
 
-<tr>
-                                           <td class=\"product_remove\"><a href=\"#\"><i class=\"fa fa-trash-o\"></i></a></td>
-                                            <td class=\"product_thumb\"><a href=\"#\"><img src=\"assets/img/cart/cart6.jpg\" alt=\"\"></a></td>
-                                            <td class=\"product_name\"><a href=\"#\">Handbag fringilla</a></td>
-                                            <td class=\"product-price\">£65.00</td>
-                                            <td class=\"product_quantity\"><input min=\"0\" max=\"100\" value=\"1\" type=\"number\"></td>
-                                            <td class=\"product_total\">£130.00</td>
-                                        </tr>
+      echo "
+
+             <tr>
+             <td class=\"product_remove\"><a href=\"#\"><i class=\"fa fa-trash-o\"></i></a></td>
+             <td class=\"product_thumb\"><a href=\"#\"><img style=\"width:118px; height:118px;\"  src='assets/img/product/$urun_resim'alt=\"\"></a></td>
+             <td class=\"product_name\"><a href=\"#\">$urun_title</a></td>
+             <td class=\"product-price\">$urun_fiyat</td>
+             <td class=\"product_quantity\"><input min=\"0\" max=\"100\" value=\"1\" type=\"number\"></td>
+              </tr>
 ";
+  }
+
 }
 
 

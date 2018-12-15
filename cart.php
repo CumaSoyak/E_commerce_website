@@ -52,7 +52,7 @@ session_start();
                                     <th class="product_name">Product</th>
                                     <th class="product-price">Price</th>
                                     <th class="product_quantity">Quantity</th>
-                                    <th class="product_total">Total</th>
+
                                 </tr>
                                 </thead>
                                 <tbody>

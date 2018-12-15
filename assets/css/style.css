@@ -3723,13 +3723,13 @@
 	text-align: center;
 }
 .table_desc table thead tr th.product_remove, .table_desc table thead tr th.product-price, .table_desc table thead tr th.product_total {
-    min-width: 159px;
+    min-width: 210px;
 }
 .table_desc table thead tr th.product_name {
     min-width: 300px;
 }
 .table_desc table thead tr th.product_thumb, .table_desc table thead tr th.product_quantity {
-	min-width: 195px;
+	min-width: 210px;
 }
 .cart_page table thead tr:last-child th,.table_desc table tbody tr td:last-child{
     border-right: 0;
