@@ -471,15 +471,7 @@ function mini_cart()
     echo "<pre>";
     //print_r($_SESSION["basket"]);
     echo "</pre>";
-    echo "
-    <div class=\"mini_cart\">
-                                <div class=\"items_nunber\">
-                                    <span>2 Items in Cart</span>
-                                </div>
-                                <div class=\"cart_button checkout\">
-                                    <a href=\"checkout.php\">Proceed to Checkout</a>
-                                </div>
-    ";
+
     foreach ($_SESSION["basket"] as $urun) {
         // $urun_id=$urun['urunler_id'];
         $urun_title = $urun['urunler_title'];
@@ -489,28 +481,22 @@ function mini_cart()
 
         echo "
             
-                                <div class=\"cart_item\">
-                                    <div class=\"cart_img\">
-                                        <a href=\"#\"><img src=\"assets/img/cart/cart1.jpg\" alt=\"\"></a>
-                                    </div>
-                                    <div class=\"cart_info\">
-                                        <a href=\"#\">Mr.Coffee 12-Cup</a>
-                                        <form action=\"#\">
-                                            <input min=\"0\" max=\"100\" type=\"number\">
-                                            <span>$60.00</span>
-                                        </form>
-                                    </div>
-                                </div>
+              <div class=\"cart_item\">
+                    <div class=\"cart_img\">
+                       <a href=\"#\"><img style=\"width:100px; height:71px;\"  src='assets/img/product/$urun_resim' alt=\"\"></a>
+                          </div>
+                       <div class=\"cart_info\">
+                       <a href=\"#\">$urun_title</a>
+                       <form action=\"#\">
+                         <input min=\"0\" max=\"100\" type=\"number\">
+                       <span>$urun_fiyat TL</span>
+                       </form>
+                     </div>
+                </div>
                                     
                                 
              ";
     }
-    echo "
-    <div class=\"cart_button view_cart\">
-                                    <a href='cart.php'>View and Edit Cart</a>
-                                </div>
-                            </div>
-    ";
 
 }
 
