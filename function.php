@@ -444,7 +444,7 @@ function oturum_secenek()
 function cart()
 {
     echo "<pre>";
-    print_r($_SESSION["basket"]);
+   // print_r($_SESSION["basket"]);
     echo "</pre>";
     foreach ($_SESSION["basket"] as $urun) {
         // $urun_id=$urun['urunler_id'];
@@ -471,7 +471,11 @@ function mini_cart()
     echo "<pre>";
     //print_r($_SESSION["basket"]);
     echo "</pre>";
-
+    echo "
+            <div class=\"cart_button checkout\">
+               <a href=\"checkout.php\">Sepeti Temizle</a>
+            </div>
+    ";
     foreach ($_SESSION["basket"] as $urun) {
         // $urun_id=$urun['urunler_id'];
         $urun_title = $urun['urunler_title'];
@@ -484,19 +488,26 @@ function mini_cart()
               <div class=\"cart_item\">
                     <div class=\"cart_img\">
                        <a href=\"#\"><img style=\"width:100px; height:71px;\"  src='assets/img/product/$urun_resim' alt=\"\"></a>
-                          </div>
+                    </div>
                        <div class=\"cart_info\">
                        <a href=\"#\">$urun_title</a>
-                       <form action=\"#\">
-                         <input min=\"0\" max=\"100\" type=\"number\">
+                       <form action=\"#\"> <input min=\"0\" max=\"100\" type=\"number\">
                        <span>$urun_fiyat TL</span>
                        </form>
                      </div>
+                    <div class='cop_kova'><a href=\"#\"><i style='color: #2971f5;max-width:15px;height:20px;' class=\"fa fa-trash-o\"></i></a></div>
                 </div>
                                     
                                 
              ";
     }
+
+}
+function mini_cart_count(){
+    $count = count($_SESSION["basket"]);
+
+    echo "<span class=\"cart_count\">$count</span>";
+
 
 }
 

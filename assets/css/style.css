@@ -286,8 +286,13 @@
 	background: transparent;
 }
 .cart_info {
-	width: 56%;
+	width: 40%;
+	float: left;
+}
+.cop_kova{
+	width: 40%;
 	float: right;
+	color:#2971f5;
 }
 .cart_info a {
 	font-weight: 500;

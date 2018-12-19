@@ -67,13 +67,12 @@ $con = mysqli_connect("localhost", "root", "","eticaret");
                         </div>
                         <div class="cart_link">
                             <a href="#"><i class="ion-ios-cart-outline"></i>My Cart</a>
-                            <span class="cart_count">2</span>
-                            <!--mini cart-->
+                            <?php
+                            mini_cart_count();
+                            ?>                            <!--mini cart-->
                             <div class="mini_cart">
 
-                                <div class="cart_button checkout">
-                                    <a href="checkout.php">Sepeti Temizle</a>
-                                </div>
+
                                <?php mini_cart(); ?>
                                 <div class="cart_button view_cart">
                                     <a href='cart.php'>View and Edit Cart</a>
