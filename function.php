@@ -444,7 +444,7 @@ function oturum_secenek()
 function cart()
 {
     echo "<pre>";
-   // print_r($_SESSION["basket"]);
+    // print_r($_SESSION["basket"]);
     echo "</pre>";
     foreach ($_SESSION["basket"] as $urun) {
         // $urun_id=$urun['urunler_id'];
@@ -503,11 +503,50 @@ function mini_cart()
     }
 
 }
-function mini_cart_count(){
+
+function mini_cart_count()
+{
     $count = count($_SESSION["basket"]);
 
     echo "<span class=\"cart_count\">$count</span>";
 
+
+}
+
+function slider()
+{
+    $con = mysqli_connect("localhost", "root", "", "eticaret");
+    $selecet = mysqli_query($con, "SELECT * FROM  slider  ");
+
+    if (mysqli_num_rows($selecet) != 0) {
+        while ($cekilen_veri = mysqli_fetch_assoc($selecet)) {
+            $slider_id = $cekilen_veri['slider_id'];
+            $title_bir = $cekilen_veri['title_bir'];
+            $title_iki = $cekilen_veri['title_iki'];
+            $title_uc = $cekilen_veri['title_uc'];
+            $title_dort = $cekilen_veri['title_dort'];
+            $title_bes = $cekilen_veri['title_bes'];
+            $slider_images = $cekilen_veri['slider_image'];
+
+            echo "
+            <div    style=\"background-image: url('assets/img/slider/$slider_images') \" class=\"single_slider slider_one\">
+                <div class=\"container\">
+                    <div class=\"row align-items-center\">
+                            <div class=\"col-12\">
+                                <div class=\"slider_content\">
+                                    <h1>$title_bir<br><strong>$title_iki</strong></h1>
+                                        <h3>$title_uc</h3>
+                                        <h2>$title_dort</h2>
+                                        <p>$title_bes</p>
+                                        <a href=\"#\">Şimdi Alışveriş Yap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    ";
+        }
+    }
 
 }
 

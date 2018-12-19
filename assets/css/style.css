@@ -708,7 +708,7 @@
 
 /*slider area css here*/
 .single_slider.slider_one {
-	background: url(../img/slider/slider1.jpg);
+/*	background: url(../img/slider/slider1.jpg); */
 	background-repeat: no-repeat;
 	background-attachment: scroll;
 	background-position: center center;
