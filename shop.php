@@ -5,8 +5,7 @@ session_start();
 <!doctype html>
 <html class="no-js" lang="zxx">
 
-<!-- Mirrored from demo.devitems.com/cigar-v3/cigar/shop.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 17:58:12 GMT -->
-<head>
+ <head>
     <?php include("head.php"); ?>
 </head>
 <body>

@@ -1,6 +1,5 @@
 <?php
 $con = mysqli_connect("localhost", "root", "", "eticaret");
-
 function anakategori()
 {
     $con = mysqli_connect("localhost", "root", "", "eticaret");
@@ -26,11 +25,7 @@ function anakategori()
                                     </ul>
                                 </li> 
               ";
-
-
     }
-
-
 }
 
 function hata()
@@ -39,14 +34,12 @@ function hata()
     if ($al == null) {
         header('Location: 404.php');
     }
-
 }
 
 function alt_kategori($parent_id)
 {
     $con = mysqli_connect("localhost", "root", "", "eticaret");
     $selecet = mysqli_query($con, "SELECT * FROM  alt_kategoriler  WHERE $parent_id=parent_kategori_id");
-
     if (mysqli_num_rows($selecet) != 0) {
         while ($cekilen_veri = mysqli_fetch_assoc($selecet)) {
             $alt_kategori_id = $cekilen_veri['alt_kategori_id'];
@@ -54,7 +47,6 @@ function alt_kategori($parent_id)
             echo "                                 
                                <li><a href='shop.php?alt_kategori_id=$alt_kategori_id'>$kategori_title</a></li>    
                                 ";
-
         }
     }
     return $alt_kategori_id;
@@ -62,12 +54,12 @@ function alt_kategori($parent_id)
 
 function urun_goster()
 {
-
+//unset($_SESSION['sepet']);
     if (isset($_POST["eklesepet"])) {
-        if (isset($_SESSION["basket"])) {
-            $item_array_id = array_column($_SESSION["basket"], "urunler_id");
-            if (!in_array($_GET["urunler_id"], $item_array_id)) {
-                $count = count($_SESSION["basket"]);
+        if (!isset($_SESSION["username"])) {
+
+
+        } else {
                 $item_array = array(
                     '$urunler_id' => $_GET["urunler_id"],
                     'urunler_title' => $_GET["urunler_title"],
@@ -75,32 +67,24 @@ function urun_goster()
                     'urunler_resim' => $_GET["urunler_resim"]
 
                 );
+                //$count = count($_SESSION["sepet"]);
                 print_r($item_array);
-                $_SESSION["basket"][$count] = $item_array;
-            } else {
+                $_SESSION["sepet"][$_GET['urunler_id']] = $item_array;
+                //header('location: '.$_SERVER['HTTP_REFERER']);
 
-            }
 
-        } else {
-            $item_array = array(
-                '$urunler_id' => $_GET["urunler_id"],
-                'urunler_title' => $_GET["urunler_title"],
-                'urunler_fiyat' => $_GET["urunler_fiyat"],
-                'urunler_resim' => $_GET["urunler_resim"]
 
-            );
-            print_r($item_array);
-            // $_SESSION["username"][0]=$item_array;
+            //veri tabanı kayıt
+
         }
     }
-
     $al = $_GET['alt_kategori_id'];
     $con = mysqli_connect("localhost", "root", "", "eticaret");
     $al_kategori = " SELECT * FROM urunler as ur INNER JOIN beden as be WHERE $al=parent_altkategori_id AND ur.urunler_id=be.parent_urun_id";
-
     $sonuc = mysqli_query($con, $al_kategori);
-
     while ($cekilen_veri = mysqli_fetch_array($sonuc)) {
+
+
 //TODO id çekilecek
         $urunler_id = $cekilen_veri['urunler_id'];
         $urunler_title = $cekilen_veri['urunler_title'];
@@ -111,15 +95,14 @@ function urun_goster()
         $urunler_fiyat = $cekilen_veri['urunler_fiyat'];
         $urunler_size = $cekilen_veri['urunler_size'];
         $urunler_oy = $cekilen_veri['urunler_oy'];
-
         $XS = $cekilen_veri['XS'];
         $M = $cekilen_veri['M'];
-        echo "<form class=\"col-lg-4 col-md-6\" action='shop.php?alt_kategori_id=$al' method='post'>
+         echo "<form class=\"col-lg-4 col-md-6\" action='shop.php?alt_kategori_id=$al' method='post'>
            <div  >
                                     <div class=\"single_product\">
                                         <div class=\"product_thumb\">
-                                            <a href=\"product-details.html\">
-                                            <img  src='assets/img/product/$urunler_resim'></a>
+                                            <a href='detay.php?alt_kategori_id=$al&urunler_id=$urunler_id'>
+                                            <img   src='assets/img/product/$urunler_resim'></a>
                                             <div class=\"btn_quickview\">
                                                 <a href=\"#\" data-toggle=\"modal\" data-target=\"#modal_box$urunler_id\"
                                                    title=\"Quick View\"><i class=\"ion-ios-eye\"></i></a>
@@ -205,7 +188,6 @@ function urun_goster()
                                                         src='assets/img/product/$urunler_resim_2' width='118px' height='118px' alt=\"\"></a>
                                         </li>
                                         
-
                                     </ul>
                                 </div>
                             </div>
@@ -232,12 +214,13 @@ function urun_goster()
                                     </ul>
                                 </div>
                                 <div class=\"modal_add_to_cart mb-15\">
-                                    <form action='shop.php?alt_kategori_id=$al&urunler_id=$urunler_id&urunler_title=$urunler_title&urunler_fiyat=$urunler_fiyat&urunler_resim=$urunler_resim' method='post'>
+                                    <form action='shop.php?alt_kategori_id=$al&urunler_id=$urunler_id&urunler_title=$urunler_title
+                                    &urunler_fiyat=$urunler_fiyat&urunler_resim=$urunler_resim ' method='post'>
                                         <input type='hidden' name='title' value='$urunler_title'>
                                         <input type='hidden' name='fiyat' value='$urunler_fiyat'>
                                         <input type='hidden' name='resim' value='$urunler_resim'>
                                         <input type='hidden' name='beden' value='$XS'>
-                                        <input min=\"1\" max=\"100\" step=\"1\" value=\"1\" type=\"number\" name='adet'>
+                                        <input min=\"1\" max=\"100\" step=\"1\" value='1' type=\"number\" name='adet'>
                                         <button type='submit' name='eklesepet'>add to cart</button>
                                     </form>
                                 </div>
@@ -265,20 +248,15 @@ function urun_goster()
 </div>
                                     ";
     }
-
-
 }
 
 function ayrintili_urun_goster()
 {
     $al = $_GET['alt_kategori_id'];
-
     $con = mysqli_connect("localhost", "root", "", "eticaret");
     $al_kategori = "SELECT * FROM urunler  WHERE $al=parent_altkategori_id ";
     $sonuc = mysqli_query($con, $al_kategori);
-
     while ($cekilen_veri = mysqli_fetch_array($sonuc)) {
-
         $urunler_title = $cekilen_veri['urunler_title'];
         $urunler_desc = $cekilen_veri['urunler_desc'];
         $urunler_resim = $cekilen_veri['urunler_resim'];
@@ -374,7 +352,6 @@ function urun_oy_goster($urunler_oy)
                                                     ";
             break;
     }
-
 }
 
 function filtrele_beden_getir()
@@ -390,10 +367,7 @@ function filtrele_beden_getir()
             <li><a href=\"#\">$beden_1</a></li>
             <li><a href=\"#\">$beden_2</a></li>
             <li><a href=\"#\">$beden_3</a></li>
-
         ";
-
-
     }
 }
 
@@ -406,24 +380,18 @@ function filtrele_renk_getir()
         $renk_1 = $cekilen_veri['renk_1'];
         $renk_2 = $cekilen_veri['renk_2'];
         $renk_3 = $cekilen_veri['renk_3'];
-
         echo "
             <li><a href=\"#\">$renk_1</a></li>
             <li><a href=\"#\">$renk_2</a></li>
             <li><a href=\"#\">$renk_3</a></li>
-
         ";
-
-
     }
 }
 
 function oturum_secenek()
 {
-
     if (isset($_SESSION["username"])) {
         $username = $_SESSION["username"];
-
         echo "<a style='margin-right:20px;'>Hoşgeldin</a>", "<a style='color: #cd0a0a;'>$username</a>";
         echo "
                                 <li class=\"top_links\"><a href=\"#\">Hesap <i class=\"ion-chevron-down\"></i></a>
@@ -436,53 +404,46 @@ function oturum_secenek()
                             </li>";
     } else {
         echo "   <a class=\"top_links\" href=\"hesap.php\">Login/Register </a> ";
-
     }
-
 }
 
 function cart()
 {
     echo "<pre>";
-    // print_r($_SESSION["basket"]);
+     print_r($_SESSION["sepet"]);
     echo "</pre>";
-    foreach ($_SESSION["basket"] as $urun) {
+    foreach ($_SESSION["sepet"] as $urun) {
         // $urun_id=$urun['urunler_id'];
         $urun_title = $urun['urunler_title'];
         $urun_fiyat = $urun['urunler_fiyat'];
         $urun_resim = $urun['urunler_resim'];
-
-        echo "
-
+         echo "
              <tr>
              <td class=\"product_remove\"><a href=\"#\"><i class=\"fa fa-trash-o\"></i></a></td>
              <td class=\"product_thumb\"><a href=\"#\"><img style=\"width:118px; height:118px;\"  src='assets/img/product/$urun_resim'alt=\"\"></a></td>
              <td class=\"product_name\"><a href=\"#\">$urun_title</a></td>
              <td class=\"product-price\">$urun_fiyat</td>
-             <td class=\"product_quantity\"><input min=\"0\" max=\"100\" value=\"1\" type=\"number\"></td>
+             <td class=\"product_quantity\"><input min=\"0\" max=\"100\" value='1' type=\"number\"></td>
               </tr>
 ";
     }
-
 }
 
 function mini_cart()
 {
     echo "<pre>";
-    //print_r($_SESSION["basket"]);
+    //print_r($_SESSION["sepet"]);
     echo "</pre>";
     echo "
             <div class=\"cart_button checkout\">
                <a href=\"checkout.php\">Sepeti Temizle</a>
             </div>
     ";
-    foreach ($_SESSION["basket"] as $urun) {
+    foreach ($_SESSION["sepet"] as $urun) {
         // $urun_id=$urun['urunler_id'];
         $urun_title = $urun['urunler_title'];
         $urun_fiyat = $urun['urunler_fiyat'];
         $urun_resim = $urun['urunler_resim'];
-
-
         echo "
             
               <div class=\"cart_item\">
@@ -501,23 +462,18 @@ function mini_cart()
                                 
              ";
     }
-
 }
 
 function mini_cart_count()
 {
-    $count = count($_SESSION["basket"]);
-
+    $count = count($_SESSION["sepet"]);
     echo "<span class=\"cart_count\">$count</span>";
-
-
 }
 
 function slider()
 {
     $con = mysqli_connect("localhost", "root", "", "eticaret");
     $selecet = mysqli_query($con, "SELECT * FROM  slider  ");
-
     if (mysqli_num_rows($selecet) != 0) {
         while ($cekilen_veri = mysqli_fetch_assoc($selecet)) {
             $slider_id = $cekilen_veri['slider_id'];
@@ -527,7 +483,6 @@ function slider()
             $title_dort = $cekilen_veri['title_dort'];
             $title_bes = $cekilen_veri['title_bes'];
             $slider_images = $cekilen_veri['slider_image'];
-
             echo "
             <div    style=\"background-image: url('assets/img/slider/$slider_images') \" class=\"single_slider slider_one\">
                 <div class=\"container\">
@@ -547,7 +502,4 @@ function slider()
     ";
         }
     }
-
 }
-
-

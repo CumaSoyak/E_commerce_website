@@ -176,8 +176,8 @@ session_start();
                         <div class="col-lg-3">
                             <div class="single_product">
                                 <div class="product_thumb">
-                                    <a href="product-details.php"><img src="assets/img/product/product8.jpg"
-                                                                       alt=""></a>
+                                    <a href="detay.php"><img src="assets/img/product/product8.jpg"
+                                                             alt=""></a>
                                     <div class="btn_quickview">
                                         <a href="#" data-toggle="modal" data-target="#modal_box" title="Quick View"><i
                                                     class="ion-ios-eye"></i></a>
@@ -406,8 +406,8 @@ session_start();
                         <div class="col-lg-3">
                             <div class="single_product">
                                 <div class="product_thumb">
-                                    <a href="product-details.php"><img src="assets/img/product/product15.jpg"
-                                                                       alt=""></a>
+                                    <a href="detay.php"><img src="assets/img/product/product15.jpg"
+                                                             alt=""></a>
                                     <div class="btn_quickview">
                                         <a href="#" data-toggle="modal" data-target="#modal_box" title="Quick View"><i
                                                     class="ion-ios-eye"></i></a>
@@ -461,7 +461,7 @@ session_start();
                                             <li><a href="#"><i class="ion-ios-star-outline"></i></a></li>
                                         </ul>
                                     </div>
-                                    <h3><a href="product-details.php">Classic 17-Piece Tool </a></h3>
+                                    <h3><a href="detay.php">Classic 17-Piece Tool </a></h3>
                                     <div class="product_price">
                                         <span class="current_price">$24.00</span>
                                     </div>
@@ -561,8 +561,8 @@ session_start();
                         <div class="col-lg-3">
                             <div class="single_product">
                                 <div class="product_thumb">
-                                    <a href="product-details.php"><img src="assets/img/product/product19.jpg"
-                                                                       alt=""></a>
+                                    <a href="detay.php"><img src="assets/img/product/product19.jpg"
+                                                             alt=""></a>
                                     <div class="btn_quickview">
                                         <a href="#" data-toggle="modal" data-target="#modal_box" title="Quick View"><i
                                                     class="ion-ios-eye"></i></a>
@@ -578,7 +578,7 @@ session_start();
                                             <li><a href="#"><i class="ion-ios-star-outline"></i></a></li>
                                         </ul>
                                     </div>
-                                    <h3><a href="product-details.php">Aicok Stand Mixet</a></h3>
+                                    <h3><a href="detay.php">Aicok Stand Mixet</a></h3>
                                     <div class="product_price">
                                         <span class="current_price">$28.00</span>
                                     </div>
@@ -598,8 +598,8 @@ session_start();
                         <div class="col-lg-3">
                             <div class="single_product">
                                 <div class="product_thumb">
-                                    <a href="product-details.php"><img src="assets/img/product/product20.jpg"
-                                                                       alt=""></a>
+                                    <a href="detay.php"><img src="assets/img/product/product20.jpg"
+                                                             alt=""></a>
                                     <div class="btn_quickview">
                                         <a href="#" data-toggle="modal" data-target="#modal_box" title="Quick View"><i
                                                     class="ion-ios-eye"></i></a>
@@ -635,8 +635,8 @@ session_start();
                         <div class="col-lg-3">
                             <div class="single_product">
                                 <div class="product_thumb">
-                                    <a href="product-details.php"><img src="assets/img/product/product10.jpg"
-                                                                       alt=""></a>
+                                    <a href="detay.php"><img src="assets/img/product/product10.jpg"
+                                                             alt=""></a>
                                     <div class="btn_quickview">
                                         <a href="#" data-toggle="modal" data-target="#modal_box" title="Quick View"><i
                                                     class="ion-ios-eye"></i></a>

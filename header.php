@@ -94,7 +94,7 @@ $con = mysqli_connect("localhost", "root", "","eticaret");
                 <div class="col-lg-3 col-md-5">
                     <div class="categories_menu">
                         <div class="categories_title">
-                            <h2 class="categori_toggle"> All categories</h2>
+                            <h2 class="categori_toggle"> Kategoriler</h2>
                         </div>
                         <div class="categories_menu_inner">
                             <ul>
@@ -110,9 +110,7 @@ $con = mysqli_connect("localhost", "root", "","eticaret");
                                 <li class="active"><a href="index.html">Home <i class="fa fa-angle-down"></i></a>
                                     <ul class="sub_menu">
                                         <li><a href="index.html">Home 1</a></li>
-                                        <li><a href="index-2.html">Home 2</a></li>
-                                        <li><a href="index-3.html">Home 3</a></li>
-                                        <li><a href="index-4.html">Home 4</a></li>
+
                                     </ul>
                                 </li>
                                 <li><a href="shop.html">shop <i class="fa fa-angle-down"></i></a>

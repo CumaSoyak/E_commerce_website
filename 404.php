@@ -340,7 +340,7 @@
                                                     </li>
                                                     <li><a href="#">Product Types</a>
                                                         <ul>
-                                                            <li><a href="product-details.php">product details</a></li>
+                                                            <li><a href="detay.php">product details</a></li>
                                                             <li><a href="product-sidebar.php">product sidebar</a></li>
                                                             <li><a href="product-gallery.html">product gallery</a></li>
                                                             <li><a href="product-slider.html">product slider</a></li>

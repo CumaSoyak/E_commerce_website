@@ -1,9 +1,8 @@
-<meta charset="utf-8">
+<meta charset="UTF-8"/>
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>Cigar - Mega Shop eCommerce Bootstrap 4 Template</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
 
 <!-- Favicon -->
@@ -16,3 +15,7 @@
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/responsive.css">
 <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+
+<meta http-equiv=content-type content=text/html;charset=iso-8859-9>
+<meta http-equiv=content-type content=text/html;charset=windows-1254>
+<meta http-equiv=content-type content=text/html;charset=x-mac-turkish>

@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 include("connect.php");
 global $bilgi_email;
 if (isset($_POST['register'])) {
@@ -14,7 +14,7 @@ if (isset($_POST['register'])) {
         $succes = mysqli_query($con, $sql);
         session_start();
         $_SESSION["username"]=$username;
-        $_SESSION["basket"];
+        $_SESSION["sepet"];
 
         header('Location: index.php');
     }
@@ -37,7 +37,7 @@ if (isset($_POST['login'])) {
                 session_start();
                 $userad=$user['username'];
                 $_SESSION["username"]=$userad;
-                $_SESSION["basket"];
+                $_SESSION["sepet"];
                 header('Location: index.php');
 
 

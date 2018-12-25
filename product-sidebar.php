@@ -463,7 +463,7 @@
                                         <div class="col-lg-3">
                                             <div class="single_product"> 
                                                 <div class="product_thumb">
-                                                    <a href="product-details.php"><img src="assets/img/product/product10.jpg" alt=""></a>
+                                                    <a href="detay.php"><img src="assets/img/product/product10.jpg" alt=""></a>
                                                     <div class="btn_quickview">
                                                          <a href="#" data-toggle="modal" data-target="#modal_box"  title="Quick View"><i class="ion-ios-eye"></i></a>
                                                     </div>
@@ -512,7 +512,7 @@
                                         <div class="col-lg-3">
                                             <div class="single_product"> 
                                                 <div class="product_thumb">
-                                                     <a href="product-details.php"><img src="assets/img/product/product15.jpg" alt=""></a>
+                                                     <a href="detay.php"><img src="assets/img/product/product15.jpg" alt=""></a>
                                                      <div class="btn_quickview">
                                                          <a href="#" data-toggle="modal" data-target="#modal_box"  title="Quick View"><i class="ion-ios-eye"></i></a>
                                                     </div>
@@ -576,7 +576,7 @@
                                         <div class="col-lg-3">
                                             <div class="single_product"> 
                                                 <div class="product_thumb">
-                                                     <a href="product-details.php"><img src="assets/img/product/product17.jpg" alt=""></a>
+                                                     <a href="detay.php"><img src="assets/img/product/product17.jpg" alt=""></a>
                                                      <div class="btn_quickview">
                                                          <a href="#" data-toggle="modal" data-target="#modal_box"  title="Quick View"><i class="ion-ios-eye"></i></a>
                                                     </div>
