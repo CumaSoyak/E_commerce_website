@@ -60,18 +60,17 @@ function urun_goster()
 
 
         } else {
-                $item_array = array(
-                    '$urunler_id' => $_GET["urunler_id"],
-                    'urunler_title' => $_GET["urunler_title"],
-                    'urunler_fiyat' => $_GET["urunler_fiyat"],
-                    'urunler_resim' => $_GET["urunler_resim"]
+            $item_array = array(
+                '$urunler_id' => $_GET["urunler_id"],
+                'urunler_title' => $_GET["urunler_title"],
+                'urunler_fiyat' => $_GET["urunler_fiyat"],
+                'urunler_resim' => $_GET["urunler_resim"]
 
-                );
-                //$count = count($_SESSION["sepet"]);
-                print_r($item_array);
-                $_SESSION["sepet"][$_GET['urunler_id']] = $item_array;
-                //header('location: '.$_SERVER['HTTP_REFERER']);
-
+            );
+            //$count = count($_SESSION["sepet"]);
+            print_r($item_array);
+            $_SESSION["sepet"][$_GET['urunler_id']] = $item_array;
+            //header('location: '.$_SERVER['HTTP_REFERER']);
 
 
             //veri tabanı kayıt
@@ -97,7 +96,7 @@ function urun_goster()
         $urunler_oy = $cekilen_veri['urunler_oy'];
         $XS = $cekilen_veri['XS'];
         $M = $cekilen_veri['M'];
-         echo "<form class=\"col-lg-4 col-md-6\" action='shop.php?alt_kategori_id=$al' method='post'>
+        echo "<form class=\"col-lg-4 col-md-6\" action='shop.php?alt_kategori_id=$al' method='post'>
            <div  >
                                     <div class=\"single_product\">
                                         <div class=\"product_thumb\">
@@ -247,6 +246,30 @@ function urun_goster()
     </div>
 </div>
                                     ";
+    }
+}
+
+function detay()
+{
+    $al = $_GET['alt_kategori_id'];
+    $con = mysqli_connect("localhost", "root", "", "eticaret");
+    $al_kategori = " SELECT * FROM urunler as ur INNER JOIN beden as be WHERE $al=parent_altkategori_id AND ur.urunler_id=be.parent_urun_id";
+    $sonuc = mysqli_query($con, $al_kategori);
+    while ($cekilen_veri = mysqli_fetch_array($sonuc)) {
+
+
+        $urunler_id = $cekilen_veri['urunler_id'];
+        $urunler_title = $cekilen_veri['urunler_title'];
+        $urunler_desc = $cekilen_veri['urunler_desc'];
+        $urunler_resim = $cekilen_veri['urunler_resim'];
+        $urunler_resim_1 = $cekilen_veri['urunler_resim_1'];
+        $urunler_resim_2 = $cekilen_veri['urunler_resim_2'];
+        $urunler_fiyat = $cekilen_veri['urunler_fiyat'];
+        $urunler_size = $cekilen_veri['urunler_size'];
+        $urunler_oy = $cekilen_veri['urunler_oy'];
+        $XS = $cekilen_veri['XS'];
+        $M = $cekilen_veri['M'];
+        echo "";
     }
 }
 
@@ -410,14 +433,14 @@ function oturum_secenek()
 function cart()
 {
     echo "<pre>";
-     print_r($_SESSION["sepet"]);
+    print_r($_SESSION["sepet"]);
     echo "</pre>";
     foreach ($_SESSION["sepet"] as $urun) {
         // $urun_id=$urun['urunler_id'];
         $urun_title = $urun['urunler_title'];
         $urun_fiyat = $urun['urunler_fiyat'];
         $urun_resim = $urun['urunler_resim'];
-         echo "
+        echo "
              <tr>
              <td class=\"product_remove\"><a href=\"#\"><i class=\"fa fa-trash-o\"></i></a></td>
              <td class=\"product_thumb\"><a href=\"#\"><img style=\"width:118px; height:118px;\"  src='assets/img/product/$urun_resim'alt=\"\"></a></td>
