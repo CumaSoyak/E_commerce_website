@@ -100,7 +100,7 @@ function urun_goster()
            <div  >
                                     <div class=\"single_product\">
                                         <div class=\"product_thumb\">
-                                            <a href='detay.php?alt_kategori_id=$al&urunler_id=$urunler_id'>
+                                            <a href='detay.php?urunler_id=$urunler_id'>
                                             <img   src='assets/img/product/$urunler_resim'></a>
                                             <div class=\"btn_quickview\">
                                                 <a href=\"#\" data-toggle=\"modal\" data-target=\"#modal_box$urunler_id\"
@@ -257,7 +257,6 @@ function detay()
     $sonuc = mysqli_query($con, $al_kategori);
     $cekilen_veri = mysqli_fetch_array($sonuc);
 
-
         $urunler_id = $cekilen_veri['urunler_id'];
         $urunler_title = $cekilen_veri['urunler_title'];
         $urunler_desc = $cekilen_veri['urunler_desc'];
@@ -341,9 +340,14 @@ function detay()
                                     </div>
                                     <div class=\"product_action_link\">
                                         <ul>
-                                            <li class=\"product_cart\"><a href=\"#\" title=\"Add to Cart\">Add to Cart</a></li>
-                                            <li class=\"add_links\"><a href=\"#\" title=\"Add to Wishlist\"><i class=\"ion-ios-heart-outline\"></i> Add to wishlist</a></li>
-                                            <li class=\"add_links\"><a href=\"#\" title=\"Add to Compare\"><i class=\"ion-loop\"></i> Add to compare</a></li>
+                                           <form action='detay.php?urunler_id=$urunler_id' method='get'>
+                                        <input type='hidden' name='title' value='$urunler_title'>
+                                        <input type='hidden' name='fiyat' value='$urunler_fiyat'>
+                                        <input type='hidden' name='resim' value='$urunler_resim'>
+                                        <input type='hidden' name='beden' value='$XS'>
+                                        <input min=\"1\" max=\"100\" step=\"1\" value='1' type=\"number\" name='adet'>
+                                        <button type='submit' name='eklesepet'>add to cart</button>
+                                    </form>
                                         </ul>
                                     </div>
                                     <div class=\"social_sharing\">
@@ -549,17 +553,31 @@ function mini_cart()
     echo "<pre>";
     //print_r($_SESSION["sepet"]);
     echo "</pre>";
-    echo "
+
+    if (!isset($_SESSION["sepet"])){
+        echo "
+            
+              <div class=\"cart_item\">
+                    
+                      
+                    <div>Sepetniz boş</div>
+                </div>
+                                    
+                                
+             ";
+    }
+    else{
+        echo "
             <div class=\"cart_button checkout\">
                <a href=\"checkout.php\">Sepeti Temizle</a>
             </div>
     ";
-    foreach ($_SESSION["sepet"] as $urun) {
-        // $urun_id=$urun['urunler_id'];
-        $urun_title = $urun['urunler_title'];
-        $urun_fiyat = $urun['urunler_fiyat'];
-        $urun_resim = $urun['urunler_resim'];
-        echo "
+        foreach ($_SESSION["sepet"] as $urun) {
+            // $urun_id=$urun['urunler_id'];
+            $urun_title = $urun['urunler_title'];
+            $urun_fiyat = $urun['urunler_fiyat'];
+            $urun_resim = $urun['urunler_resim'];
+            echo "
             
               <div class=\"cart_item\">
                     <div class=\"cart_img\">
@@ -576,13 +594,18 @@ function mini_cart()
                                     
                                 
              ";
+        }
     }
+
 }
 
 function mini_cart_count()
 {
-    $count = count($_SESSION["sepet"]);
-    echo "<span class=\"cart_count\">$count</span>";
+    if (isset($_SESSION["sepet"])){
+        $count = count($_SESSION["sepet"]);
+        echo "<span class=\"cart_count\">$count</span>";
+    }
+
 }
 
 function slider()
