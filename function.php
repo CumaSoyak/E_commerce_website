@@ -251,11 +251,11 @@ function urun_goster()
 
 function detay()
 {
-    $al = $_GET['alt_kategori_id'];
+    $al = $_GET['urunler_id'];
     $con = mysqli_connect("localhost", "root", "", "eticaret");
-    $al_kategori = " SELECT * FROM urunler as ur INNER JOIN beden as be WHERE $al=parent_altkategori_id AND ur.urunler_id=be.parent_urun_id";
+    $al_kategori = " SELECT * FROM urunler as ur INNER JOIN beden as be WHERE $al=urunler_id AND ur.urunler_id=be.parent_urun_id";
     $sonuc = mysqli_query($con, $al_kategori);
-    while ($cekilen_veri = mysqli_fetch_array($sonuc)) {
+    $cekilen_veri = mysqli_fetch_array($sonuc);
 
 
         $urunler_id = $cekilen_veri['urunler_id'];
@@ -269,8 +269,100 @@ function detay()
         $urunler_oy = $cekilen_veri['urunler_oy'];
         $XS = $cekilen_veri['XS'];
         $M = $cekilen_veri['M'];
-        echo "";
-    }
+         echo "
+         <!--single product wrapper start-->
+            <div class=\"single_product_wrapper\">
+                <div class=\"container\">
+                    <div class=\"row\">
+                        <div class=\"col-lg-5 col-md-6\">
+                            <div class=\"product_gallery\">
+                                <div class=\"tab-content produc_thumb_conatainer\">
+                                    <div class=\"tab-pane fade show active\" id=\"p_tab1\" role=\"tabpanel\" >
+                                        <div class=\"modal_img\">
+                                            <a href=\"#\"><img src='assets/img/product/$urunler_resim' alt=\"\"></a>
+                                        </div>
+                                    </div>
+                                    <div class=\"tab-pane fade\" id=\"p_tab2\" role=\"tabpanel\">
+                                        <div class=\"modal_img\">
+                                            <a href=\"#\"><img src='assets/img/product/$urunler_resim_1'  alt=\"\"></a>
+                                        </div>
+                                    </div>
+                                    <div class=\"tab-pane fade\" id=\"p_tab3\" role=\"tabpanel\">
+                                        <div class=\"modal_img\">
+                                            <a href=\"#\"><img src='assets/img/product/$urunler_resim_2'  alt=\"\"></a>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+
+                                <div class=\"product_thumb_button\">    
+                                    <ul class=\"nav product_d_button\" role=\"tablist\">
+                                        <li >
+                                            <a class=\"active\" data-toggle=\"tab\" href=\"#p_tab1\" role=\"tab\" aria-controls=\"p_tab1\" aria-selected=\"false\"><img src='assets/img/product/$urunler_resim'  alt=\"\"></a>
+                                        </li>
+                                        <li>
+                                             <a data-toggle=\"tab\" href=\"#p_tab2\" role=\"tab\" aria-controls=\"p_tab2\" aria-selected=\"false\"><img src='assets/img/product/$urunler_resim_1' alt=\"\"></a>
+                                        </li>
+                                        <li>
+                                           <a data-toggle=\"tab\" href=\"#p_tab3\" role=\"tab\" aria-controls=\"p_tab3\" aria-selected=\"false\"><img src='assets/img/product/$urunler_resim_2'  alt=\"\"></a>
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=\"col-lg-7 col-md-6\">
+                            <div class=\"product_details\">
+                                <h3>$urunler_title</h3>
+                                <div class=\"product_price\">
+                                    <span class=\"current_price\">$urunler_fiyat</span>
+                                    <span class=\"old_price\">$28.00</span>
+                                </div>
+                                <div class=\"product_ratting\">
+                                    <ul>
+                                        <li><a href=\"#\"><i class=\"ion-star\"></i></a></li>
+                                        <li><a href=\"#\"><i class=\"ion-ios-star-outline\"></i></a></li>
+                                        <li><a href=\"#\"><i class=\"ion-ios-star-outline\"></i></a></li>
+                                        <li><a href=\"#\"><i class=\"ion-ios-star-outline\"></i></a></li>
+                                        <li><a href=\"#\"><i class=\"ion-ios-star-outline\"></i></a></li>
+                                    </ul>
+                                    <ul>
+                                        <li><a href=\"#\">1 Review</a></li>
+                                    </ul>
+                                </div>
+                               <div class=\"product_description\">
+                                   <p>$urunler_desc</p>
+                               </div>
+                                <div class=\"product_details_action\">
+                                    <h3>Available Options</h3>
+                                    <div class=\"product_stock\">
+                                        <label>Quantity</label>
+                                        <input min=\"0\" max=\"100\" type=\"number\">
+                                    </div>
+                                    <div class=\"product_action_link\">
+                                        <ul>
+                                            <li class=\"product_cart\"><a href=\"#\" title=\"Add to Cart\">Add to Cart</a></li>
+                                            <li class=\"add_links\"><a href=\"#\" title=\"Add to Wishlist\"><i class=\"ion-ios-heart-outline\"></i> Add to wishlist</a></li>
+                                            <li class=\"add_links\"><a href=\"#\" title=\"Add to Compare\"><i class=\"ion-loop\"></i> Add to compare</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class=\"social_sharing\">
+                                        <span>Share</span>
+                                        <ul>
+                                            <li><a href=\"#\" class=\"bg-facebook\" data-toggle=\"tooltip\" title=\"Facebook\"><i class=\"fa fa-facebook\"></i> Share</a></li>
+                                            <li><a href=\"#\" class=\"bg-Tweet\" data-toggle=\"tooltip\" title=\"twitter\"><i class=\"fa fa-twitter\"></i> Tweet</a></li>
+                                            <li><a href=\"#\" class=\"bg-google\" data-toggle=\"tooltip\" title=\"google-plus\"><i class=\"fa fa-google-plus\"></i> Google+</a></li>
+                                            <li><a href=\"#\" class=\"bg-pinterest\" data-toggle=\"tooltip\" title=\"pinterest\"><i class=\"fa fa-pinterest\"></i> Pinterest</a></li>
+                                        </ul>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--single product wrapper end-->";
+
 }
 
 function ayrintili_urun_goster()
