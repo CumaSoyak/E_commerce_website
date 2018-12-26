@@ -54,33 +54,16 @@ function alt_kategori($parent_id)
 
 function urun_goster()
 {
+    ob_start();
 //unset($_SESSION['sepet']);
-    if (isset($_POST["eklesepet"])) {
-        if (!isset($_SESSION["username"])) {
 
-
-        } else {
-            $item_array = array(
-                '$urunler_id' => $_GET["urunler_id"],
-                'urunler_title' => $_GET["urunler_title"],
-                'urunler_fiyat' => $_GET["urunler_fiyat"],
-                'urunler_resim' => $_GET["urunler_resim"]
-
-            );
-            //$count = count($_SESSION["sepet"]);
-            print_r($item_array);
-            $_SESSION["sepet"][$_GET['urunler_id']] = $item_array;
-            //header('location: '.$_SERVER['HTTP_REFERER']);
-
-
-            //veri tabanı kayıt
-
-        }
-    }
     $al = $_GET['alt_kategori_id'];
     $con = mysqli_connect("localhost", "root", "", "eticaret");
     $al_kategori = " SELECT * FROM urunler as ur INNER JOIN beden as be WHERE $al=parent_altkategori_id AND ur.urunler_id=be.parent_urun_id";
     $sonuc = mysqli_query($con, $al_kategori);
+
+
+
     while ($cekilen_veri = mysqli_fetch_array($sonuc)) {
 
 
@@ -96,6 +79,33 @@ function urun_goster()
         $urunler_oy = $cekilen_veri['urunler_oy'];
         $XS = $cekilen_veri['XS'];
         $M = $cekilen_veri['M'];
+        if (isset($_POST["eklesepet"])) {
+            if (isset($_SESSION["username"])) {
+                $user_id=$_SESSION["username"];
+                 $sql = "INSERT INTO sepet(user_id,urun_id) VALUE('$user_id','$urunler_id')";
+                 $succes = mysqli_query($con, $sql);
+
+            } else {
+                $item_array = array(
+                    'urunler_id' => $_GET["urunler_id"],
+                    'urunler_title' => $_GET["urunler_title"],
+                    'urunler_fiyat' => $_GET["urunler_fiyat"],
+                    'urunler_resim' => $_GET["urunler_resim"],
+                    'alt_kategori_id' => $_GET["alt_kategori_id"]
+
+                );
+                //$count = count($_SESSION["sepet"]);
+                print_r($item_array);
+                $_SESSION["sepet"][$_GET['urunler_id']] = $item_array;
+                header("Refresh:0");
+
+                //header('location: '.$_SERVER['HTTP_REFERER']);
+
+
+                //veri tabanı kayıt
+
+            }
+        }
         echo "<form class=\"col-lg-4 col-md-6\" action='shop.php?alt_kategori_id=$al' method='post'>
            <div  >
                                     <div class=\"single_product\">
@@ -528,17 +538,19 @@ function oturum_secenek()
 
 function cart()
 {
+
+   // unset($_SESSION["sepet"]);
     echo "<pre>";
     print_r($_SESSION["sepet"]);
     echo "</pre>";
     foreach ($_SESSION["sepet"] as $urun) {
-        // $urun_id=$urun['urunler_id'];
+        $urunler_id=$urun['urunler_id'];
         $urun_title = $urun['urunler_title'];
         $urun_fiyat = $urun['urunler_fiyat'];
         $urun_resim = $urun['urunler_resim'];
         echo "
              <tr>
-             <td class=\"product_remove\"><a href=\"#\"><i class=\"fa fa-trash-o\"></i></a></td>
+             <td class=\"product_remove\"><a href='cart.php?sil=$urunler_id'><i class=\"fa fa-trash-o\"></i></a></td>
              <td class=\"product_thumb\"><a href=\"#\"><img style=\"width:118px; height:118px;\"  src='assets/img/product/$urun_resim'alt=\"\"></a></td>
              <td class=\"product_name\"><a href=\"#\">$urun_title</a></td>
              <td class=\"product-price\">$urun_fiyat</td>
@@ -550,9 +562,17 @@ function cart()
 
 function mini_cart()
 {
-    echo "<pre>";
-    //print_r($_SESSION["sepet"]);
-    echo "</pre>";
+ob_start();
+   //unset($_SESSION["sepet"]);
+  /*  if (isset($_GET["sil"])){
+        if (isset($_SESSION["sepet"][$_GET["sil"]])){
+            unset($_SESSION["sepet"][$_GET["sil"]]);
+            $alt=$_GET["alt_kategori_id"];
+            echo $alt;
+            header('Location: index.php');
+        }
+
+    } */
 
     if (!isset($_SESSION["sepet"])){
         echo "
@@ -572,11 +592,15 @@ function mini_cart()
                <a href=\"checkout.php\">Sepeti Temizle</a>
             </div>
     ";
+
         foreach ($_SESSION["sepet"] as $urun) {
-            // $urun_id=$urun['urunler_id'];
+           // $urun_id=$urun['urunler_id'];
+            $urunler_id=$urun['urunler_id'];
             $urun_title = $urun['urunler_title'];
             $urun_fiyat = $urun['urunler_fiyat'];
             $urun_resim = $urun['urunler_resim'];
+            $alt_kategori_id=$urun['alt_kategori_id'];
+            var_dump($_SESSION["sepet"]);
             echo "
             
               <div class=\"cart_item\">
@@ -589,11 +613,21 @@ function mini_cart()
                        <span>$urun_fiyat TL</span>
                        </form>
                      </div>
-                    <div class='cop_kova'><a href=\"#\"><i style='color: #2971f5;max-width:15px;height:20px;' class=\"fa fa-trash-o\"></i></a></div>
+                     <form action='#' method='post'>
+     <div class='cop_kova'><a href='shop.php?alt_kategori_id=$alt_kategori_id&sil=$urunler_id'><i style='color: #2971f5;max-width:15px;height:20px;' class=\"fa fa-trash-o\"></i></a></div>
+               </form>
                 </div>
                                     
                                 
              ";
+
+        }
+        if (isset($_SESSION["sepet"])){
+            echo "
+            <div class=\"cart_button view_cart\">
+                                    <a href='cart.php'>View and Edit Cart</a>
+                                </div>
+            ";
         }
     }
 
@@ -605,6 +639,11 @@ function mini_cart_count()
         $count = count($_SESSION["sepet"]);
         echo "<span class=\"cart_count\">$count</span>";
     }
+    else{
+        echo "<span class=\"cart_count\">0</span>";
+
+    }
+
 
 }
 

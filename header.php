@@ -74,9 +74,7 @@ $con = mysqli_connect("localhost", "root", "","eticaret");
 
 
                                <?php mini_cart(); ?>
-                                <div class="cart_button view_cart">
-                                    <a href='cart.php'>View and Edit Cart</a>
-                                </div>
+
                             </div>
                             <!--mini cart end-->
                         </div>

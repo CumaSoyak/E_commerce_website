@@ -12,11 +12,9 @@ if (isset($_POST['register'])) {
     } else {
         $sql = "INSERT INTO users(username,email,parola) VALUE('$username','$email','$parola')";
         $succes = mysqli_query($con, $sql);
-        session_start();
-        $_SESSION["username"]=$username;
-        $_SESSION["sepet"];
 
-        header('Location: index.php');
+
+      //  header('Location: index.php');
     }
 }
 if (isset($_POST['login'])) {
@@ -35,8 +33,8 @@ if (isset($_POST['login'])) {
             if ($user['email']==$email&&$user['parola']==$parola){
 
                 session_start();
-                $userad=$user['username'];
-                $_SESSION["username"]=$userad;
+                $user_id=$user['id'];
+                $_SESSION["username"]=$user_id;
                 $_SESSION["sepet"];
                 header('Location: index.php');
 
