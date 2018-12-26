@@ -538,7 +538,14 @@ function oturum_secenek()
 
 function cart()
 {
+    if (isset($_GET["sil"])){
+        if (isset($_SESSION["sepet"][$_GET["sil"]])){
+            unset($_SESSION["sepet"][$_GET["sil"]]);
 
+           // header('Location: index.php');
+        }
+
+    }
    // unset($_SESSION["sepet"]);
     echo "<pre>";
     print_r($_SESSION["sepet"]);
