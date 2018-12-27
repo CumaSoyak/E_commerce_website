@@ -1,24 +1,12 @@
+<?php
+session_start();
+
+?>
 <!doctype html>
 <html class="no-js" lang="zxx">
     
 <!-- Mirrored from demo.devitems.com/cigar-v3/cigar/checkout.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 17:57:08 GMT -->
-<head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Cigar - checkout page</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Favicon -->
-        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
-		
-		<!-- all css here -->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/css/bundle.css">
-        <link rel="stylesheet" href="assets/css/plugins.css">
-        <link rel="stylesheet" href="assets/css/style.css">
-        <link rel="stylesheet" href="assets/css/responsive.css">
-        <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
-    </head>
+<?php include  "head.php"; ?>
     <body>
             <!-- Add your site or application content here -->
             

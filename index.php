@@ -22,7 +22,7 @@ session_start();
 <div class="slider_area owl-carousel">
     <?php
     slider();
-    ?>
+     ?>
 </div>
 
 <!--slider area end-->

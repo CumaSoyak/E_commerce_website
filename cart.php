@@ -62,7 +62,7 @@ session_start();
                             </table>
                         </div>
                         <div class="cart_submit">
-                            <button type="submit">update cart</button>
+                            <a href="checkout.php" ><buttontype="submit">Devam Et</button></a>
                         </div>
                     </div>
                 </div>
@@ -98,9 +98,7 @@ session_start();
                                     <p>Total</p>
                                     <p class="cart_amount">£215.00</p>
                                 </div>
-                                <div class="checkout_btn">
-                                    <a href="#">Proceed to Checkout</a>
-                                </div>
+                               <?php alisveris_kontrol(); ?>
                             </div>
                         </div>
                     </div>
