@@ -722,7 +722,15 @@ function adres_bilgi_al()
                     '$postakodu','$adresbilgi','$ad','$soyad','$telefon','$tckimlik')";
             $succes = mysqli_query($con, $sql);
             //////
+             foreach ($_SESSION["sepet"] as $urun) {
+                $urunler_id = $urun['urunler_id'];
+                $urun_title = $urun['urunler_title'];
+                $urun_fiyat = $urun['urunler_fiyat'];
+                $urun_resim = $urun['urunler_resim'];
 
+                $sql = "INSERT INTO sepet(user_id,urun_id,urun_title,urun_fiyat,urun_resim)
+                VALUE('$userid','$urunler_id','$urun_title','$urun_fiyat','$urun_resim')";
+                $succes = mysqli_query($con, $sql);
 
                  header('Location: index.php');
 
