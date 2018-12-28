@@ -1038,32 +1038,32 @@ echo "
                                             <label>Kredi Kartı Numarası</label>
                                         </div>
                                         <div class=\"col-3 mb-20\">
-                                             <input name='ad' type=\"text\" value=' '>
+                                             <input name='no1' type=\"text\" value=''>
                                         </div>
                                         <div class=\"col-3 mb-20\">
-                                             <input name='ad' type=\"text\" value=' '>
+                                             <input name='no2' type=\"text\" value=' '>
                                         </div>
                                         <div class=\"col-3 mb-20\">
-                                             <input name='ad' type=\"text\" value=' '>
+                                             <input name='no3' type=\"text\" value=' '>
                                         </div>
                                         <div class=\"col-3 mb-20\">
-                                             <input name='ad' type=\"text\" value=' '>
+                                             <input name='no4' type=\"text\" value=' '>
                                         </div>
                                         <div class=\"col-12 mb-20\">
                                             <label>Son Kullanım Tarihi</label>
                                         </div>
                                        <div class=\"col-6 mb-20\">
-                                             <select name='ilce'>
-                                                <option value=' '> </option>
+                                             <select name='ay'>
+                                                <option value=''>awd</option>
                                             </select>
                                         </div>
                                         <div class=\"col-6 mb-20\">
-                                             <select name='ilce'>
-                                                <option value=' '> </option>
+                                             <select name='yıl'>
+                                                <option value=''> awdaw</option>
                                             </select>
                                         </div>
                                         <div class=\"col-lg-6 mb-20\">
-                                            <label>Kart guvenluk<span>*</span></label>
+                                            <label>Kart guvenlik<span>*</span></label>
                                             <input name='ad' type=\"text\" value=' '>
                                         </div>
                                         
