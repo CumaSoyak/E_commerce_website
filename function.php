@@ -1028,4 +1028,50 @@ function sepet_toplam()
 
 }
 
- 
+function odeme()
+{
+echo "
+       <form action='checkout.php' method='post'>
+            <h3>Ödeme</h3>
+            <div class=\"row\">
+                                        <div class=\"col-12 mb-20\">
+                                            <label>Kredi Kartı Numarası</label>
+                                        </div>
+                                        <div class=\"col-3 mb-20\">
+                                             <input name='ad' type=\"text\" value=' '>
+                                        </div>
+                                        <div class=\"col-3 mb-20\">
+                                             <input name='ad' type=\"text\" value=' '>
+                                        </div>
+                                        <div class=\"col-3 mb-20\">
+                                             <input name='ad' type=\"text\" value=' '>
+                                        </div>
+                                        <div class=\"col-3 mb-20\">
+                                             <input name='ad' type=\"text\" value=' '>
+                                        </div>
+                                        <div class=\"col-12 mb-20\">
+                                            <label>Son Kullanım Tarihi</label>
+                                        </div>
+                                       <div class=\"col-6 mb-20\">
+                                             <select name='ilce'>
+                                                <option value=' '> </option>
+                                            </select>
+                                        </div>
+                                        <div class=\"col-6 mb-20\">
+                                             <select name='ilce'>
+                                                <option value=' '> </option>
+                                            </select>
+                                        </div>
+                                        <div class=\"col-lg-6 mb-20\">
+                                            <label>Kart guvenluk<span>*</span></label>
+                                            <input name='ad' type=\"text\" value=' '>
+                                        </div>
+                                        
+                                     </div>
+                                     <br>
+                                      <div class=\"order_button\">
+                                            <button  type='submit'>Ödeme yap</button>
+                                        </div>
+      </form>
+";
+}
