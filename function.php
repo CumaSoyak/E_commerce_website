@@ -687,8 +687,7 @@ function alisveris_kontrol()
                    <a href='checkout.php'>Sepeti Onayla</a>
                 </div>
             ";
-    }
-    else{
+    } else {
         echo "
                 <div class=\"checkout_btn\">
                    <a href='hesap.php'>Sepeti Onayla</a>
@@ -697,7 +696,28 @@ function alisveris_kontrol()
     }
 }
 
-function adres_bilgi_al(){
+function adres_bilgi_al()
+{
+
+    $userid = $_SESSION["userid"];
+    $con = mysqli_connect("localhost", "root", "", "eticaret");
+    $al_kategori = " SELECT * FROM adres WHERE $userid=users_id";
+    $sonuc = mysqli_query($con, $al_kategori);
+    $cekilen_veri = mysqli_fetch_array($sonuc);
+    $adres_tipi = $cekilen_veri['adres_tipi'];
+    $sehir = $cekilen_veri['sehir'];
+    $ilce = $cekilen_veri['ilce'];
+    $posta_kodu = $cekilen_veri['posta_kodu'];
+    $adres_bilgi = $cekilen_veri['adres_bilgi'];
+    $ad = $cekilen_veri['ad'];
+    $soyad = $cekilen_veri['soyad'];
+    $telefon = $cekilen_veri['telefon'];
+    $tc_kimlik = $cekilen_veri['tc_kimlik'];
+
+    echo $adres_tipi;
+    echo $sehir;
+
+
     echo "
      <form action=\"#\">
                                     <h3>Adrese Teslimat</h3>
@@ -779,7 +799,8 @@ function adres_bilgi_al(){
     ";
 }
 
-function total_cek(){
+function total_cek()
+{
     echo "
     <form action=\"#\">    
                                     <h3>Siparişiniz</h3>
