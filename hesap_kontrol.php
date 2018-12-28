@@ -16,13 +16,7 @@ if (isset($_POST['register'])) {
         $_SESSION["userid"]=$cekilen_userid;
         $_SESSION["username"]=$username;
 
-        if (isset($_SESSION["sepet"])){
-             header('Location: checkout.php');
-        }
-        else{
-             header('Location: index.php');
-        }
-
+        header('Location: .php');
     }
 }
 if (isset($_POST['login'])) {
@@ -43,13 +37,8 @@ if (isset($_POST['login'])) {
                 session_start();
                 $_SESSION["userid"]=$user['id'];
                 $_SESSION["username"]=$user['username'];
+                header('Location: checkout.php');
 
-                if (isset($_SESSION["sepet"])){
-                    header('Location: checkout.php');
-                }
-                else{
-                    header('Location: index.php');
-                }
 
             }
             else{

@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 include("connect.php");
 global $bilgi_email;
 if (isset($_POST['register'])) {
@@ -16,13 +16,7 @@ if (isset($_POST['register'])) {
         $_SESSION["userid"]=$cekilen_userid;
         $_SESSION["username"]=$username;
 
-        if (isset($_SESSION["sepet"])){
-             header('Location: checkout.php');
-        }
-        else{
-             header('Location: index.php');
-        }
-
+    //    header('Location: checkout.php');
     }
 }
 if (isset($_POST['login'])) {
@@ -38,24 +32,19 @@ if (isset($_POST['login'])) {
         $user = mysqli_fetch_assoc($sonuc);
         $usercount = mysqli_num_rows($sonuc);
         echo $usercount;
-            if ($user['email']==$email&&$user['parola']==$parola){
+        if ($user['email']==$email&&$user['parola']==$parola){
 
-                session_start();
-                $_SESSION["userid"]=$user['id'];
-                $_SESSION["username"]=$user['username'];
+            session_start();
+            $_SESSION["userid"]=$user['id'];
+            $_SESSION["username"]=$user['username'];
+            header('Location: checkout.php');
 
-                if (isset($_SESSION["sepet"])){
-                    header('Location: checkout.php');
-                }
-                else{
-                    header('Location: index.php');
-                }
 
-            }
-            else{
-                $bilgi_email="* E-mail veya parola yanlıştır";
+        }
+        else{
+            $bilgi_email="* E-mail veya parola yanlıştır";
 
-            }
+        }
 
 
 
@@ -111,7 +100,7 @@ if (isset($_POST['login'])) {
             <div class="col-lg-6 col-md-6">
                 <div class="account_form login">
                     <h2>login</h2>
-                     <h6 style="color:#cd0a0a"><?php echo "$bilgi_email"; ?></h6>
+                    <h6 style="color:#cd0a0a"><?php echo "$bilgi_email"; ?></h6>
                     <form action="hesap.php" method="post">
                         <p>
                             <label>Username or email <span>*</span></label>

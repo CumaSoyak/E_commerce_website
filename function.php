@@ -684,15 +684,153 @@ function alisveris_kontrol()
     if (isset($_SESSION["userid"])) {
         echo "
                 <div class=\"checkout_btn\">
-                   <a href='checkout.php'>ALışverişi Tamamla</a>
+                   <a href='checkout.php'>Sepeti Onayla</a>
                 </div>
             ";
     }
     else{
         echo "
                 <div class=\"checkout_btn\">
-                   <a href='hesap.php'>ALışverişi Tamamla</a>
+                   <a href='hesap.php'>Sepeti Onayla</a>
                 </div>
             ";
     }
+}
+
+function adres_bilgi_al(){
+    echo "
+     <form action=\"#\">
+                                    <h3>Adrese Teslimat</h3>
+                                    <div class=\"row\">
+                                        <div class=\"col-12 mb-20\">
+                                            <label for=\"country\">Adres tipi <span>*</span></label>
+                                            <select name=\"cuntry\" id=\"country\">
+                                                <option value=\"2\">bangladesh</option>
+                                                <option value=\"3\">Algeria</option>
+                                                <option value=\"4\">Afghanistan</option>
+                                                <option value=\"5\">Ghana</option>
+                                                <option value=\"6\">Albania</option>
+                                                <option value=\"7\">Bahrain</option>
+                                                <option value=\"8\">Colombia</option>
+                                                <option value=\"9\">Dominican Republic</option>
+
+                                            </select>
+                                        </div>
+                                        <div class=\"col-6 mb-20\">
+                                            <label for=\"country\">Şehir<span>*</span></label>
+                                            <select name=\"cuntry\" id=\"country\">
+                                                <option value=\"2\">bangladesh</option>
+                                                <option value=\"3\">Algeria</option>
+                                                <option value=\"4\">Afghanistan</option>
+                                                <option value=\"5\">Ghana</option>
+                                                <option value=\"6\">Albania</option>
+                                                <option value=\"7\">Bahrain</option>
+                                                <option value=\"8\">Colombia</option>
+                                                <option value=\"9\">Dominican Republic</option>
+
+                                            </select>
+                                        </div>
+                                        <div class=\"col-6 mb-20\">
+                                            <label for=\"country\">İlçe <span>*</span></label>
+                                            <select name=\"cuntry\" id=\"country\">
+                                                <option value=\"2\">bangladesh</option>
+                                                <option value=\"3\">Algeria</option>
+                                                <option value=\"4\">Afghanistan</option>
+                                                <option value=\"5\">Ghana</option>
+                                                <option value=\"6\">Albania</option>
+                                                <option value=\"7\">Bahrain</option>
+                                                <option value=\"8\">Colombia</option>
+                                                <option value=\"9\">Dominican Republic</option>
+
+                                            </select>
+                                        </div>
+                                        <div class=\"col-lg-6 mb-20\">
+                                            <label>Posta Kodu <span>*</span></label>
+                                            <input type=\"text\">    
+                                        </div>
+
+                                        <div class=\"col-12 mb-20\">
+                                            <label>Adres Bilgisi</label>
+                                            <input type=\"text\">     
+                                        </div>
+
+                                          <div class=\"col-lg-6 mb-20\">
+                                            <label>Ad<span>*</span></label>
+                                            <input type=\"text\">
+
+                                        </div>
+                                        <div class=\"col-lg-6 mb-20\">
+                                            <label> Soyad  <span>*</span></label>
+                                            <input type=\"text\">
+
+                                        </div>
+                                        <div class=\"col-lg-6 mb-20\">
+                                            <label>Cep Telefonu<span>*</span></label>
+                                            <input type=\"text\">
+
+                                        </div>
+                                        <div class=\"col-lg-6 mb-20\">
+                                            <label>Tc kimlik<span>*</span></label>
+                                            <input type=\"text\">
+
+                                        </div>
+                                     </div>
+                                </form>  
+    ";
+}
+
+function total_cek(){
+    echo "
+    <form action=\"#\">    
+                                    <h3>Siparişiniz</h3>
+                                    <div class=\"order_table table-responsive mb-30\">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Ürünler</th>
+                                                    <th>Toplam</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+
+                                                <tr>
+                                                    <td> Handbag Rutrum	 <strong> × 1</strong></td>
+                                                    <td> $50.00</td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th>Cart Subtotal</th>
+                                                    <td>$215.00</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Shipping</th>
+                                                    <td><strong>$5.00</strong></td>
+                                                </tr>
+                                                <tr class=\"order_total\">
+                                                    <th>Order Total</th>
+                                                    <td><strong>$220.00</strong></td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>     
+                                    </div>
+                                    <div class=\"payment_method\">
+                                        
+                                       <div class=\"panel-default\">
+                                            <input id=\"payment_defult\" name=\"check_method\" type=\"radio\" data-target=\"createp_account\" />
+                                            <label for=\"payment_defult\" data-toggle=\"collapse\" data-target=\"#collapsedefult\" aria-controls=\"collapsedefult\">PayPal <img src=\"assets/img/visha/papyel.png\" alt=\"\"></label>
+
+                                            <div id=\"collapsedefult\" class=\"collapse one\" data-parent=\"#accordion\">
+                                                <div class=\"card-body1\">
+                                                   <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class=\"order_button\">
+                                            <button  type=\"submit\">Ödemeye Geç</button>
+                                        </div>    
+                                    </div> 
+                                </form>
+    ";
 }
