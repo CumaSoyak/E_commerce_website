@@ -724,7 +724,11 @@ function adres_bilgi_al()
           telefon
          tc_kimlik
            */
-     
+        if (empty($adrestipi) || empty($sehir)|| empty($ilce)|| empty($postakodu)|| empty($adresbilgi)|| empty($ad)
+            || empty($soyad)|| empty($telefon)|| empty($tckimlik))
+        {
+            echo "<script>alert('Alanları Boş geçmeyiniz')</script>";
+
         } else {
             $sql = "INSERT INTO adres(users_id,adres_tipi,sehir,ilce,posta_kodu,adres_bilgi,ad,soyad,telefon,tc_kimlik) VALUE('$userid','$adrestipi','$sehir','$ilce',
                     '$postakodu','$adresbilgi','$ad','$soyad','$telefon','$tckimlik')";
