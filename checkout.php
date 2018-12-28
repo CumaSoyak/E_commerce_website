@@ -1,5 +1,6 @@
 <?php
 session_start();
+ob_start();
 
 ?>
 <!doctype html>
@@ -43,7 +44,7 @@ session_start();
                         <div class="row">
                             <div class="col-lg-6 col-md-6">
 
-                                <?php adres_bilgi_al(); ?>
+                                <?php odeme() ?>
                             </div>
                             <div class="col-lg-6 col-md-6">
                                 <?php total_cek(); ?>
@@ -293,3 +294,6 @@ session_start();
 
 <!-- Mirrored from demo.devitems.com/cigar-v3/cigar/checkout.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 17:57:10 GMT -->
 </html>
+<?php
+ob_get_flush();
+?>

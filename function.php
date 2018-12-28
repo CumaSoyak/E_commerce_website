@@ -527,10 +527,7 @@ function oturum_secenek()
 
 function cart()
 {
-    /*
-    $user_id=$_SESSION["username"];
-    $sql = "INSERT INTO sepet(user_id,urun_id) VALUE('$user_id','$urunler_id')";
-    $succes = mysqli_query($con, $sql); */
+
     if (isset($_GET["sil"])) {
         if (isset($_SESSION["sepet"][$_GET["sil"]])) {
             unset($_SESSION["sepet"][$_GET["sil"]]);
@@ -681,6 +678,9 @@ function slider()
 
 function alisveris_kontrol()
 {
+    $con = mysqli_connect("localhost", "root", "", "eticaret");
+
+
     if (isset($_SESSION["userid"])) {
         echo "
                 <div class=\"checkout_btn\">
@@ -690,7 +690,7 @@ function alisveris_kontrol()
     } else {
         echo "
                 <div class=\"checkout_btn\">
-                   <a href='hesap.php'>Sepeti Onayla</a>
+                  <form action='cart.php' method='post'><a href='hesap.php'>Sepeti Onayla</a> </form> 
                 </div>
             ";
     }
@@ -712,28 +712,23 @@ function adres_bilgi_al()
         $soyad = $_POST['soyad'];
         $telefon = $_POST['telefon'];
         $tckimlik = $_POST['tckimlik'];
-        /*
-         users_id
-         adres_tipi
-         sehir
-          ilce
-          posta_kodu
-          adres_bilgi
-          ad
-          soyad
-          telefon
-         tc_kimlik
-           */
-        if (empty($adrestipi) || empty($sehir)|| empty($ilce)|| empty($postakodu)|| empty($adresbilgi)|| empty($ad)
-            || empty($soyad)|| empty($telefon)|| empty($tckimlik))
-        {
+        /*      users_id       adres_tipi      sehir     ilce        posta_kodu      adres_bilgi    ad   soyad  telefon tc_kimlik  */
+        if (empty($adrestipi) || empty($sehir) || empty($ilce) || empty($postakodu) || empty($adresbilgi) || empty($ad)
+            || empty($soyad) || empty($telefon) || empty($tckimlik)) {
             echo "<script>alert('Alanları Boş geçmeyiniz')</script>";
 
         } else {
             $sql = "INSERT INTO adres(users_id,adres_tipi,sehir,ilce,posta_kodu,adres_bilgi,ad,soyad,telefon,tc_kimlik) VALUE('$userid','$adrestipi','$sehir','$ilce',
                     '$postakodu','$adresbilgi','$ad','$soyad','$telefon','$tckimlik')";
             $succes = mysqli_query($con, $sql);
-          //  header('Location: blog.php');
+            //////
+
+
+                 header('Location: index.php');
+
+             }
+            ///
+
 
         }
 
@@ -955,6 +950,7 @@ function adres_bilgi_al()
 
 function total_cek()
 {
+
     echo "
     <form action=\"#\">    
                                     <h3>Siparişiniz</h3>
@@ -968,11 +964,22 @@ function total_cek()
                                             </thead>
                                             <tbody>
 
+                                        ";
 
-                                                <tr>
-                                                    <td> Handbag Rutrum	 <strong> × 1</strong></td>
-                                                    <td> $50.00</td>
-                                                </tr>
+    foreach ($_SESSION["sepet"] as $urun) {
+        $urunler_id = $urun['urunler_id'];
+        $urun_title = $urun['urunler_title'];
+        $urun_fiyat = $urun['urunler_fiyat'];
+        $urun_resim = $urun['urunler_resim'];
+
+        echo "
+                              <tr>
+                              <td>$urun_title<strong>x 1 Adet</strong></td>
+                              <td>$urun_fiyat</td>
+                              </tr>
+                        ";
+    }
+    echo "
                                             </tbody>
                                             <tfoot>
                                                 <tr>
@@ -1007,3 +1014,10 @@ function total_cek()
                                 </form>
     ";
 }
+
+function sepet_toplam()
+{
+
+}
+
+ 

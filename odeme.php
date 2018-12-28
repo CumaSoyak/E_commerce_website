@@ -7,7 +7,7 @@ session_start();
 
 <!-- Mirrored from demo.devitems.com/cigar-v3/cigar/cart.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 17:58:47 GMT -->
 <head>
-         <?php include ("head.php"); ?>
+    <?php include ("head.php"); ?>
 </head>
 <body>
 <!-- Add your site or application content here -->
@@ -37,77 +37,19 @@ session_start();
 <!--breadcrumbs area end-->
 
 <!--shopping cart area start -->
-<div class="shopping_cart_area">
+<div class="Checkout_section">
     <div class="container">
-        <form action="#">
-            <div class="row">
-                <div class="col-12">
-                    <div class="table_desc">
-                        <div class="cart_page table-responsive">
-                            <table>
-                                <thead>
-                                <tr>
-                                    <th class="product_remove">Delete</th>
-                                    <th class="product_thumb">Image</th>
-                                    <th class="product_name">Product</th>
-                                    <th class="product-price">Price</th>
-                                    <th class="product_quantity">Quantity</th>
-
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                <?php cart(); ?>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="cart_submit">
-                            <a href="checkout.php" ><buttontype="submit">Devam Et</button></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--coupon code area start-->
-            <div class="coupon_area">
+        <div class="row">
+            <div class="checkout_form">
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
-                        <div class="coupon_code left">
-                            <h3>Coupon</h3>
-                            <div class="coupon_inner">
-                                <p>Enter your coupon code if you have one.</p>
-                                <input placeholder="Coupon code" type="text">
-                                <button type="submit">Apply coupon</button>
-                            </div>
-                        </div>
+                        <?php odeme(); ?>
                     </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="coupon_code right">
-                            <h3>Sepet Toplam</h3>
-                            <div class="coupon_inner">
-                                <div class="cart_subtotal">
-                                    <p>Subtotal</p>
-                                    <p class="cart_amount">£215.00</p>
-                                </div>
-                                <div class="cart_subtotal ">
-                                    <p>Shipping</p>
-                                    <p class="cart_amount"><span>Flat Rate:</span> £255.00</p>
-                                </div>
-                                <a href="#">Calculate shipping</a>
 
-                                <div class="cart_subtotal">
-                                    <p>Total</p>
-                                    <p class="cart_amount">£215.00</p>
-                                </div>
-                               <?php alisveris_kontrol(); ?>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
-            <!--coupon code area end-->
-        </form>
+        </div>
     </div>
-</div>
 <!--shopping cart area end -->
 
 <!--shipping area start-->
