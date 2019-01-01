@@ -54,6 +54,8 @@ function alt_kategori($parent_id)
 
 function urun_goster()
 {
+    //echo $_SERVER['REQUEST_URI'];
+
     $con = mysqli_connect("localhost", "root", "", "eticaret");
     //unset($_SESSION['sepet']);
     if (isset($_POST["eklesepet"])) {
@@ -71,9 +73,9 @@ function urun_goster()
     }
 
     $al = $_GET['alt_kategori_id'];
-    if (isset($_GET['siralama'])){
+    if (isset($_GET['siralama'])) {
         $sirama = $_GET['siralama'];
-        switch ($sirama){
+        switch ($sirama) {
             case 1:
                 //Önerilen
                 $al_kategori = " SELECT * FROM urunler as ur INNER JOIN beden as be WHERE $al=parent_altkategori_id AND ur.urunler_id=be.parent_urun_id";
@@ -255,8 +257,7 @@ function urun_goster()
 </div>
                                     ";
         }
-    }
-    else{
+    } else {
         $al_kategori = " SELECT * FROM urunler as ur INNER JOIN beden as be WHERE $al=parent_altkategori_id AND ur.urunler_id=be.parent_urun_id";
         $sonuc = mysqli_query($con, $al_kategori);
         while ($cekilen_veri = mysqli_fetch_array($sonuc)) {
@@ -657,17 +658,36 @@ function urun_oy_goster($urunler_oy)
 
 function filtrele_beden_getir()
 {
-    $alt_kategori_id = $_GET['alt_kategori_id'];
+    if (isset($_POST['formDoor'])) {
+        $bedenler = $_POST['formDoor'];
+        $count=count($bedenler);
+        for ($i=0;$i<$count;$i++)
+        {
+            echo($bedenler[$i] . " ");
+
+        }
+     }
+    $al = $_GET['alt_kategori_id'];
     $con = mysqli_connect("localhost", "root", "", "eticaret");
-    $select = mysqli_query($con, "SELECT *FROM kategori_beden_tablosu WHERE $alt_kategori_id=parent_kategori_id");
+    $select = mysqli_query($con, "SELECT *FROM kategori_beden_tablosu WHERE $al=parent_kategori_id");
     while ($cekilen_veri = mysqli_fetch_assoc($select)) {
         $beden_1 = $cekilen_veri['beden_1'];
         $beden_2 = $cekilen_veri['beden_2'];
         $beden_3 = $cekilen_veri['beden_3'];
         echo "
-            <li><a href=\"#\">$beden_1</a></li>
-            <li><a href=\"#\">$beden_2</a></li>
-            <li><a href=\"#\">$beden_3</a></li>
+            
+             <form action='' method='post'>
+                <div class=\"checkbox\">
+                  <label><input style=\"height:25px; width:25px;\" type=\"checkbox\" value='$beden_1' name='formDoor[]'>$beden_1</label>
+                </div>
+                <div class=\"checkbox\">
+                  <label><input style=\"height:25px; width:25px;\" type=\"checkbox\" value='$beden_2' name='formDoor[]'>$beden_2</label>
+                </div>
+                 <div class=\"checkbox\">
+                  <label><input style=\"height:25px; width:25px;\" type=\"checkbox\" value='$beden_3' name='formDoor[]'>$beden_3</label>
+                </div>
+                <label class=\"order_button\"><button  type='submit'>Uygula</button></label>
+            </form>
         ";
     }
 }
@@ -687,6 +707,16 @@ function filtrele_renk_getir()
             <li><a href=\"#\">$renk_3</a></li>
         ";
     }
+}
+
+function filtrele()
+{
+
+    echo "
+    
+    
+    
+    ";
 }
 
 function oturum_secenek()

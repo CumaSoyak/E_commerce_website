@@ -13,7 +13,9 @@
 <div class="widget_list manufacturer">
     <h3>Beden</h3>
     <ul>
+        <div class="container">
         <?php filtrele_beden_getir() ?>
+        </div>
     </ul>
 </div>
 <!--manufacturer start-->
@@ -31,18 +33,10 @@
 
 <!--popular tags area-->
 <div class="widget_list tag_widget  ">
-    <h3>popular tags</h3>
-    <div class="block_tags">
-        <a href="#">ipod</a>
-        <a href="#">sam sung</a>
-        <a href="#">apple</a>
-        <a href="#">iphone 5s</a>
-        <a href="#">superdrive</a>
-        <a href="#">shuffle</a>
-        <a href="#">nano</a>
-        <a href="#">iphone 4s</a>
-        <a href="#">canon</a>
-    </div>
+     <div class="block_tags">
+         <label class="order_button"><button  type='submit'>Uygula</button>  </label>
+
+     </div>
 </div>
 <!--popular tags end-->
 
