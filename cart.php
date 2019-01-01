@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+ob_start();
 ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -371,3 +371,4 @@ session_start();
 
 <!-- Mirrored from demo.devitems.com/cigar-v3/cigar/cart.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 17:58:47 GMT -->
 </html>
+<?php ob_end_flush(); ?>

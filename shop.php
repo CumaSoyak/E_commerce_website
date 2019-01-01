@@ -1,6 +1,7 @@
 <?php
 include("connect.php");
 session_start();
+ob_start();
 ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -75,21 +76,8 @@ session_start();
                         </form>
                     </div>
                     <div class="select_option">
-                        <form action="#">
-                            <label>Sort By</label>
-                            <select name="orderby" id="short1">
-                                <option selected value="1">Position</option>
-                                <option value="1">Price: Lowest</option>
-                                <option value="1">Price: Highest</option>
-                                <option value="1">Product Name:Z</option>
-                                <option value="1">Sort by price:low</option>
-                                <option value="1">Product Name: Z</option>
-                                <option value="1">In stock</option>
-                                <option value="1">Product Name: A</option>
-                                <option value="1">In stock</option>
-                            </select>
-                        </form>
-                    </div>
+                    <?php siralama(); ?>
+                </div>
                 </div>
                 <!--shop toolbar enddddd-->
                 <!--shop tab product-->
@@ -139,3 +127,4 @@ session_start();
 
 <!-- Mirrored from demo.devitems.com/cigar-v3/cigar/shop.php by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 17:58:12 GMT -->
 </html>
+<?php ob_end_flush(); ?>
