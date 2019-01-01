@@ -83,7 +83,8 @@ function urun_goster()
                 $al_kategori = " SELECT * FROM urunler as ur INNER JOIN beden as be WHERE $al=parent_altkategori_id AND ur.urunler_id=be.parent_urun_id ORDER BY ur.urunler_fiyat DESC ";
                 break;
             case 3:
-                 //Azalan
+                $al_kategori = " SELECT * FROM urunler as ur INNER JOIN beden as be WHERE $al=parent_altkategori_id AND ur.urunler_id=be.parent_urun_id ORDER BY ur.urunler_fiyat ASC ";
+                //Azalan
                 break;
         }
         $sonuc = mysqli_query($con, $al_kategori);
