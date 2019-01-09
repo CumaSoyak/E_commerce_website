@@ -28,14 +28,6 @@ function anakategori()
     }
 }
 
-function hata()
-{
-    $al = $_GET['alt_kategori_id'];
-    if ($al == null) {
-        header('Location: 404.php');
-    }
-}
-
 function alt_kategori($parent_id)
 {
     $con = mysqli_connect("localhost", "root", "", "eticaret");
@@ -229,12 +221,11 @@ function urun_goster()
                                         <input type='hidden' name='fiyat' value='$urunler_fiyat'>
                                         <input type='hidden' name='resim' value='$urunler_resim'>
                                         <input type='hidden' name='beden' value='$XS'>
-                                        <input min=\"1\" max=\"100\" step=\"1\" value='1' type=\"number\" name='adet'>
-                                        <button type='submit' name='eklesepet'>add to cart</button>
+                                         <button type='submit' name='eklesepet'>add to cart</button>
                                     </form>
                                 </div>
                                 <div class=\"modal_description mb-15\">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                    <p>Lorem ipsum AWDWADit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
                                 </div>
                                 <div class=\"modal_social\">
@@ -399,8 +390,7 @@ function urun_goster()
                                         <input type='hidden' name='fiyat' value='$urunler_fiyat'>
                                         <input type='hidden' name='resim' value='$urunler_resim'>
                                         <input type='hidden' name='beden' value='$XS'>
-                                        <input min=\"1\" max=\"100\" step=\"1\" value='1' type=\"number\" name='adet'>
-                                        <button type='submit' name='eklesepet'>add to cart</button>
+                                         <button type='submit' name='eklesepet'>add to cart</button>
                                     </form>
                                 </div>
                                 <div class=\"modal_description mb-15\">
@@ -658,25 +648,22 @@ function urun_oy_goster($urunler_oy)
 
 function filtrele_beden_getir()
 {
+    $bedenler = 0;
     if (isset($_POST['formDoor'])) {
         $bedenler = $_POST['formDoor'];
-        $count=count($bedenler);
-        for ($i=0;$i<$count;$i++)
-        {
-            echo($bedenler[$i] . " ");
+        $count = count($bedenler);
 
-        }
-     }
+    }
+    //todo basıldığında getirmesi lazım
     $al = $_GET['alt_kategori_id'];
     $con = mysqli_connect("localhost", "root", "", "eticaret");
-    $select = mysqli_query($con, "SELECT *FROM kategori_beden_tablosu WHERE $al=parent_kategori_id");
+    $select = mysqli_query($con, "SELECT *FROM kategori_beden_tablosu WHERE $al=parent_kategori_id  ");
     while ($cekilen_veri = mysqli_fetch_assoc($select)) {
         $beden_1 = $cekilen_veri['beden_1'];
         $beden_2 = $cekilen_veri['beden_2'];
         $beden_3 = $cekilen_veri['beden_3'];
         echo "
-            
-             <form action='' method='post'>
+             <form action='shop.php?alt_kategori_id=$al&size1=$bedenler[0]&size2=$bedenler[2]&size3=$bedenler[2]' method='post'>
                 <div class=\"checkbox\">
                   <label><input style=\"height:25px; width:25px;\" type=\"checkbox\" value='$beden_1' name='formDoor[]'>$beden_1</label>
                 </div>
@@ -707,16 +694,6 @@ function filtrele_renk_getir()
             <li><a href=\"#\">$renk_3</a></li>
         ";
     }
-}
-
-function filtrele()
-{
-
-    echo "
-    
-    
-    
-    ";
 }
 
 function oturum_secenek()
@@ -789,11 +766,7 @@ function mini_cart()
                 </div>                           
              ";
     } else {
-        echo "
-            <div class=\"cart_button checkout\">
-               <a href=\"checkout.php\">Sepeti Temizle</a>
-            </div>
-    ";
+
 
         foreach ($_SESSION["sepet"] as $urun) {
             // $urun_id=$urun['urunler_id'];
@@ -1324,4 +1297,84 @@ function odeme()
                                         </div>
       </form>
 ";
+}
+
+function admin()
+{ 
+
+
+
+        }
+    }
+
+    echo "
+    <form action='admin.php' method='post' enctype='multipart/form-data'>
+                <h3>Adrese Teslimat</h3>
+                <div class=\"row\">
+                    <div class=\"col-12 mb-20\">
+                    <label for=\"country\">Alt Kategori<span>*</span></label>
+                    <select name='kategori_id'>
+                        <option value='1'>Jeans(Kadın)</option>
+                        <option value='1'>Sweat(Kadın)</option>
+                        <option value='1'>Hırka(Kadın)</option>
+                        <option value='1'>Pantolon(Kadın)</option>
+                        <option value='1'>Kazak(Kadın)</option>
+                        <option value='2'>Ceket(Erkek)</option>
+                        <option value='2'>Yelek(Erkek)</option>
+                        <option value='2'>Gömlek(Erkek)</option>
+                        <option value='2'>Pantolon(Erkek)</option>
+                        <option value='2'>Tshirt(Erkek)</option>
+                        <option value='3'>Mont(Çocuk&Genç)</option>
+                        <option value='3'>Parka(Çocuk&Genç)</option>
+                        <option value='3'>Tayt(Çocuk&Genç)</option>
+                        <option value='3'>Yelek(Çocuk&Genç)</option>
+                        <option value='3'>Eşofman(Çocuk&Genç)</option>
+                        <option value='4'>Body(Bebek)</option>
+                        <option value='4'>Kazak(Bebek)</option>
+                        <option value='4'>Elbise(Bebek)</option>
+                        <option value='4'>Pantolon(Bebek)</option>
+                        <option value='4'>Hırka(Bebek)</option>
+                         
+   
+                    </select>
+                     </div>
+                     <div class=\"col-12 mb-20\">
+                        <label>Ürün adı <span>*</span></label>
+                        <input type=\"text\" name='title'>       
+                    </div>
+                    <div class=\"col-12 mb-20\">
+                        <label>Ürün açıklaması <span>*</span></label>
+                        <input type=\"text\" name='desc'>       
+                    </div>
+                     <div class=\"col-12 mb-20\">
+                        <label>Ürün Fiyat <span>*</span></label>
+                        <input type=\"text\" name='fiyat'>       
+                    </div>
+                     <div class=\"col-12 mb-20\">
+                        <label>Ürün Resim <span>*</span></label>
+                        <input type=\"file\" name='resim1'>       
+                    </div>
+                     <div class=\"col-12 mb-20\">
+                        <label>Ürün Resim 1 <span>*</span></label>
+                        <input type=\"file\" name='resim2'>       
+                    </div>
+                     <div class=\"col-12 mb-20\">
+                        <label>Ürün Resim 2 <span>*</span></label>
+                        <input type=\"file\" name='resim3'>       
+                    </div>
+                     <div class=\"col-12 mb-20\">
+                        <label>Ürün Adet <span>*</span></label>
+                        <input type=\"text\" name='adet'>       
+                    </div>
+                     <div class=\"col-12 mb-20\">
+                        <label>Ürün Beden <span>*</span></label>
+                        <input type=\"text\" name='beden'>       
+                    </div>
+                  
+                  
+                 </div>
+                 <button type='submit' name='ekle_urun'>Ekle Ürün</button>
+                  
+        </form>
+    ";
 }

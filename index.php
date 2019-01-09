@@ -37,8 +37,9 @@ session_start();
                             <span class="pe-7s-piggy"></span>
                         </div>
                         <div class="shipping_content">
-                            <h3>Free Shipping Worldwide</h3>
-                            <p>Diam augue augue in fusce voluptatem</p>
+                            <h3>Dünya çapında ücretsiz kargo</h3>
+                            <p>Hemen Alışverişe Başla</p>
+
                         </div>
                     </div>
                 </div>
@@ -48,8 +49,8 @@ session_start();
                             <span class="pe-7s-rocket"></span>
                         </div>
                         <div class="shipping_content">
-                            <h3>Free Shipping Worldwide</h3>
-                            <p>Diam augue augue in fusce voluptatem</p>
+                            <h3>Hızlı ve güvenilir alışveriş</h3>
+                            <p>Hemen Alışverişe Başla</p>
                         </div>
                     </div>
                 </div>
@@ -59,8 +60,8 @@ session_start();
                             <span class="pe-7s-help2"></span>
                         </div>
                         <div class="shipping_content">
-                            <h3>Free Shipping Worldwide</h3>
-                            <p>Diam augue augue in fusce voluptatem</p>
+                            <h3>Teslimat ve iadede güvenilirlik</h3>
+                            <p>Hemen Alışverişe Başla</p>
                         </div>
                     </div>
                 </div>
