@@ -1300,7 +1300,48 @@ function odeme()
 }
 
 function admin()
-{ 
+{
+    $con = mysqli_connect("localhost", "root", "", "eticaret");
+
+
+    if (isset($_POST['ekle_urun'])) {
+        $parent_altkategori_id = $_POST['kategori_id'];
+        $title = $_POST['title'];
+        $desc = $_POST['desc'];
+        $fiyat = $_POST['fiyat'];
+        if (empty($title) || empty($parent_altkategori_id)) {
+            echo "<script>alert('Alanları Boş geçmeyiniz')</script>";
+
+        } else {
+            $yukleklasor = "assets/img/product/";
+            $tp_name1=$_FILES['resim1']['tmp_name'];
+            $name1=$_FILES['resim1']['name'];
+            $uzanti1=substr($name1,-4,4);
+            $random1=rand(10000,50000);
+            $random2=rand(10000,50000);
+            $resim1_ad1=$random1.$random2.$uzanti1;
+            move_uploaded_file($tp_name1,"$yukleklasor/$resim1_ad1");
+
+
+            $tp_name2=$_FILES['resim2']['tmp_name'];
+            $name2=$_FILES['resim2']['name'];
+            $uzanti2=substr($name2,-4,4);
+            $random1=rand(10000,50000);
+            $random2=rand(10000,50000);
+            $resim1_ad2=$random1.$random2.$uzanti2;
+            move_uploaded_file($tp_name2,"$yukleklasor/$resim1_ad2");
+
+
+
+            $tp_name3=$_FILES['resim3']['tmp_name'];
+            $name3=$_FILES['resim3']['name'];
+            $uzanti3=substr($name3,-4,4);
+            $random1=rand(10000,50000);
+            $random2=rand(10000,50000);
+            $resim1_ad3=$random1.$random2.$uzanti3;
+            move_uploaded_file($tp_name3,"$yukleklasor/$resim1_ad3");
+
+            
 
 
 
