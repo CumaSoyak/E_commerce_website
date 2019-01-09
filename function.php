@@ -1341,7 +1341,10 @@ function admin()
             $resim1_ad3=$random1.$random2.$uzanti3;
             move_uploaded_file($tp_name3,"$yukleklasor/$resim1_ad3");
 
-            
+            $sql = "INSERT INTO urunler(parent_altkategori_id,urunler_title,urunler_desc,urunler_fiyat,	
+                    urunler_resim,urunler_resim_1,urunler_resim_2,urunler_adet,beden)
+            VALUE('$parent_altkategori_id','$title','$desc','$fiyat')";
+            $succes = mysqli_query($con, $sql);
 
 
 
