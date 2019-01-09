@@ -70,14 +70,14 @@ function urun_goster()
         switch ($sirama) {
             case 1:
                 //Önerilen
-                $al_kategori = " SELECT * FROM urunler as ur INNER JOIN beden as be WHERE $al=parent_altkategori_id AND ur.urunler_id=be.parent_urun_id";
+                $al_kategori = " SELECT * FROM urunler   WHERE $al=parent_altkategori_id ";
                 break;
             case  2:
                 //Artan
-                $al_kategori = " SELECT * FROM urunler as ur INNER JOIN beden as be WHERE $al=parent_altkategori_id AND ur.urunler_id=be.parent_urun_id ORDER BY ur.urunler_fiyat DESC ";
+                $al_kategori = " SELECT * FROM urunler   WHERE $al=parent_altkategori_id   ORDER BY ur.urunler_fiyat DESC ";
                 break;
             case 3:
-                $al_kategori = " SELECT * FROM urunler as ur INNER JOIN beden as be WHERE $al=parent_altkategori_id AND ur.urunler_id=be.parent_urun_id ORDER BY ur.urunler_fiyat ASC ";
+                $al_kategori = " SELECT * FROM urunler   WHERE $al=parent_altkategori_id  ORDER BY ur.urunler_fiyat ASC ";
                 //Azalan
                 break;
         }
@@ -249,7 +249,7 @@ function urun_goster()
                                     ";
         }
     } else {
-        $al_kategori = " SELECT * FROM urunler as ur INNER JOIN beden as be WHERE $al=parent_altkategori_id AND ur.urunler_id=be.parent_urun_id";
+        $al_kategori = " SELECT * FROM urunler   WHERE $al=parent_altkategori_id ";
         $sonuc = mysqli_query($con, $al_kategori);
         while ($cekilen_veri = mysqli_fetch_array($sonuc)) {
 
@@ -262,10 +262,8 @@ function urun_goster()
             $urunler_resim_1 = $cekilen_veri['urunler_resim_1'];
             $urunler_resim_2 = $cekilen_veri['urunler_resim_2'];
             $urunler_fiyat = $cekilen_veri['urunler_fiyat'];
-            $urunler_size = $cekilen_veri['urunler_size'];
-            $urunler_oy = $cekilen_veri['urunler_oy'];
-            $XS = $cekilen_veri['XS'];
-            $M = $cekilen_veri['M'];
+             $urunler_oy = $cekilen_veri['urunler_oy'];
+
 
             echo "<form class=\"col-lg-4 col-md-6\" action='shop.php?alt_kategori_id=$al' method='post'>
            <div  >
@@ -377,10 +375,7 @@ function urun_goster()
                                 <div class=\"modal_size mb-15\">
                                     <h2>Beden</h2>
                                     <ul>
-                                    
-                                    <!--
-                                        <li><a href='shop.php?alt_kategori_id=$al=?$urunler_oy'>$XS</a></li>  seçebilsin bunu açılır yerle                                                 
-                                        <li><a href=\"#\">$M</a></li> -->                                                
+                                                                                   
                                     </ul>
                                 </div>
                                 <div class=\"modal_add_to_cart mb-15\">
@@ -389,8 +384,7 @@ function urun_goster()
                                         <input type='hidden' name='title' value='$urunler_title'>
                                         <input type='hidden' name='fiyat' value='$urunler_fiyat'>
                                         <input type='hidden' name='resim' value='$urunler_resim'>
-                                        <input type='hidden' name='beden' value='$XS'>
-                                         <button type='submit' name='eklesepet'>add to cart</button>
+                                          <button type='submit' name='eklesepet'>add to cart</button>
                                     </form>
                                 </div>
                                 <div class=\"modal_description mb-15\">
@@ -1303,12 +1297,14 @@ function admin()
 {
     $con = mysqli_connect("localhost", "root", "", "eticaret");
 
-
+if(isset($_SESSION['kayit'])){
     if (isset($_POST['ekle_urun'])) {
         $parent_altkategori_id = $_POST['kategori_id'];
         $title = $_POST['title'];
         $desc = $_POST['desc'];
         $fiyat = $_POST['fiyat'];
+        $adet = $_POST['adet'];
+        $beden = $_POST['beden'];
         if (empty($title) || empty($parent_altkategori_id)) {
             echo "<script>alert('Alanları Boş geçmeyiniz')</script>";
 
@@ -1341,9 +1337,10 @@ function admin()
             $resim1_ad3=$random1.$random2.$uzanti3;
             move_uploaded_file($tp_name3,"$yukleklasor/$resim1_ad3");
 
+
             $sql = "INSERT INTO urunler(parent_altkategori_id,urunler_title,urunler_desc,urunler_fiyat,	
                     urunler_resim,urunler_resim_1,urunler_resim_2,urunler_adet,beden)
-            VALUE('$parent_altkategori_id','$title','$desc','$fiyat')";
+            VALUE('$parent_altkategori_id','$title','$desc','$fiyat','$resim1_ad1','$resim1_ad2','$resim1_ad3','$adet','$beden')";
             $succes = mysqli_query($con, $sql);
 
 
@@ -1421,4 +1418,10 @@ function admin()
                   
         </form>
     ";
+}
+else{
+    header('Location: admin.php');
+
+}
+
 }
