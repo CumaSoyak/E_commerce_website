@@ -48,11 +48,10 @@ $con = mysqli_connect("localhost", "root", "","eticaret");
                 </div>
                 <div class="col-lg-7 col-md-5">
                     <div class="search_bar">
-                        <form action="#">
-                            <input placeholder="Search entire store here..." type="text">
-                            <button type="submit"><i class="ion-ios-search-strong"></i></button>
-                        </form>
+                       <?php arama(); ?>
+
                     </div>
+
                 </div>
                 <div class="col-lg-2 col-md-3">
                     <div class="cart_area">

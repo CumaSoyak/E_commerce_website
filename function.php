@@ -52,7 +52,6 @@ function alt_kategori($parent_id)
 
 function urun_goster()
 {
-    echo $_SESSION["alt"];
     $con = mysqli_connect("localhost", "root", "", "eticaret");
     //unset($_SESSION['sepet']);
     //http://localhost/ecom/shop.php?beden=Xss&title=Sweat&fiyat=100&resim=1177525078.jpg&adet=2&urun_id=7&eklesepet=
@@ -73,8 +72,8 @@ function urun_goster()
     }
 
     $al = $_SESSION["alt"];
-    if (isset($_GET['siralama'])) {
-        $sirama = $_GET['siralama'];
+    if (isset($_GET['orderby'])) {
+        $sirama = $_GET['orderby'];
         switch ($sirama) {
             case 1:
                 //Önerilen
@@ -82,10 +81,10 @@ function urun_goster()
                 break;
             case  2:
                 //Artan
-                $al_kategori = " SELECT * FROM urunler   WHERE $al=parent_altkategori_id   ORDER BY ur.urunler_fiyat DESC ";
+                $al_kategori = " SELECT * FROM urunler   WHERE $al=parent_altkategori_id ORDER BY urunler_fiyat DESC ";
                 break;
             case 3:
-                $al_kategori = " SELECT * FROM urunler   WHERE $al=parent_altkategori_id  ORDER BY ur.urunler_fiyat ASC ";
+                $al_kategori = " SELECT * FROM urunler   WHERE $al=parent_altkategori_id  ORDER BY urunler_fiyat ASC ";
                 //Azalan
                 break;
         }
@@ -107,10 +106,10 @@ function urun_goster()
 
             echo "<form class=\"col-lg-4 col-md-6\" action='shop.php?alt_kategori_id=$al' method='post'>
            <div  >
-                                    <div class=\"single_product\">
+                                    <div class=\"single_product\"  style='height:225px;width:175px;'>
                                         <div class=\"product_thumb\">
                                             <a href='detay.php?urunler_id=$urunler_id'>
-                                            <img   src='assets/img/product/$urunler_resim'></a>
+                                            <img style='height:200px;width:150px;'src='assets/img/product/$urunler_resim'></a>
                                             <div class=\"btn_quickview\">
                                                 <a href=\"#\" data-toggle=\"modal\" data-target=\"#modal_box$urunler_id\"
                                                    title=\"Quick View\"><i class=\"ion-ios-eye\"></i></a>
@@ -283,8 +282,8 @@ function urun_goster()
             $urunler_oy = $cekilen_veri['urunler_oy'];
             $urunler_adet = $cekilen_veri['urunler_adet'];
 
-
-            echo "<form class=\"col-lg-4 col-md-6\" action='shop.php?alt_kategori_id=$al' method='post'>
+//1345115185.jpg
+            echo "<form class=\"col-lg-4 col-md-4\" action='shop.php?alt_kategori_id=$al' method='post'>
            <div  >
                                     <div class=\"single_product\">
                                         <div class=\"product_thumb\">
@@ -1352,10 +1351,11 @@ function urun_kayit()
                 $resim1_ad3 = $random1 . $random2 . $uzanti3;
                 move_uploaded_file($tp_name3, "$yukleklasor/$resim1_ad3");
 
+                $urun_kodu = rand(100000, 900000);
 
-                $sql = "INSERT INTO urunler(parent_altkategori_id,urunler_title,urunler_desc,urunler_fiyat,	
+                $sql = "INSERT INTO urunler(parent_altkategori_id,urun_kod,urunler_title,urunler_desc,urunler_fiyat,	
                     urunler_resim,urunler_resim_1,urunler_resim_2,urunler_adet,beden)
-            VALUE('$parent_altkategori_id','$title','$desc','$fiyat','$resim1_ad1','$resim1_ad2','$resim1_ad3','$adet','$beden')";
+            VALUE('$parent_altkategori_id','$urun_kodu','$title','$desc','$fiyat','$resim1_ad1','$resim1_ad2','$resim1_ad3','$adet','$beden')";
                 $succes = mysqli_query($con, $sql);
 
 
@@ -1425,7 +1425,14 @@ function urun_kayit()
                     </div>
                      <div class=\"col-12 mb-20\">
                         <label>Ürün Beden <span>*</span></label>
-                        <input type=\"text\" name='beden'>       
+                          <select name='beden'>
+                        <option value='XS'>XS</option>
+                        <option value='S'>S</option>
+                        <option value='M'>M</option>
+                        <option value='XXL'>XXL</option>
+                            
+   
+                    </select>       
                     </div>
                   
                   
@@ -1444,7 +1451,6 @@ function urun_kayit()
 function biten_urunler()
 {
     $con = mysqli_connect("localhost", "root", "", "eticaret");
-
 
 
     echo "
@@ -1471,12 +1477,7 @@ function biten_urunler()
         $urunler_id = $cekilen_veri['urunler_id'];
         $urunler_title = $cekilen_veri['urunler_title'];
         $urunler_kod = $cekilen_veri['urun_kod'];
-        $urunler_resim = $cekilen_veri['urunler_resim'];
-        $urunler_resim_1 = $cekilen_veri['urunler_resim_1'];
-        $urunler_resim_2 = $cekilen_veri['urunler_resim_2'];
-        $urunler_fiyat = $cekilen_veri['urunler_fiyat'];
-        $urunler_oy = $cekilen_veri['urunler_oy'];
-        $urunler_adet = $cekilen_veri['urunler_adet'];
+
 
         echo "
                 <th><h5>$urunler_title</h5></th>
@@ -1484,12 +1485,41 @@ function biten_urunler()
                 <tr></tr>
              ";
     }
-            echo "
+    echo "
                </tr>
             </thead>
           </table>
                    
         ";
+
+}
+
+function arama()
+{
+    echo "
+               <form action='shop.php' method='post' >        
+                  <input placeholder=\"Ürün arayınız....\" name='ara' type=\"text\">
+                  <button type=\"submit\" name='arama'><i class=\"ion-ios-search-strong\"></i></button>
+               </form>
+                     
+                        
+    ";
+    $con = mysqli_connect("localhost", "root", "", "eticaret");
+    if (isset($_POST["arama"])) {
+        $search = $_POST["ara"];
+        $result = mysqli_query($con, "SELECT * FROM urunler WHERE urunler_title LIKE '%$search%'");
+        while($r=mysqli_fetch_array($result))
+        {
+
+            $title=$r["urunler_title"];
+            echo "
+               <td>$title</td>
+                        <br>";
+            
+
+        }
+    }
+
 
 }
 
