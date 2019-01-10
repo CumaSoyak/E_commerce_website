@@ -102,6 +102,7 @@ function urun_goster()
             $urunler_resim_2 = $cekilen_veri['urunler_resim_2'];
             $urunler_fiyat = $cekilen_veri['urunler_fiyat'];
             $urunler_oy = $cekilen_veri['urunler_oy'];
+            $urunler_adet = $cekilen_veri['urunler_adet'];
 
 
             echo "<form class=\"col-lg-4 col-md-6\" action='shop.php?alt_kategori_id=$al' method='post'>
@@ -220,16 +221,17 @@ function urun_goster()
                                 </div>
                                 <div class=\"modal_add_to_cart mb-15\">
                                     <form action='shop.php?' method='get'>
-                                        <div class=\"modal_size mb - 15\">
-                                            <h2>size</h2>
-                                       </div>
+                                         
                                        <input type=\"radio\" name='beden' value=\"Xs\">XS
                                        <input type=\"radio\" name='beden' value=\"Xss\">XSS
                                        <input type=\"radio\" name='beden' value=\"Xss\">XSS<br>
                                         <input type='hidden' name='title' value='$urunler_title'>
                                         <input type='hidden' name='fiyat' value='$urunler_fiyat'>
                                         <input type='hidden' name='resim' value='$urunler_resim'>
-                                       <input min=\"0\" max=\"100\" step=\"2\" value=\"1\" type=\"number\" name='adet'>
+                                        <div class=\"modal_size mb - 15\">
+                                            <h2>beden</h2>
+                                       </div>
+                                       <input min=\"1\" max=\"$urunler_adet\" step=\"2\" value=\"1\" type=\"number\" name='adet'>
                                        <input type='hidden' value='$urunler_id' name='urun_id'>
                                           <button type='submit' name='eklesepet'>add to cart</button>
                                     </
@@ -257,13 +259,12 @@ function urun_goster()
 </div>
                                     ";
         }
-    }
-    else {
+    } else {
 //http://localhost/ecom/shop.php?size1=S&size2=XS&size3=XXS&renk1=Kirmizi&renk2=Siyah&renk3=Mavi&beden_getir=
-        $size1=isset($_GET["size1"]);
-        $size1=isset($_GET["size2"]);
-        $size1=isset($_GET["size3"]);
-        $renk1=isset($_GET["renk1"]);
+        $size1 = isset($_GET["size1"]);
+        $size1 = isset($_GET["size2"]);
+        $size1 = isset($_GET["size3"]);
+        $renk1 = isset($_GET["renk1"]);
 
 
         $al_kategori = " SELECT * FROM urunler   WHERE $al=parent_altkategori_id ";
@@ -280,6 +281,7 @@ function urun_goster()
             $urunler_resim_2 = $cekilen_veri['urunler_resim_2'];
             $urunler_fiyat = $cekilen_veri['urunler_fiyat'];
             $urunler_oy = $cekilen_veri['urunler_oy'];
+            $urunler_adet = $cekilen_veri['urunler_adet'];
 
 
             echo "<form class=\"col-lg-4 col-md-6\" action='shop.php?alt_kategori_id=$al' method='post'>
@@ -397,16 +399,17 @@ function urun_goster()
                                 </div>
                                 <div class=\"modal_add_to_cart mb-15\">
                                     <form action='shop.php?' method='get'>
-                                        <div class=\"modal_size mb-15\">
-                                            <h2>size</h2>
-                                       </div>
+                                        
                                        <input type=\"radio\" name='beden' value=\"Xs\">XS
                                        <input type=\"radio\" name='beden' value=\"Xss\">XSS
                                        <input type=\"radio\" name='beden' value=\"Xss\">XSS<br>
                                         <input type='hidden' name='title' value='$urunler_title'>
                                         <input type='hidden' name='fiyat' value='$urunler_fiyat'>
                                         <input type='hidden' name='resim' value='$urunler_resim'>
-                                       <input min=\"0\" max=\"100\" step=\"2\" value=\"1\" type=\"number\" name='adet'>
+                                        <div class=\"modal_size mb-15\">
+                                            <h2>Adet</h2>
+                                       </div>
+                                        <input min=\"1\" max=\"$urunler_adet\" step=\"2\" value=\"1\" type=\"number\" name='adet'>
                                        <input type='hidden' value='$urunler_id' name='urun_id'>
                                           <button type='submit' name='eklesepet'>add to cart</button>
                                     </form>
@@ -712,7 +715,7 @@ function filtrele()
         echo "</div></ul>";
     }
 
-        echo "
+    echo "
          <label class=\"order_button\"><button name='beden_getir' type='submit'>Uygula</button></label>
             </form>
         ";
@@ -771,19 +774,23 @@ function cart()
     }
 }
 
-function sepet_fiyathesapla(){
+function sepet_fiyathesapla()
+{
 
     global $genel_toplam;
-    $genel_toplam=0;
+    $genel_toplam = 0;
     foreach ($_SESSION["sepet"] as $urun) {
         // $urun_id=$urun['urunler_id'];
         $urun_fiyat = $urun['fiyat'];
+        $urun_adet = $urun['adet'];
 
-        $genel_toplam=$genel_toplam+$urun_fiyat;
+
+        $genel_toplam = $genel_toplam + $urun_fiyat;
 
     }
-    $kdv=($genel_toplam*18)/100;
-echo "
+    $genel_toplam = $genel_toplam * $urun_adet;
+    $kdv = ($genel_toplam * 18) / 100;
+    echo "
            <div class=\"cart_subtotal\">
              <p>Ara Toplam:</p>
           <p class=\"cart_amount\">$genel_toplam TL</p>
@@ -1036,114 +1043,49 @@ function adres_bilgi_al()
     } else {
         echo "
      <form action='checkout.php' method='post'>
-                                    <h3>Adrese Teslimat</h3>
-                                    <div class=\"row\">
+                             <h3>Adrese Teslimat</h3>
+                                  <div class=\"row\">
                                         <div class=\"col-12 mb-20\">
                                             <label for=\"country\">Adres tipi <span>*</span></label>
                                             <select name='adrestipi' >
-                                                <option value=\"2\">Ev</option>
-                                                <option value=\"2\">İş yeri</option>
+                                                <option value=\"Ev\">Ev</option>
+                                                <option value=\"İş yeri\">İş yeri</option>
                                             </select>
                                         </div>
                                         <div class=\"col-6 mb-20\">
                                             <label for=\"country\">Şehir<span>*</span></label>
                                             <select name='sehir' >
-                                    <option value=\"0\">------</option>
-                                    <option value=\"1\">Adana</option>
-                                    <option value=\"2\">Adıyaman</option>
-                                    <option value=\"3\">Afyonkarahisar</option>
-                                    <option value=\"4\">Ağrı</option>
-                                    <option value=\"5\">Amasya</option>
-                                    <option value=\"6\">Ankara</option>
-                                    <option value=\"7\">Antalya</option>
-                                    <option value=\"8\">Artvin</option>
-                                    <option value=\"9\">Aydın</option>
-                                    <option value=\"10\">Balıkesir</option>
-                                    <option value=\"11\">Bilecik</option>
-                                    <option value=\"12\">Bingöl</option>
-                                    <option value=\"13\">Bitlis</option>
-                                    <option value=\"14\">Bolu</option>
-                                    <option value=\"15\">Burdur</option>
-                                    <option value=\"16\">Bursa</option>
-                                    <option value=\"17\">Çanakkale</option>
-                                    <option value=\"18\">Çankırı</option>
-                                    <option value=\"19\">Çorum</option>
-                                    <option value=\"20\">Denizli</option>
-                                    <option value=\"21\">Diyarbakır</option>
-                                    <option value=\"22\">Edirne</option>
-                                    <option value=\"23\">Elazığ</option>
-                                    <option value=\"24\">Erzincan</option>
-                                    <option value=\"25\">Erzurum</option>
-                                    <option value=\"26\">Eskişehir</option>
-                                    <option value=\"27\">Gaziantep</option>
-                                    <option value=\"28\">Giresun</option>
-                                    <option value=\"29\">Gümüşhane</option>
-                                    <option value=\"30\">Hakkâri</option>
-                                    <option value=\"31\">Hatay</option>
-                                    <option value=\"32\">Isparta</option>
-                                    <option value=\"33\">Mersin</option>
-                                    <option value=\"34\">İstanbul</option>
-                                    <option value=\"35\">İzmir</option>
-                                    <option value=\"36\">Kars</option>
-                                    <option value=\"37\">Kastamonu</option>
-                                    <option value=\"38\">Kayseri</option>
-                                    <option value=\"39\">Kırklareli</option>
-                                    <option value=\"40\">Kırşehir</option>
-                                    <option value=\"41\">Kocaeli</option>
-                                    <option value=\"42\">Konya</option>
-                                    <option value=\"43\">Kütahya</option>
-                                    <option value=\"44\">Malatya</option>
-                                    <option value=\"45\">Manisa</option>
-                                    <option value=\"46\">Kahramanmaraş</option>
-                                    <option value=\"47\">Mardin</option>
-                                    <option value=\"48\">Muğla</option>
-                                    <option value=\"49\">Muş</option>
-                                    <option value=\"50\">Nevşehir</option>
-                                    <option value=\"51\">Niğde</option>
-                                    <option value=\"52\">Ordu</option>
-                                    <option value=\"53\">Rize</option>
-                                    <option value=\"54\">Sakarya</option>
-                                    <option value=\"55\">Samsun</option>
-                                    <option value=\"56\">Siirt</option>
-                                    <option value=\"57\">Sinop</option>
-                                    <option value=\"58\">Sivas</option>
-                                    <option value=\"59\">Tekirdağ</option>
-                                    <option value=\"60\">Tokat</option>
-                                    <option value=\"61\">Trabzon</option>
-                                    <option value=\"62\">Tunceli</option>
-                                    <option value=\"63\">Şanlıurfa</option>
-                                    <option value=\"64\">Uşak</option>
-                                    <option value=\"65\">Van</option>
-                                    <option value=\"66\">Yozgat</option>
-                                    <option value=\"67\">Zonguldak</option>
-                                    <option value=\"68\">Aksaray</option>
-                                    <option value=\"69\">Bayburt</option>
-                                    <option value=\"70\">Karaman</option>
-                                    <option value=\"71\">Kırıkkale</option>
-                                    <option value=\"72\">Batman</option>
-                                    <option value=\"73\">Şırnak</option>
-                                    <option value=\"74\">Bartın</option>
-                                    <option value=\"75\">Ardahan</option>
-                                    <option value=\"76\">Iğdır</option>
-                                    <option value=\"77\">Yalova</option>
-                                    <option value=\"78\">Karabük</option>
-                                    <option value=\"79\">Kilis</option>
-                                    <option value=\"80\">Osmaniye</option>
-                                    <option value=\"81\">Düzce</option>
-                                                                                 
+                                     <option value=\"Adana\">Adana</option>
+                                    <option value=\"Adıyaman\">Adıyaman</option>
+                                    <option value=\"Afyonkarahisar\">Afyonkarahisar</option>
+                                    <option value=\"Ağrı\">Ağrı</option>
+                                    <option value=\"Amasya\">Amasya</option>
+                                    <option value=\"Ankara\">Ankara</option>
+                                    <option value=\"Antalya\">Antalya</option>
+                                    <option value=\"Artvin\">Artvin</option>
+                                    <option value=\"Aydın\">Aydın</option>
+                                    <option value=\"Balıkesir\">Balıkesir</option>
+                                    <option value=\"Bilecik\">Bilecik</option>
+                                    <option value=\"Bingöl\">Bingöl</option>
+                                    <option value=\"Bitlis\">Bitlis</option>
+                                    <option value=\"Bolu\">Bolu</option>
+                                    <option value=\"Burdur\">Burdur</option>
+                                    <option value=\"Bursa\">Bursa</option>
+                              
+                                                                            
                                             </select>
                                         </div>
                                         <div class=\"col-6 mb-20\">
                                             <label for=\"country\">İlçe <span>*</span></label>
                                             <select name='ilce'>
-                                                <option value=\"2\">bangladesh</option>
-                                                <option value=\"3\">Algeria</option>
-                                                <option value=\"4\">Afghanistan</option>
-                                                <option value=\"5\">Ghana</option>
-                                                <option value=\"6\">Albania</option>
-                                                <option value=\"7\">Bahrain</option>
-                                                <option value=\"8\">Colombia</option>
-                                                <option value=\"9\">Dominican Republic</option>
+                                                <option value=\"Aladağ\">Aladağ</option>
+                                                <option value=\"Ceyhan\">Ceyhan</option>
+                                                <option value=\"Çukurova\">Çukurova</option>
+                                                <option value=\"Feke\">Feke</option>
+                                                <option value=\"İmamoğlu\">İmamoğlu</option>
+                                                <option value=\"Karaisalı\">Karaisalı</option>
+                                                <option value=\"Karataş\">Karataş</option>
+                                                <option value=\"Kozan‎\">Kozan‎</option>
 
                                             </select>
                                         </div>
@@ -1197,34 +1139,37 @@ function total_cek()
                                             <tbody>
 
                                         ";
-
+    global $genel_toplam;
+    $genel_toplam = 0;
     foreach ($_SESSION["sepet"] as $urun) {
-        $urunler_id = $urun['urunler_id'];
-        $urun_title = $urun['urunler_title'];
-        $urun_fiyat = $urun['urunler_fiyat'];
-        $urun_resim = $urun['urunler_resim'];
+        $urun_title = $urun['title'];
+        $urun_fiyat = $urun['fiyat'];
+        $urun_adet = $urun['adet'];
+        $genel_toplam = $genel_toplam + $urun_fiyat;
 
         echo "
                               <tr>
-                              <td>$urun_title<strong>x 1 Adet</strong></td>
+                              <td>$urun_title<strong>x$urun_adet Adet</strong></td>
                               <td>$urun_fiyat</td>
                               </tr>
                         ";
     }
+    $genel_toplam = $genel_toplam * $urun_adet;
+    $kdv = ($genel_toplam * 18) / 100;
     echo "
                                             </tbody>
                                             <tfoot>
                                                 <tr>
-                                                    <th>Cart Subtotal</th>
-                                                    <td>$215.00</td>
+                                                    <th>Ara toplam</th>
+                                                    <td>$genel_toplam</td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Shipping</th>
-                                                    <td><strong>$5.00</strong></td>
+                                                    <th>Kdv(%18)</th>
+                                                    <td><strong>$kdv</strong></td>
                                                 </tr>
                                                 <tr class=\"order_total\">
-                                                    <th>Order Total</th>
-                                                    <td><strong>$220.00</strong></td>
+                                                    <th>Genel Toplam</th>
+                                                    <td><strong>$genel_toplam</strong></td>
                                                 </tr>
                                             </tfoot>
                                         </table>     
@@ -1285,14 +1230,27 @@ function odeme()
 
     if (isset($_POST['ode'])) {
         foreach ($_SESSION["sepet"] as $urun) {
-            $urunler_id = $urun['urunler_id'];
-            $urun_title = $urun['urunler_title'];
-            $urun_fiyat = $urun['urunler_fiyat'];
-            $urun_resim = $urun['urunler_resim'];
+            $urunler_id = $urun['urun_id'];
+            $urun_title = $urun['title'];
+            $urun_fiyat = $urun['fiyat'];
+            $urun_resim = $urun['resim'];
+            $urun_beden = $urun['beden'];
+            $urun_adet = $urun['adet'];
 
-            $sql = "INSERT INTO sepet(user_id,urun_id,urun_title,urun_fiyat,urun_resim)
-                VALUE('$userid','$urunler_id','$urun_title','$urun_fiyat','$urun_resim')";
-            $succes = mysqli_query($con, $sql);
+            $sql = "INSERT INTO sepet(user_id,urun_id,urun_title,urun_fiyat,urun_resim,urun_beden,urun_adet)
+                VALUE('$userid','$urunler_id','$urun_title','$urun_fiyat','$urun_resim','$urun_beden','$urun_adet')";
+            $succes_kayit = mysqli_query($con, $sql);
+
+            $select = mysqli_query($con, "SELECT * FROM urunler WHERE urunler_id=$urunler_id");
+            $cekilen_veri = mysqli_fetch_assoc($select);
+            $gelen_urunler_adet = $cekilen_veri['urunler_adet'];
+            if ($gelen_urunler_adet>=$urun_adet)
+            {
+                $sonuc_adet=$gelen_urunler_adet-$urun_adet;
+                mysqli_query($con,"UPDATE urunler SET urunler_adet='$sonuc_adet' WHERE urunler_id='$urunler_id'");
+            }
+
+
 
 
         }
@@ -1415,25 +1373,25 @@ function admin()
                     <label for=\"country\">Alt Kategori<span>*</span></label>
                     <select name='kategori_id'>
                         <option value='1'>Jeans(Kadın)</option>
-                        <option value='1'>Sweat(Kadın)</option>
-                        <option value='1'>Hırka(Kadın)</option>
-                        <option value='1'>Pantolon(Kadın)</option>
-                        <option value='1'>Kazak(Kadın)</option>
-                        <option value='2'>Ceket(Erkek)</option>
-                        <option value='2'>Yelek(Erkek)</option>
-                        <option value='2'>Gömlek(Erkek)</option>
-                        <option value='2'>Pantolon(Erkek)</option>
-                        <option value='2'>Tshirt(Erkek)</option>
-                        <option value='3'>Mont(Çocuk&Genç)</option>
-                        <option value='3'>Parka(Çocuk&Genç)</option>
-                        <option value='3'>Tayt(Çocuk&Genç)</option>
-                        <option value='3'>Yelek(Çocuk&Genç)</option>
-                        <option value='3'>Eşofman(Çocuk&Genç)</option>
-                        <option value='4'>Body(Bebek)</option>
-                        <option value='4'>Kazak(Bebek)</option>
-                        <option value='4'>Elbise(Bebek)</option>
-                        <option value='4'>Pantolon(Bebek)</option>
-                        <option value='4'>Hırka(Bebek)</option>
+                        <option value='2'>Sweat(Kadın)</option>
+                        <option value='3'>Hırka(Kadın)</option>
+                        <option value='4'>Pantolon(Kadın)</option>
+                        <option value='5'>Kazak(Kadın)</option>
+                        <option value='6'>Ceket(Erkek)</option>
+                        <option value='7'>Yelek(Erkek)</option>
+                        <option value='8'>Gömlek(Erkek)</option>
+                        <option value='9'>Pantolon(Erkek)</option>
+                        <option value='10'>Tshirt(Erkek)</option>
+                        <option value='11'>Mont(Çocuk&Genç)</option>
+                        <option value='12'>Parka(Çocuk&Genç)</option>
+                        <option value='13'>Tayt(Çocuk&Genç)</option>
+                        <option value='14'>Yelek(Çocuk&Genç)</option>
+                        <option value='15'>Eşofman(Çocuk&Genç)</option>
+                        <option value='16'>Body(Bebek)</option>
+                        <option value='17'>Kazak(Bebek)</option>
+                        <option value='18'>Elbise(Bebek)</option>
+                        <option value='19'>Pantolon(Bebek)</option>
+                        <option value='20'>Hırka(Bebek)</option>
                          
    
                     </select>
@@ -1484,7 +1442,3 @@ function admin()
 
 }
 
-function yeni_urun()
-{
-
-}
