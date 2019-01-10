@@ -1,22 +1,14 @@
 <?php
 //include ("function.php");
 ?>
-<div class="widget_list widget_color">
-    <h3>Renk</h3>
-    <ul>
-        <?php filtrele_renk_getir() ?>
-    </ul>
-</div>
+
 <!--widget color start-->
 
 <!--manufacturer start-->
 <div class="widget_list manufacturer">
-    <h3>Beden</h3>
-    <ul>
-        <div class="container">
-        <?php filtrele_beden_getir() ?>
-        </div>
-    </ul>
+
+        <?php filtrele(); ?>
+
 </div>
 <!--manufacturer start-->
 

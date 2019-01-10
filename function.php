@@ -37,34 +37,44 @@ function alt_kategori($parent_id)
             $alt_kategori_id = $cekilen_veri['alt_kategori_id'];
             $kategori_title = $cekilen_veri['kategori_title'];
             echo "                                 
-                               <li><a href='shop.php?alt_kategori_id=$alt_kategori_id'>$kategori_title</a></li>    
+                               <li><a href='shop.php?alt_kategori_id=$alt_kategori_id'>$kategori_title</a></li>   
+                               
                                 ";
         }
     }
-    return $alt_kategori_id;
+    if (isset($_GET['alt_kategori_id'])) {
+        $_SESSION["alt"] = $_GET['alt_kategori_id'];
+
+    }
+
+
 }
 
 function urun_goster()
 {
-    //echo $_SERVER['REQUEST_URI'];
 
+    //echo $_SERVER['REQUEST_URI'];
+    echo $_SESSION["alt"];
     $con = mysqli_connect("localhost", "root", "", "eticaret");
     //unset($_SESSION['sepet']);
-    if (isset($_POST["eklesepet"])) {
+    //http://localhost/ecom/shop.php?beden=Xss&title=Sweat&fiyat=100&resim=1177525078.jpg&adet=2&urun_id=7&eklesepet=
+    if (isset($_GET["eklesepet"])) {
         $item_array = array(
-            'urunler_id' => $_GET["urunler_id"],
-            'urunler_title' => $_GET["urunler_title"],
-            'urunler_fiyat' => $_GET["urunler_fiyat"],
-            'urunler_resim' => $_GET["urunler_resim"],
-            'alt_kategori_id' => $_GET["alt_kategori_id"]
+            'urun_id' => $_GET["urun_id"],
+            'title' => $_GET["title"],
+            'fiyat' => $_GET["fiyat"],
+            'resim' => $_GET["resim"],
+            'beden' => $_GET["beden"],
+            'adet' => $_GET["adet"]
         );
         //$count = count($_SESSION["sepet"]);
         // print_r($item_array);
-        $_SESSION["sepet"][$_GET['urunler_id']] = $item_array;
-        header("Refresh:0");
+        $_SESSION["sepet"][$_GET['urun_id']] = $item_array;
+        header('Location: shop.php');
+
     }
 
-    $al = $_GET['alt_kategori_id'];
+    $al = $_SESSION["alt"];
     if (isset($_GET['siralama'])) {
         $sirama = $_GET['siralama'];
         switch ($sirama) {
@@ -93,10 +103,8 @@ function urun_goster()
             $urunler_resim_1 = $cekilen_veri['urunler_resim_1'];
             $urunler_resim_2 = $cekilen_veri['urunler_resim_2'];
             $urunler_fiyat = $cekilen_veri['urunler_fiyat'];
-            $urunler_size = $cekilen_veri['urunler_size'];
             $urunler_oy = $cekilen_veri['urunler_oy'];
-            $XS = $cekilen_veri['XS'];
-            $M = $cekilen_veri['M'];
+
 
             echo "<form class=\"col-lg-4 col-md-6\" action='shop.php?alt_kategori_id=$al' method='post'>
            <div  >
@@ -209,21 +217,24 @@ function urun_goster()
                                     <h2>Beden</h2>
                                     <ul>
                                     
-                                    <!--
-                                        <li><a href='shop.php?alt_kategori_id=$al=?$urunler_oy'>$XS</a></li>  seçebilsin bunu açılır yerle                                                 
-                                        <li><a href=\"#\">$M</a></li> -->                                                
+                                                                                 
                                     </ul>
                                 </div>
                                 <div class=\"modal_add_to_cart mb-15\">
-                                    <form action='shop.php?alt_kategori_id=$al&urunler_id=$urunler_id&urunler_title=$urunler_title
-                                    &urunler_fiyat=$urunler_fiyat&urunler_resim=$urunler_resim ' method='post'>
+                                    <form action='shop.php?' method='get'>
+                                        <div class=\"modal_size mb - 15\">
+                                            <h2>size</h2>
+                                       </div>
+                                       <input type=\"radio\" name='beden' value=\"Xs\">XS
+                                       <input type=\"radio\" name='beden' value=\"Xss\">XSS
+                                       <input type=\"radio\" name='beden' value=\"Xss\">XSS<br>
                                         <input type='hidden' name='title' value='$urunler_title'>
                                         <input type='hidden' name='fiyat' value='$urunler_fiyat'>
                                         <input type='hidden' name='resim' value='$urunler_resim'>
-                                        <input type='hidden' name='beden' value='$XS'>
-                                         <button type='submit' name='eklesepet'>add to cart</button>
-                                    </form>
-                                </div>
+                                       <input min=\"0\" max=\"100\" step=\"2\" value=\"1\" type=\"number\" name='adet'>
+                                       <input type='hidden' value='$urunler_id' name='urun_id'>
+                                          <button type='submit' name='eklesepet'>add to cart</button>
+                                    </
                                 <div class=\"modal_description mb-15\">
                                     <p>Lorem ipsum AWDWADit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
@@ -262,7 +273,7 @@ function urun_goster()
             $urunler_resim_1 = $cekilen_veri['urunler_resim_1'];
             $urunler_resim_2 = $cekilen_veri['urunler_resim_2'];
             $urunler_fiyat = $cekilen_veri['urunler_fiyat'];
-             $urunler_oy = $cekilen_veri['urunler_oy'];
+            $urunler_oy = $cekilen_veri['urunler_oy'];
 
 
             echo "<form class=\"col-lg-4 col-md-6\" action='shop.php?alt_kategori_id=$al' method='post'>
@@ -379,11 +390,18 @@ function urun_goster()
                                     </ul>
                                 </div>
                                 <div class=\"modal_add_to_cart mb-15\">
-                                    <form action='shop.php?alt_kategori_id=$al&urunler_id=$urunler_id&urunler_title=$urunler_title
-                                    &urunler_fiyat=$urunler_fiyat&urunler_resim=$urunler_resim ' method='post'>
+                                    <form action='shop.php?' method='get'>
+                                        <div class=\"modal_size mb-15\">
+                                            <h2>size</h2>
+                                       </div>
+                                       <input type=\"radio\" name='beden' value=\"Xs\">XS
+                                       <input type=\"radio\" name='beden' value=\"Xss\">XSS
+                                       <input type=\"radio\" name='beden' value=\"Xss\">XSS<br>
                                         <input type='hidden' name='title' value='$urunler_title'>
                                         <input type='hidden' name='fiyat' value='$urunler_fiyat'>
                                         <input type='hidden' name='resim' value='$urunler_resim'>
+                                       <input min=\"0\" max=\"100\" step=\"2\" value=\"1\" type=\"number\" name='adet'>
+                                       <input type='hidden' value='$urunler_id' name='urun_id'>
                                           <button type='submit' name='eklesepet'>add to cart</button>
                                     </form>
                                 </div>
@@ -538,7 +556,7 @@ function detay()
 
 function ayrintili_urun_goster()
 {
-    $al = $_GET['alt_kategori_id'];
+    $al = $_SESSION["alt"];
     $con = mysqli_connect("localhost", "root", "", "eticaret");
     $al_kategori = "SELECT * FROM urunler  WHERE $al=parent_altkategori_id ";
     $sonuc = mysqli_query($con, $al_kategori);
@@ -640,54 +658,59 @@ function urun_oy_goster($urunler_oy)
     }
 }
 
-function filtrele_beden_getir()
+function filtrele()
 {
-    $bedenler = 0;
-    if (isset($_POST['formDoor'])) {
-        $bedenler = $_POST['formDoor'];
-        $count = count($bedenler);
 
-    }
-    //todo basıldığında getirmesi lazım
-    $al = $_GET['alt_kategori_id'];
+    $al = $_SESSION["alt"];
     $con = mysqli_connect("localhost", "root", "", "eticaret");
-    $select = mysqli_query($con, "SELECT *FROM kategori_beden_tablosu WHERE $al=parent_kategori_id  ");
+
+    echo "<form action='' method='get'>";
+    echo "<h3>Beden</h3><ul><div class=\"container\">";
+    $select = mysqli_query($con, "SELECT *FROM kategori_beden_tablosu  WHERE $al=parent_kategori_id  ");
     while ($cekilen_veri = mysqli_fetch_assoc($select)) {
         $beden_1 = $cekilen_veri['beden_1'];
         $beden_2 = $cekilen_veri['beden_2'];
         $beden_3 = $cekilen_veri['beden_3'];
         echo "
-             <form action='shop.php?alt_kategori_id=$al&size1=$bedenler[0]&size2=$bedenler[2]&size3=$bedenler[2]' method='post'>
                 <div class=\"checkbox\">
-                  <label><input style=\"height:25px; width:25px;\" type=\"checkbox\" value='$beden_1' name='formDoor[]'>$beden_1</label>
+                  <label><input style=\"height:25px; width:25px;\" type=\"checkbox\" value='$beden_1' name='size1'>$beden_1</label>
                 </div>
                 <div class=\"checkbox\">
-                  <label><input style=\"height:25px; width:25px;\" type=\"checkbox\" value='$beden_2' name='formDoor[]'>$beden_2</label>
+                  <label><input style=\"height:25px; width:25px;\" type=\"checkbox\" value='$beden_2' name='size2'>$beden_2</label>
                 </div>
                  <div class=\"checkbox\">
-                  <label><input style=\"height:25px; width:25px;\" type=\"checkbox\" value='$beden_3' name='formDoor[]'>$beden_3</label>
+                  <label><input style=\"height:25px; width:25px;\" type=\"checkbox\" value='$beden_3' name='size3'>$beden_3</label>
                 </div>
-                <label class=\"order_button\"><button  type='submit'>Uygula</button></label>
-            </form>
+               
         ";
+        echo "</div></ul>";
     }
-}
-
-function filtrele_renk_getir()
-{
-    $alt_kategori_id = $_GET['alt_kategori_id'];
-    $con = mysqli_connect("localhost", "root", "", "eticaret");
-    $select = mysqli_query($con, "SELECT *FROM kategori_renk_tablosu WHERE $alt_kategori_id=parent_kategori_id");
+    echo "<h3>Renk</h3><ul><div class=\"container\">";
+    $select = mysqli_query($con, "SELECT *FROM kategori_renk_tablosu  WHERE $al=parent_kategori_id  ");
     while ($cekilen_veri = mysqli_fetch_assoc($select)) {
         $renk_1 = $cekilen_veri['renk_1'];
         $renk_2 = $cekilen_veri['renk_2'];
         $renk_3 = $cekilen_veri['renk_3'];
         echo "
-            <li><a href=\"#\">$renk_1</a></li>
-            <li><a href=\"#\">$renk_2</a></li>
-            <li><a href=\"#\">$renk_3</a></li>
+                <div class=\"checkbox\">
+                  <label><input style=\"height:25px; width:25px;\" type=\"checkbox\" value='$renk_1' name='renk1'>$renk_1</label>
+                </div>
+                <div class=\"checkbox\">
+                  <label><input style=\"height:25px; width:25px;\" type=\"checkbox\" value='$renk_2' name='renk2'>$renk_2</label>
+                </div>
+                 <div class=\"checkbox\">
+                  <label><input style=\"height:25px; width:25px;\" type=\"checkbox\" value='$renk_3' name='renk3'>$renk_3</label>
+                </div>
+               
         ";
+        echo "</div></ul>";
     }
+
+        echo "
+         <label class=\"order_button\"><button name='beden_getir' type='submit'>Uygula</button></label>
+            </form>
+        ";
+
 }
 
 function oturum_secenek()
@@ -723,17 +746,20 @@ function cart()
     // unset($_SESSION["sepet"]);
 
     foreach ($_SESSION["sepet"] as $urun) {
-        $urunler_id = $urun['urunler_id'];
-        $urun_title = $urun['urunler_title'];
-        $urun_fiyat = $urun['urunler_fiyat'];
-        $urun_resim = $urun['urunler_resim'];
+        // $urun_id=$urun['urunler_id'];
+        $urunler_id = $urun['urun_id'];
+        $urun_title = $urun['title'];
+        $urun_fiyat = $urun['fiyat'];
+        $urun_resim = $urun['resim'];
+        $urun_beden = $urun['beden'];
+        $urun_adet = $urun['adet'];
         echo "
              <tr>
              <td class=\"product_remove\"><a href='cart.php?sil_urun=$urunler_id'><i class=\"fa fa-trash-o\"></i></a></td>
              <td class=\"product_thumb\"><a href=\"#\"><img style=\"width:118px; height:118px;\"  src='assets/img/product/$urun_resim'alt=\"\"></a></td>
              <td class=\"product_name\"><a href=\"#\">$urun_title</a></td>
              <td class=\"product-price\">$urun_fiyat</td>
-             <td class=\"product_quantity\"><input min=\"0\" max=\"100\" value='1' type=\"number\"></td>
+             <td class=\"product_quantity\"><input min=\"0\" max=\"100\" value='$urun_adet' type=\"number\"></td>
               </tr>
 ";
     }
@@ -749,7 +775,7 @@ function mini_cart()
             $alt = $_GET["alt_kategori_id"];
             echo $alt;
 
-            header('Location: shop.php?alt_kategori_id=' . $alt);
+            header("Refresh:0");
         }
     }
     if ($count == 0) {
@@ -764,11 +790,13 @@ function mini_cart()
 
         foreach ($_SESSION["sepet"] as $urun) {
             // $urun_id=$urun['urunler_id'];
-            $urunler_id = $urun['urunler_id'];
-            $urun_title = $urun['urunler_title'];
-            $urun_fiyat = $urun['urunler_fiyat'];
-            $urun_resim = $urun['urunler_resim'];
-            $alt_kategori_id = $urun['alt_kategori_id'];
+            $urunler_id = $urun['urun_id'];
+            $urun_title = $urun['title'];
+            $urun_fiyat = $urun['fiyat'];
+            $urun_resim = $urun['resim'];
+            $urun_beden = $urun['beden'];
+            $urun_adet = $urun['adet'];
+
             echo "
             
               <div class=\"cart_item\">
@@ -782,7 +810,7 @@ function mini_cart()
                        </form>
                      </div>
                      <form action='#' method='post'>
-     <div class='cop_kova'><a href='shop.php?alt_kategori_id=$alt_kategori_id&sil=$urunler_id'><i style='color: #2971f5;max-width:15px;height:20px;' class=\"fa fa-trash-o\"></i></a></div>
+     <div class='cop_kova'><a href='shop.php?&sil=$urunler_id'><i style='color: #2971f5;max-width:15px;height:20px;' class=\"fa fa-trash-o\"></i></a></div>
                </form>
                 </div>
                                     
@@ -1191,8 +1219,6 @@ function sepet_toplam()
 
 function siralama()
 {
-    $al = $_GET['alt_kategori_id'];
-    $select1 = 1;
     if (isset($_POST['orderby'])) {
         $select1 = $_POST['orderby'];
         switch ($select1) {
@@ -1205,7 +1231,7 @@ function siralama()
         }
     }
     echo "
-                        <form action='shop.php?alt_kategori_id=$al&siralama=$select1' method='post'>
+                        <form action='shop.php?' method='get'>
                          <label class=\"order_button\"><button  type='submit'>Listele</button>  </label>
                              <select name='orderby' >
                                 <option selected value='1'>Önerilen</option>
@@ -1297,58 +1323,56 @@ function admin()
 {
     $con = mysqli_connect("localhost", "root", "", "eticaret");
 
-if(isset($_SESSION['kayit'])){
-    if (isset($_POST['ekle_urun'])) {
-        $parent_altkategori_id = $_POST['kategori_id'];
-        $title = $_POST['title'];
-        $desc = $_POST['desc'];
-        $fiyat = $_POST['fiyat'];
-        $adet = $_POST['adet'];
-        $beden = $_POST['beden'];
-        if (empty($title) || empty($parent_altkategori_id)) {
-            echo "<script>alert('Alanları Boş geçmeyiniz')</script>";
+    if (isset($_SESSION['kayit'])) {
+        if (isset($_POST['ekle_urun'])) {
+            $parent_altkategori_id = $_POST['kategori_id'];
+            $title = $_POST['title'];
+            $desc = $_POST['desc'];
+            $fiyat = $_POST['fiyat'];
+            $adet = $_POST['adet'];
+            $beden = $_POST['beden'];
+            if (empty($title) || empty($parent_altkategori_id)) {
+                echo "<script>alert('Alanları Boş geçmeyiniz')</script>";
 
-        } else {
-            $yukleklasor = "assets/img/product/";
-            $tp_name1=$_FILES['resim1']['tmp_name'];
-            $name1=$_FILES['resim1']['name'];
-            $uzanti1=substr($name1,-4,4);
-            $random1=rand(10000,50000);
-            $random2=rand(10000,50000);
-            $resim1_ad1=$random1.$random2.$uzanti1;
-            move_uploaded_file($tp_name1,"$yukleklasor/$resim1_ad1");
-
-
-            $tp_name2=$_FILES['resim2']['tmp_name'];
-            $name2=$_FILES['resim2']['name'];
-            $uzanti2=substr($name2,-4,4);
-            $random1=rand(10000,50000);
-            $random2=rand(10000,50000);
-            $resim1_ad2=$random1.$random2.$uzanti2;
-            move_uploaded_file($tp_name2,"$yukleklasor/$resim1_ad2");
+            } else {
+                $yukleklasor = "assets/img/product/";
+                $tp_name1 = $_FILES['resim1']['tmp_name'];
+                $name1 = $_FILES['resim1']['name'];
+                $uzanti1 = substr($name1, -4, 4);
+                $random1 = rand(10000, 50000);
+                $random2 = rand(10000, 50000);
+                $resim1_ad1 = $random1 . $random2 . $uzanti1;
+                move_uploaded_file($tp_name1, "$yukleklasor/$resim1_ad1");
 
 
+                $tp_name2 = $_FILES['resim2']['tmp_name'];
+                $name2 = $_FILES['resim2']['name'];
+                $uzanti2 = substr($name2, -4, 4);
+                $random1 = rand(10000, 50000);
+                $random2 = rand(10000, 50000);
+                $resim1_ad2 = $random1 . $random2 . $uzanti2;
+                move_uploaded_file($tp_name2, "$yukleklasor/$resim1_ad2");
 
-            $tp_name3=$_FILES['resim3']['tmp_name'];
-            $name3=$_FILES['resim3']['name'];
-            $uzanti3=substr($name3,-4,4);
-            $random1=rand(10000,50000);
-            $random2=rand(10000,50000);
-            $resim1_ad3=$random1.$random2.$uzanti3;
-            move_uploaded_file($tp_name3,"$yukleklasor/$resim1_ad3");
+
+                $tp_name3 = $_FILES['resim3']['tmp_name'];
+                $name3 = $_FILES['resim3']['name'];
+                $uzanti3 = substr($name3, -4, 4);
+                $random1 = rand(10000, 50000);
+                $random2 = rand(10000, 50000);
+                $resim1_ad3 = $random1 . $random2 . $uzanti3;
+                move_uploaded_file($tp_name3, "$yukleklasor/$resim1_ad3");
 
 
-            $sql = "INSERT INTO urunler(parent_altkategori_id,urunler_title,urunler_desc,urunler_fiyat,	
+                $sql = "INSERT INTO urunler(parent_altkategori_id,urunler_title,urunler_desc,urunler_fiyat,	
                     urunler_resim,urunler_resim_1,urunler_resim_2,urunler_adet,beden)
             VALUE('$parent_altkategori_id','$title','$desc','$fiyat','$resim1_ad1','$resim1_ad2','$resim1_ad3','$adet','$beden')";
-            $succes = mysqli_query($con, $sql);
+                $succes = mysqli_query($con, $sql);
 
 
-
+            }
         }
-    }
 
-    echo "
+        echo "
     <form action='admin.php' method='post' enctype='multipart/form-data'>
                 <h3>Adrese Teslimat</h3>
                 <div class=\"row\">
@@ -1418,10 +1442,14 @@ if(isset($_SESSION['kayit'])){
                   
         </form>
     ";
-}
-else{
-    header('Location: admin.php');
+    } else {
+        header('Location: admin.php');
+
+    }
 
 }
+
+function yeni_urun()
+{
 
 }

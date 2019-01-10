@@ -781,7 +781,7 @@ session_start();
                                 <div class="modal_size mb-15">
                                     <h2>size</h2>
                                     <ul>
-                                        <li><a href="#">s</a></li>
+                                        <li><a href="#l">s</a></li>
                                         <li><a href="#">m</a></li>
                                         <li><a href="#">l</a></li>
                                         <li><a href="#">xl</a></li>
