@@ -52,8 +52,6 @@ function alt_kategori($parent_id)
 
 function urun_goster()
 {
-
-    //echo $_SERVER['REQUEST_URI'];
     echo $_SESSION["alt"];
     $con = mysqli_connect("localhost", "root", "", "eticaret");
     //unset($_SESSION['sepet']);
@@ -259,7 +257,15 @@ function urun_goster()
 </div>
                                     ";
         }
-    } else {
+    }
+    else {
+//http://localhost/ecom/shop.php?size1=S&size2=XS&size3=XXS&renk1=Kirmizi&renk2=Siyah&renk3=Mavi&beden_getir=
+        $size1=isset($_GET["size1"]);
+        $size1=isset($_GET["size2"]);
+        $size1=isset($_GET["size3"]);
+        $renk1=isset($_GET["renk1"]);
+
+
         $al_kategori = " SELECT * FROM urunler   WHERE $al=parent_altkategori_id ";
         $sonuc = mysqli_query($con, $al_kategori);
         while ($cekilen_veri = mysqli_fetch_array($sonuc)) {
@@ -759,10 +765,39 @@ function cart()
              <td class=\"product_thumb\"><a href=\"#\"><img style=\"width:118px; height:118px;\"  src='assets/img/product/$urun_resim'alt=\"\"></a></td>
              <td class=\"product_name\"><a href=\"#\">$urun_title</a></td>
              <td class=\"product-price\">$urun_fiyat</td>
-             <td class=\"product_quantity\"><input min=\"0\" max=\"100\" value='$urun_adet' type=\"number\"></td>
+             <td class=\"product_quantity\">$urun_adet</td>
               </tr>
 ";
     }
+}
+
+function sepet_fiyathesapla(){
+
+    global $genel_toplam;
+    $genel_toplam=0;
+    foreach ($_SESSION["sepet"] as $urun) {
+        // $urun_id=$urun['urunler_id'];
+        $urun_fiyat = $urun['fiyat'];
+
+        $genel_toplam=$genel_toplam+$urun_fiyat;
+
+    }
+    $kdv=($genel_toplam*18)/100;
+echo "
+           <div class=\"cart_subtotal\">
+             <p>Ara Toplam:</p>
+          <p class=\"cart_amount\">$genel_toplam TL</p>
+                 </div>
+           <div class=\"cart_subtotal \">
+                 <p>KDV(%18)</p>
+                 <p class=\"cart_amount\">$kdv TL</p>
+           </div>
+           <div class=\"cart_subtotal\">
+                  <p>Genel Toplam</p>
+                  <p class=\"cart_amount\">$genel_toplam TL</p>
+            </div>
+
+";
 }
 
 function mini_cart()

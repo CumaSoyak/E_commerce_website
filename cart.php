@@ -47,11 +47,11 @@ ob_start();
                             <table>
                                 <thead>
                                 <tr>
-                                    <th class="product_remove">Delete</th>
-                                    <th class="product_thumb">Image</th>
-                                    <th class="product_name">Product</th>
-                                    <th class="product-price">Price</th>
-                                    <th class="product_quantity">Quantity</th>
+                                    <th class="product_remove">Sil</th>
+                                    <th class="product_thumb">Fotoğraf</th>
+                                    <th class="product_name">Ürün</th>
+                                    <th class="product-price">Fiyat</th>
+                                    <th class="product_quantity">Adet</th>
 
                                 </tr>
                                 </thead>
@@ -82,20 +82,7 @@ ob_start();
                         <div class="coupon_code right">
                             <h3>Sepet Toplam</h3>
                             <div class="coupon_inner">
-                                <div class="cart_subtotal">
-                                    <p>Subtotal</p>
-                                    <p class="cart_amount">£215.00</p>
-                                </div>
-                                <div class="cart_subtotal ">
-                                    <p>Shipping</p>
-                                    <p class="cart_amount"><span>Flat Rate:</span> £255.00</p>
-                                </div>
-                                <a href="#">Calculate shipping</a>
-
-                                <div class="cart_subtotal">
-                                    <p>Total</p>
-                                    <p class="cart_amount">£215.00</p>
-                                </div>
+                                <?php sepet_fiyathesapla(); ?>
                                <?php alisveris_kontrol(); ?>
                             </div>
                         </div>
