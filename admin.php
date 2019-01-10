@@ -13,11 +13,13 @@ session_start();
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-9 col-md-9" style="margin-bottom:80px; ">
-            <?php admin(); ?>
+        <div class="col-sm-6 col-md-6" style="margin-bottom:80px; ">
+            <?php urun_kayit(); ?>
         </div>
-        <div class="col-sm-3 col-md-3">
-            erkek
+        <div class="col-sm-2 col-md-2">
+         </div>
+        <div class="col-sm-4 col-md-4">
+           <?php biten_urunler(); ?>
         </div>
 </div>
 </body>

@@ -1244,13 +1244,10 @@ function odeme()
             $select = mysqli_query($con, "SELECT * FROM urunler WHERE urunler_id=$urunler_id");
             $cekilen_veri = mysqli_fetch_assoc($select);
             $gelen_urunler_adet = $cekilen_veri['urunler_adet'];
-            if ($gelen_urunler_adet>=$urun_adet)
-            {
-                $sonuc_adet=$gelen_urunler_adet-$urun_adet;
-                mysqli_query($con,"UPDATE urunler SET urunler_adet='$sonuc_adet' WHERE urunler_id='$urunler_id'");
+            if ($gelen_urunler_adet >= $urun_adet) {
+                $sonuc_adet = $gelen_urunler_adet - $urun_adet;
+                mysqli_query($con, "UPDATE urunler SET urunler_adet='$sonuc_adet' WHERE urunler_id='$urunler_id'");
             }
-
-
 
 
         }
@@ -1312,7 +1309,7 @@ function odeme()
 ";
 }
 
-function admin()
+function urun_kayit()
 {
     $con = mysqli_connect("localhost", "root", "", "eticaret");
 
@@ -1367,7 +1364,9 @@ function admin()
 
         echo "
     <form action='admin.php' method='post' enctype='multipart/form-data'>
-                <h3>Adrese Teslimat</h3>
+                <br>
+
+                <h3>Ürün KAyıt</h3>
                 <div class=\"row\">
                     <div class=\"col-12 mb-20\">
                     <label for=\"country\">Alt Kategori<span>*</span></label>
@@ -1439,6 +1438,58 @@ function admin()
         header('Location: admin.php');
 
     }
+
+}
+
+function biten_urunler()
+{
+    $con = mysqli_connect("localhost", "root", "", "eticaret");
+
+
+
+    echo "
+                     
+            <br>
+            <h3>Biten Ürünler</h3>
+            <br>
+            <table class=\"table\">
+            <thead>
+              <tr>
+                <th><h5>Ürün adı</h5></th>
+                <th><h5>Ürün kodu</h5></th>
+               </tr>
+            </thead>
+          </table>            
+           <table class=\"table\">
+            <thead>
+              <tr>
+              ";
+    $al_kategori = " SELECT * FROM urunler WHERE urunler_adet=0";
+    $sonuc = mysqli_query($con, $al_kategori);
+    while ($cekilen_veri = mysqli_fetch_array($sonuc)) {
+
+        $urunler_id = $cekilen_veri['urunler_id'];
+        $urunler_title = $cekilen_veri['urunler_title'];
+        $urunler_kod = $cekilen_veri['urun_kod'];
+        $urunler_resim = $cekilen_veri['urunler_resim'];
+        $urunler_resim_1 = $cekilen_veri['urunler_resim_1'];
+        $urunler_resim_2 = $cekilen_veri['urunler_resim_2'];
+        $urunler_fiyat = $cekilen_veri['urunler_fiyat'];
+        $urunler_oy = $cekilen_veri['urunler_oy'];
+        $urunler_adet = $cekilen_veri['urunler_adet'];
+
+        echo "
+                <th><h5>$urunler_title</h5></th>
+                <th><h5>$urunler_kod</h5></th>
+                <tr></tr>
+             ";
+    }
+            echo "
+               </tr>
+            </thead>
+          </table>
+                   
+        ";
 
 }
 
