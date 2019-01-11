@@ -680,7 +680,7 @@ function anasayfa_alisveris()
 {
 
     $con = mysqli_connect("localhost", "root", "", "eticaret");
-    $al_kategori = " SELECT * FROM urunler Order By urunler_id DESC LIMIT 20";
+    $al_kategori = " SELECT * FROM urunler Order By urunler_id DESC LIMIT 30";
     $sonuc = mysqli_query($con, $al_kategori);
     while ($cekilen_veri = mysqli_fetch_array($sonuc)) {
 
