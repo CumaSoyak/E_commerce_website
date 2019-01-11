@@ -441,7 +441,6 @@ function urun_goster()
 
 function detay()
 {
-
     if (isset($_GET["eklesepet"])) {
         $item_array = array(
             'urun_id' => $_GET["urun_id"],
@@ -487,7 +486,7 @@ function detay()
                                 <div class=\"tab-content produc_thumb_conatainer\">
                                     <div class=\"tab-pane fade show active\" id=\"p_tab1\" role=\"tabpanel\" >
                                         <div class=\"modal_img\">
-                                            <a href=\"#\"><img src='assets/img/product/$urunler_resim' alt=\"\"></a>
+                                            <a href=\"#\"><img style='width:200px;height:300px;' src='assets/img/product/$urunler_resim' alt=\"\"></a>
                                         </div>
                                     </div>
                                     <div class=\"tab-pane fade\" id=\"p_tab2\" role=\"tabpanel\">
@@ -675,6 +674,55 @@ function filtrele()
             </form>
         ";
 
+}
+
+function anasayfa_alisveris()
+{
+
+    $con = mysqli_connect("localhost", "root", "", "eticaret");
+    $al_kategori = " SELECT * FROM urunler Order By urunler_id DESC LIMIT 10";
+    $sonuc = mysqli_query($con, $al_kategori);
+    while ($cekilen_veri = mysqli_fetch_array($sonuc)) {
+
+
+//TODO id çekilecek
+        $urunler_id = $cekilen_veri['urunler_id'];
+        $urunler_title = $cekilen_veri['urunler_title'];
+        $urunler_desc = $cekilen_veri['urunler_desc'];
+        $urunler_resim = $cekilen_veri['urunler_resim'];
+        $urunler_resim_1 = $cekilen_veri['urunler_resim_1'];
+        $urunler_resim_2 = $cekilen_veri['urunler_resim_2'];
+        $urunler_fiyat = $cekilen_veri['urunler_fiyat'];
+        $urunler_oy = $cekilen_veri['urunler_oy'];
+        $urunler_adet = $cekilen_veri['urunler_adet'];
+
+        echo "
+     <div class=\"col-lg-3\">
+                            <div class=\"single_product\" >
+                                <div class=\"product_thumb\">
+                                    <a href=\"detay.php?urunler_id=$urunler_id\"><img  src=\"assets/img/product/$urunler_resim\"
+                                                                        alt=\"\"></a>
+                                </div>
+                                <div class=\"product_content\">
+                                    <div class=\"product_ratting\">
+                                        <ul>
+                                            <li><a href=\"#\"><i class=\"ion-star\"></i></a></li>
+                                            <li><a href=\"#\"><i class=\"ion-ios-star-outline\"></i></a></li>
+                                            <li><a href=\"#\"><i class=\"ion-ios-star-outline\"></i></a></li>
+                                            <li><a href=\"#\"><i class=\"ion-ios-star-outline\"></i></a></li>
+                                            <li><a href=\"#\"><i class=\"ion-ios-star-outline\"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <h3><a href=\"product-details.html\">$urunler_title</a></h3>
+                                    <div class=\"product_price\">
+                                        <span class=\"current_price\">$urunler_fiyat TL</span>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+    ";
+    }
 }
 
 function oturum_secenek()
