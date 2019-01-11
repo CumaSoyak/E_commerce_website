@@ -77,7 +77,7 @@ function urun_goster()
         switch ($sirama) {
             case 1:
                 //Önerilen
-                $al_kategori = " SELECT * FROM urunler   WHERE $al=parent_altkategori_id ";
+                $al_kategori = " SELECT * FROM urunler WHERE $al=parent_altkategori_id ";
                 break;
             case  2:
                 //Artan
@@ -91,8 +91,6 @@ function urun_goster()
         $sonuc = mysqli_query($con, $al_kategori);
         while ($cekilen_veri = mysqli_fetch_array($sonuc)) {
 
-
-//TODO id çekilecek
             $urunler_id = $cekilen_veri['urunler_id'];
             $urunler_title = $cekilen_veri['urunler_title'];
             $urunler_desc = $cekilen_veri['urunler_desc'];
@@ -102,7 +100,6 @@ function urun_goster()
             $urunler_fiyat = $cekilen_veri['urunler_fiyat'];
             $urunler_oy = $cekilen_veri['urunler_oy'];
             $urunler_adet = $cekilen_veri['urunler_adet'];
-
 
             echo "<form class=\"col-lg-4 col-md-6\" action='shop.php?alt_kategori_id=$al' method='post'>
            <div  >
@@ -233,7 +230,7 @@ function urun_goster()
                                        <input min=\"1\" max=\"$urunler_adet\" step=\"2\" value=\"1\" type=\"number\" name='adet'>
                                        <input type='hidden' value='$urunler_id' name='urun_id'>
                                           <button type='submit' name='eklesepet'>add to cart</button>
-                                    </
+                                    </form>
                                 <div class=\"modal_description mb-15\">
                                     <p>Lorem ipsum AWDWADit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                         incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
@@ -444,12 +441,32 @@ function urun_goster()
 
 function detay()
 {
-    $al = $_GET['urunler_id'];
+
+    if (isset($_GET["eklesepet"])) {
+        $item_array = array(
+            'urun_id' => $_GET["urun_id"],
+            'title' => $_GET["title"],
+            'fiyat' => $_GET["fiyat"],
+            'resim' => $_GET["resim"],
+            'beden' => $_GET["beden"],
+            'adet' => $_GET["adet"]
+        );
+        //$count = count($_SESSION["sepet"]);
+        // print_r($item_array);
+        $_SESSION["sepet"][$_GET['urun_id']] = $item_array;
+        header('Location: detay.php');
+
+    }
+    if (isset($_GET['urunler_id'])) {
+        $_SESSION["urunid"] = $_GET['urunler_id'];
+    }
+    $urun_id = $_SESSION["urunid"];
+
+    echo $urun_id;
     $con = mysqli_connect("localhost", "root", "", "eticaret");
-    $al_kategori = " SELECT * FROM urunler as ur INNER JOIN beden as be WHERE $al=urunler_id AND ur.urunler_id=be.parent_urun_id";
+    $al_kategori = " SELECT * FROM urunler WHERE $urun_id=urunler_id ";
     $sonuc = mysqli_query($con, $al_kategori);
     $cekilen_veri = mysqli_fetch_array($sonuc);
-
     $urunler_id = $cekilen_veri['urunler_id'];
     $urunler_title = $cekilen_veri['urunler_title'];
     $urunler_desc = $cekilen_veri['urunler_desc'];
@@ -457,10 +474,9 @@ function detay()
     $urunler_resim_1 = $cekilen_veri['urunler_resim_1'];
     $urunler_resim_2 = $cekilen_veri['urunler_resim_2'];
     $urunler_fiyat = $cekilen_veri['urunler_fiyat'];
-    $urunler_size = $cekilen_veri['urunler_size'];
-    $urunler_oy = $cekilen_veri['urunler_oy'];
-    $XS = $cekilen_veri['XS'];
-    $M = $cekilen_veri['M'];
+    $urunler_adet = $cekilen_veri['urunler_adet'];
+
+
     echo "
          <!--single product wrapper start-->
             <div class=\"single_product_wrapper\">
@@ -519,39 +535,36 @@ function detay()
                                         <li><a href=\"#\"><i class=\"ion-ios-star-outline\"></i></a></li>
                                     </ul>
                                     <ul>
-                                        <li><a href=\"#\">1 Review</a></li>
-                                    </ul>
+                                     </ul>
                                 </div>
                                <div class=\"product_description\">
                                    <p>$urunler_desc</p>
                                </div>
                                 <div class=\"product_details_action\">
-                                    <h3>Available Options</h3>
-                                    <div class=\"product_stock\">
-                                        <label>Quantity</label>
-                                        <input min=\"0\" max=\"100\" type=\"number\">
+                                <form action='detay.php' method='get'>
+                                     <div class=\"product_stock\">
+                                        <label>Adet</label>
+                                        <input min=\"0\" value='1' max=\"$urunler_adet\" type=\"number\" name='adet'>
                                     </div>
+                                    <div class=\"product_stock\">
+                                        <label>Beden</label>
+                                        <input type=\"radio\" name='beden' value=\"Xs\">XS
+                                       <input type=\"radio\" name='beden' value=\"Xss\">XSS
+                                       <input type=\"radio\" name='beden' value=\"Xss\">XSS<br>
+                                     </div>
                                     <div class=\"product_action_link\">
                                         <ul>
-                                           <form action='detay.php?urunler_id=$urunler_id' method='get'>
                                         <input type='hidden' name='title' value='$urunler_title'>
                                         <input type='hidden' name='fiyat' value='$urunler_fiyat'>
                                         <input type='hidden' name='resim' value='$urunler_resim'>
-                                        <input type='hidden' name='beden' value='$XS'>
-                                        <input min=\"1\" max=\"100\" step=\"1\" value='1' type=\"number\" name='adet'>
-                                        <button type='submit' name='eklesepet'>add to cart</button>
-                                    </form>
+                                        <div class=\"modal_size mb-15\">
+                                        </div>
+                                        <input type='hidden' value='$urunler_id' name='urun_id'>
+                                          <button type='submit' name='eklesepet'>SEPETE EKLE</button>
+                                    
                                         </ul>
                                     </div>
-                                    <div class=\"social_sharing\">
-                                        <span>Share</span>
-                                        <ul>
-                                            <li><a href=\"#\" class=\"bg-facebook\" data-toggle=\"tooltip\" title=\"Facebook\"><i class=\"fa fa-facebook\"></i> Share</a></li>
-                                            <li><a href=\"#\" class=\"bg-Tweet\" data-toggle=\"tooltip\" title=\"twitter\"><i class=\"fa fa-twitter\"></i> Tweet</a></li>
-                                            <li><a href=\"#\" class=\"bg-google\" data-toggle=\"tooltip\" title=\"google-plus\"><i class=\"fa fa-google-plus\"></i> Google+</a></li>
-                                            <li><a href=\"#\" class=\"bg-pinterest\" data-toggle=\"tooltip\" title=\"pinterest\"><i class=\"fa fa-pinterest\"></i> Pinterest</a></li>
-                                        </ul>
-                                    </div> 
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -560,63 +573,6 @@ function detay()
             </div>
             <!--single product wrapper end-->";
 
-}
-
-function ayrintili_urun_goster()
-{
-    $al = $_SESSION["alt"];
-    $con = mysqli_connect("localhost", "root", "", "eticaret");
-    $al_kategori = "SELECT * FROM urunler  WHERE $al=parent_altkategori_id ";
-    $sonuc = mysqli_query($con, $al_kategori);
-    while ($cekilen_veri = mysqli_fetch_array($sonuc)) {
-        $urunler_title = $cekilen_veri['urunler_title'];
-        $urunler_desc = $cekilen_veri['urunler_desc'];
-        $urunler_resim = $cekilen_veri['urunler_resim'];
-        $urunler_resim_1 = $cekilen_veri['urunler_resim_1'];
-        $urunler_resim_2 = $cekilen_veri['urunler_resim_2'];
-        $urunler_fiyat = $cekilen_veri['urunler_fiyat'];
-        $urunler_size = $cekilen_veri['urunler_size'];
-        $urunler_oy = $cekilen_veri['urunler_oy'];
-        $size_array = explode(',', $urunler_size);
-        echo "    
-<div class=\"col-lg-4 col-md-5\">
-                                        <div class=\"product_thumb\">
-                                            <a href=\"product-details.html\"><img src='assets/img/product/$urunler_resim'
-                                                                                alt=\"\"></a>
-                                             
-                                        </div>
-                                    </div>
-                                    <div class=\"col-lg-8 col-md-7\">
-                                        <div class=\"product_content\">
-                                            <div class=\"product_ratting\">
-                                                <ul> ";
-        urun_oy_goster($urunler_oy);
-        echo " 
-                                                </ul>
-                                            </div>
-                                            <h3><a href=\"product-details.html\">$urunler_title</a></h3>
-                                            <div class=\"product_price\">
-                                                <span class=\"current_price\">$urunler_fiyat TL</span>
-                                            </div>
-                                            <div class=\"product_description\">
-                                                <p>$urunler_desc </p>
-                                            </div>
-                                            <div class=\"product_action\">
-                                                <ul>
-                                                Kullanıcı yorumları çekilebilir
-                                                <!--
-                                                    <li class=\"product_cart\"><a href=\"#\" title=\"Add to Cart\">Ekle
-                                                       </a></li>
-                                                    <li class=\"add_links\"><a href=\"#\" title=\"Add to Wishlist\"><i
-                                                                    class=\"ion-ios-heart-outline\"></i></a></li>
-                                                    <li class=\"add_links\"><a href=\"#\" title=\"Add to Compare\"><i
-                                                                    class=\"ion-loop\"></i></a></li> -->
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-         ";
-    }
 }
 
 function urun_oy_goster($urunler_oy)
@@ -1496,8 +1452,9 @@ function biten_urunler()
 
 function arama()
 {
+    //echo $_SERVER['REQUEST_URI'];
     echo "
-               <form action='shop.php' method='post' >        
+               <form action='index.php' method='post' >        
                   <input placeholder=\"Ürün arayınız....\" name='ara' type=\"text\">
                   <button type=\"submit\" name='arama'><i class=\"ion-ios-search-strong\"></i></button>
                </form>
@@ -1508,14 +1465,15 @@ function arama()
     if (isset($_POST["arama"])) {
         $search = $_POST["ara"];
         $result = mysqli_query($con, "SELECT * FROM urunler WHERE urunler_title LIKE '%$search%'");
-        while($r=mysqli_fetch_array($result))
-        {
+        while ($r = mysqli_fetch_array($result)) {
 
-            $title=$r["urunler_title"];
-            echo "
-               <td>$title</td>
-                        <br>";
-            
+            $title = $r["urunler_title"];
+            $urunler_id = $r["urunler_id"];
+             echo "
+              <li><a href='detay.php?urunler_id=$urunler_id'>$title</a></li>
+                 
+                ";
+
 
         }
     }

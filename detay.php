@@ -1,3 +1,7 @@
+<?php
+session_start();
+ob_start();
+?>
 <!doctype html>
 <html class="no-js" lang="zxx">
     
@@ -52,107 +56,7 @@
             <?php detay();?>
             
              <!--product info start-->
-            <div class="product_d_info">
-                <div class="container">   
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="product_d_inner">   
-                                <div class="product_info_button">    
-                                    <ul class="nav" role="tablist">
-                                        <li >
-                                            <a class="active" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">More info</a>
-                                        </li>
-                                        <li>
-                                             <a data-toggle="tab" href="#sheet" role="tab" aria-controls="sheet" aria-selected="false">Data sheet</a>
-                                        </li>
-                                        <li>
-                                           <a data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="tab-content">
-                                    <div class="tab-pane fade show active" id="info" role="tabpanel" >
-                                        <div class="product_info_content">
-                                            <p>Fashion has been creating well-designed collections since 2010. The brand offers feminine designs delivering stylish separates and statement dresses which have since evolved into a full ready-to-wear collection in which every item is a vital part of a woman's wardrobe. The result? Cool, easy, chic looks with youthful elegance and unmistakable signature style. All the beautiful pieces are made in Italy and manufactured with the greatest attention. Now Fashion extends to a range of accessories including shoes, hats, belts and more!</p>
-                                        </div>    
-                                    </div>
-
-                                    <div class="tab-pane fade" id="sheet" role="tabpanel" >
-                                        <div class="product_d_table">
-                                           <form action="#">
-                                                <table>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td class="first_child">Compositions</td>
-                                                            <td>Polyester</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="first_child">Styles</td>
-                                                            <td>Girly</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="first_child">Properties</td>
-                                                            <td>Short Dress</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </form>
-                                        </div>
-                                        <div class="product_info_content">
-                                            <p>Fashion has been creating well-designed collections since 2010. The brand offers feminine designs delivering stylish separates and statement dresses which have since evolved into a full ready-to-wear collection in which every item is a vital part of a woman's wardrobe. The result? Cool, easy, chic looks with youthful elegance and unmistakable signature style. All the beautiful pieces are made in Italy and manufactured with the greatest attention. Now Fashion extends to a range of accessories including shoes, hats, belts and more!</p>
-                                        </div>    
-                                    </div>
-                                    <div class="tab-pane fade" id="reviews" role="tabpanel" >
-                                        <div class="product_info_content">
-                                            <p>Fashion has been creating well-designed collections since 2010. The brand offers feminine designs delivering stylish separates and statement dresses which have since evolved into a full ready-to-wear collection in which every item is a vital part of a woman's wardrobe. The result? Cool, easy, chic looks with youthful elegance and unmistakable signature style. All the beautiful pieces are made in Italy and manufactured with the greatest attention. Now Fashion extends to a range of accessories including shoes, hats, belts and more!</p>
-                                        </div>
-                                        <div class="product_info_inner">
-                                            <div class="product_ratting mb-10">
-                                                <ul>
-                                                    <li><a href="#"><i class="ion-star"></i></a></li>
-                                                    <li><a href="#"><i class="ion-star"></i></a></li>
-                                                    <li><a href="#"><i class="ion-star"></i></a></li>
-                                                    <li><a href="#"><i class="ion-star"></i></a></li>
-                                                    <li><a href="#"><i class="ion-star"></i></a></li>
-                                                </ul>
-                                                <strong>Posthemes</strong> 
-                                                <p>09/07/2018</p>
-                                            </div>
-                                            <div class="product_demo">
-                                                <strong>demo</strong>
-                                                <p>That's OK!</p>
-                                            </div>
-                                        </div> 
-                                        <div class="product_review_form">
-                                            <form action="#">
-                                                <h2>Add a review </h2>
-                                                <p>Your email address will not be published. Required fields are marked </p>
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <label for="review_comment">Your review </label>
-                                                        <textarea name="comment" id="review_comment" ></textarea>
-                                                    </div> 
-                                                    <div class="col-lg-6 col-md-6">
-                                                        <label for="author">Name</label>
-                                                        <input id="author"  type="text">
-
-                                                    </div> 
-                                                    <div class="col-lg-6 col-md-6">
-                                                        <label for="email">Email </label>
-                                                        <input id="email"  type="text">
-                                                    </div>  
-                                                </div>
-                                                <button type="submit">Submit</button>
-                                             </form>   
-                                        </div>     
-                                    </div>
-                                </div>
-                            </div>     
-                        </div>
-                    </div>
-                </div>    
-            </div>  
-            <!--product info end-->
+             <!--product info end-->
         
             <!--product area start-->
           <!--  <div class="produtc_area related_Product">
@@ -338,47 +242,7 @@
 
 
             <!--brand area start-->
-            <div class="brand_area">
-                <div class="container">
-                    <div class="brand_inner">  
-                        <div class="row">
-                            <div class="brand_active owl-carousel">
-                                <div class="col-lg-3">
-                                    <div class="single_brand">
-                                        <a href="#"><img src="assets/img/brand/bra1.png" alt=""></a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="single_brand">
-                                        <a href="#"><img src="assets/img/brand/bra2.png" alt=""></a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="single_brand">
-                                        <a href="#"><img src="assets/img/brand/bra3.png" alt=""></a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="single_brand">
-                                        <a href="#"><img src="assets/img/brand/bra4.png" alt=""></a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="single_brand">
-                                        <a href="#"><img src="assets/img/brand/bra5.png" alt=""></a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="single_brand">
-                                        <a href="#"><img src="assets/img/brand/bra6.png" alt=""></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>     
-                </div>
-            </div>
-            <!--brand area end-->
+             <!--brand area end-->
             
            
             
@@ -727,3 +591,4 @@
 
 <!-- Mirrored from demo.devitems.com/cigar-v3/cigar/product-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Nov 2018 17:58:51 GMT -->
 </html>
+<?php ob_end_flush(); ?>

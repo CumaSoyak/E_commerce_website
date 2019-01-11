@@ -55,14 +55,8 @@ ob_start();
 
                     <div class="list_button">
                         <ul class="nav" role="tablist">
-                            <li>
-                                <a class="active" data-toggle="tab" href="#large" role="tab" aria-controls="large"
-                                   aria-selected="true"><i class="ion-grid"></i></a>
-                            </li>
-                            <li>
-                                <a data-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false"><i
-                                            class="ion-android-menu"></i></a>
-                            </li>
+
+
                         </ul>
                     </div>
                     <div class="select_option number">
@@ -94,7 +88,7 @@ ob_start();
                             <div class="single_product list_item">
                                 <div class="row align-items-center">
 
-                                    <?php ayrintili_urun_goster(); ?>
+
                                 </div>
                             </div>
                         </div>
